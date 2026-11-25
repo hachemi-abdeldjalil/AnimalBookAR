@@ -27,55 +27,45 @@
   },
   "parts": [
    {
-    "id": "ball",
-    "en": "Ball",
-    "fr": "Balle",
-    "ar": "كرة",
-    "fr_def": "la balle",
-    "ar_def": "الكرة",
+    "id": "light",
+    "en": "Light red",
+    "fr": "Rouge clair",
+    "ar": "أحمر فاتح",
+    "fr_def": "le rouge clair",
+    "ar_def": "الأحمر الفاتح",
+    "hex": "#F0928F",
     "at": [
-     0.17,
-     0.39,
-     0.91
+     0.22,
+     0.44,
+     0.6
     ]
    },
    {
-    "id": "star",
-    "en": "Star",
-    "fr": "Étoile",
-    "ar": "نجمة",
-    "fr_def": "l'étoile",
-    "ar_def": "النجمة",
+    "id": "normal",
+    "en": "Red",
+    "fr": "Rouge",
+    "ar": "أحمر",
+    "fr_def": "le rouge",
+    "ar_def": "الأحمر",
+    "hex": "#E53935",
     "at": [
-     0.55,
-     0.51,
-     0.22
+     0.5,
+     0.53,
+     0.63
     ]
    },
    {
-    "id": "balloon",
-    "en": "Balloon",
-    "fr": "Ballon",
-    "ar": "بالون",
-    "fr_def": "le ballon",
-    "ar_def": "البالون",
+    "id": "dark",
+    "en": "Dark red",
+    "fr": "Rouge foncé",
+    "ar": "أحمر داكن",
+    "fr_def": "le rouge foncé",
+    "ar_def": "الأحمر الداكن",
+    "hex": "#942522",
     "at": [
-     0.88,
-     0.65,
-     0.76
-    ]
-   },
-   {
-    "id": "cup",
-    "en": "Cup",
-    "fr": "Tasse",
-    "ar": "كوب",
-    "fr_def": "la tasse",
-    "ar_def": "الكوب",
-    "at": [
-     0.6,
-     0.2,
-     1
+     0.78,
+     0.44,
+     0.6
     ]
    }
   ]
@@ -108,55 +98,45 @@
   },
   "parts": [
    {
-    "id": "heart",
-    "en": "Heart",
-    "fr": "Cœur",
-    "ar": "قلب",
-    "fr_def": "le cœur",
-    "ar_def": "القلب",
+    "id": "light",
+    "en": "Light orange",
+    "fr": "Orange clair",
+    "ar": "برتقالي فاتح",
+    "fr_def": "l'orange clair",
+    "ar_def": "البرتقالي الفاتح",
+    "hex": "#FCBF72",
     "at": [
-     0.23,
-     0.65,
-     0.29
+     0.28,
+     0.48,
+     0.73
     ]
    },
    {
-    "id": "fish",
-    "en": "Fish",
-    "fr": "Poisson",
-    "ar": "سمكة",
-    "fr_def": "le poisson",
-    "ar_def": "السمكة",
+    "id": "normal",
+    "en": "Orange",
+    "fr": "Orange",
+    "ar": "برتقالي",
+    "fr_def": "l'orange",
+    "ar_def": "البرتقالي",
+    "hex": "#FB8C00",
     "at": [
-     0.71,
-     0.39,
-     0.3
-    ]
-   },
-   {
-    "id": "hat",
-    "en": "Party hat",
-    "fr": "Chapeau",
-    "ar": "قبعة",
-    "fr_def": "le chapeau",
-    "ar_def": "القبعة",
-    "at": [
-     0.45,
      0.5,
-     0.97
+     0.53,
+     0.49
     ]
    },
    {
-    "id": "cube",
-    "en": "Block",
-    "fr": "Cube",
-    "ar": "مكعب",
-    "fr_def": "le cube",
-    "ar_def": "المكعب",
+    "id": "dark",
+    "en": "Dark orange",
+    "fr": "Orange foncé",
+    "ar": "برتقالي داكن",
+    "fr_def": "l'orange foncé",
+    "ar_def": "البرتقالي الداكن",
+    "hex": "#A35B00",
     "at": [
-     0.87,
-     0.32,
-     1
+     0.72,
+     0.48,
+     0.73
     ]
    }
   ]
@@ -189,54 +169,44 @@
   },
   "parts": [
    {
-    "id": "flower",
-    "en": "Flower",
-    "fr": "Fleur",
-    "ar": "زهرة",
-    "fr_def": "la fleur",
-    "ar_def": "الزهرة",
+    "id": "light",
+    "en": "Light yellow",
+    "fr": "Jaune clair",
+    "ar": "أصفر فاتح",
+    "fr_def": "le jaune clair",
+    "ar_def": "الأصفر الفاتح",
+    "hex": "#FDE98F",
     "at": [
-     0.13,
-     0.56,
-     1
-    ]
-   },
-   {
-    "id": "ball",
-    "en": "Ball",
-    "fr": "Balle",
-    "ar": "كرة",
-    "fr_def": "la balle",
-    "ar_def": "الكرة",
-    "at": [
+     0.22,
      0.39,
-     0.52,
-     0.64
+     0.77
     ]
    },
    {
-    "id": "star",
-    "en": "Star",
-    "fr": "Étoile",
-    "ar": "نجمة",
-    "fr_def": "l'étoile",
-    "ar_def": "النجمة",
+    "id": "normal",
+    "en": "Yellow",
+    "fr": "Jaune",
+    "ar": "أصفر",
+    "fr_def": "le jaune",
+    "ar_def": "الأصفر",
+    "hex": "#FDD835",
     "at": [
-     0.7,
-     0.65,
-     0.82
-    ]
-   },
-   {
-    "id": "hat",
-    "en": "Party hat",
-    "fr": "Chapeau",
-    "ar": "قبعة",
-    "fr_def": "le chapeau",
-    "ar_def": "القبعة",
-    "at": [
-     0.9,
+     0.5,
      0.46,
+     0.62
+    ]
+   },
+   {
+    "id": "dark",
+    "en": "Dark yellow",
+    "fr": "Jaune foncé",
+    "ar": "أصفر داكن",
+    "fr_def": "le jaune foncé",
+    "ar_def": "الأصفر الداكن",
+    "hex": "#A48C22",
+    "at": [
+     0.78,
+     0.53,
      0.47
     ]
    }
@@ -270,55 +240,45 @@
   },
   "parts": [
    {
-    "id": "balloon",
-    "en": "Balloon",
-    "fr": "Ballon",
-    "ar": "بالون",
-    "fr_def": "le ballon",
-    "ar_def": "البالون",
+    "id": "light",
+    "en": "Light green",
+    "fr": "Vert clair",
+    "ar": "أخضر فاتح",
+    "fr_def": "le vert clair",
+    "ar_def": "الأخضر الفاتح",
+    "hex": "#97CA99",
     "at": [
-     0.12,
-     0.65,
-     0.91
+     0.25,
+     0.44,
+     0.49
     ]
    },
    {
-    "id": "cube",
-    "en": "Block",
-    "fr": "Cube",
-    "ar": "مكعب",
-    "fr_def": "le cube",
-    "ar_def": "المكعب",
+    "id": "normal",
+    "en": "Green",
+    "fr": "Vert",
+    "ar": "أخضر",
+    "fr_def": "le vert",
+    "ar_def": "الأخضر",
+    "hex": "#43A047",
     "at": [
-     0.49,
-     0.31,
-     0.62
+     0.5,
+     0.53,
+     0.8
     ]
    },
    {
-    "id": "fish",
-    "en": "Fish",
-    "fr": "Poisson",
-    "ar": "سمكة",
-    "fr_def": "le poisson",
-    "ar_def": "السمكة",
+    "id": "dark",
+    "en": "Dark green",
+    "fr": "Vert foncé",
+    "ar": "أخضر داكن",
+    "fr_def": "le vert foncé",
+    "ar_def": "الأخضر الداكن",
+    "hex": "#2B682E",
     "at": [
-     0.76,
-     0.29,
-     0.83
-    ]
-   },
-   {
-    "id": "heart",
-    "en": "Heart",
-    "fr": "Cœur",
-    "ar": "قلب",
-    "fr_def": "le cœur",
-    "ar_def": "القلب",
-    "at": [
-     0.51,
-     0.37,
-     1
+     0.75,
+     0.44,
+     0.49
     ]
    }
   ]
@@ -351,55 +311,45 @@
   },
   "parts": [
    {
-    "id": "cup",
-    "en": "Cup",
-    "fr": "Tasse",
-    "ar": "كوب",
-    "fr_def": "la tasse",
-    "ar_def": "الكوب",
+    "id": "light",
+    "en": "Light blue",
+    "fr": "Bleu clair",
+    "ar": "أزرق فاتح",
+    "fr_def": "le bleu clair",
+    "ar_def": "الأزرق الفاتح",
+    "hex": "#83BDF0",
     "at": [
-     0.17,
-     0.34,
-     0.44
+     0.22,
+     0.32,
+     0.59
     ]
    },
    {
-    "id": "flower",
-    "en": "Flower",
-    "fr": "Fleur",
-    "ar": "زهرة",
-    "fr_def": "la fleur",
-    "ar_def": "الزهرة",
+    "id": "normal",
+    "en": "Blue",
+    "fr": "Bleu",
+    "ar": "أزرق",
+    "fr_def": "le bleu",
+    "ar_def": "الأزرق",
+    "hex": "#1E88E5",
     "at": [
-     0.72,
-     0.65,
-     0.3
+     0.5,
+     0.43,
+     0.62
     ]
    },
    {
-    "id": "heart",
-    "en": "Heart",
-    "fr": "Cœur",
-    "ar": "قلب",
-    "fr_def": "le cœur",
-    "ar_def": "القلب",
+    "id": "dark",
+    "en": "Dark blue",
+    "fr": "Bleu foncé",
+    "ar": "أزرق داكن",
+    "fr_def": "le bleu foncé",
+    "ar_def": "الأزرق الداكن",
+    "hex": "#135894",
     "at": [
-     0.38,
+     0.79,
      0.53,
-     0.87
-    ]
-   },
-   {
-    "id": "ball",
-    "en": "Ball",
-    "fr": "Balle",
-    "ar": "كرة",
-    "fr_def": "la balle",
-    "ar_def": "الكرة",
-    "at": [
-     0.85,
-     0.44,
-     1
+     0.65
     ]
    }
   ]
@@ -432,55 +382,45 @@
   },
   "parts": [
    {
-    "id": "ball",
-    "en": "Ball",
-    "fr": "Balle",
-    "ar": "كرة",
-    "fr_def": "la balle",
-    "ar_def": "الكرة",
+    "id": "light",
+    "en": "Light purple",
+    "fr": "Violet clair",
+    "ar": "بنفسجي فاتح",
+    "fr_def": "le violet clair",
+    "ar_def": "البنفسجي الفاتح",
+    "hex": "#C086D0",
     "at": [
-     0.14,
-     0.32,
-     1
-    ]
-   },
-   {
-    "id": "star",
-    "en": "Star",
-    "fr": "Étoile",
-    "ar": "نجمة",
-    "fr_def": "l'étoile",
-    "ar_def": "النجمة",
-    "at": [
-     0.38,
+     0.22,
      0.44,
-     0.29
+     0.6
     ]
    },
    {
-    "id": "balloon",
-    "en": "Balloon",
-    "fr": "Ballon",
-    "ar": "بالون",
-    "fr_def": "le ballon",
-    "ar_def": "البالون",
+    "id": "normal",
+    "en": "Purple",
+    "fr": "Violet",
+    "ar": "بنفسجي",
+    "fr_def": "le violet",
+    "ar_def": "البنفسجي",
+    "hex": "#8E24AA",
     "at": [
-     0.67,
-     0.65,
-     0.78
+     0.5,
+     0.53,
+     0.63
     ]
    },
    {
-    "id": "cup",
-    "en": "Cup",
-    "fr": "Tasse",
-    "ar": "كوب",
-    "fr_def": "la tasse",
-    "ar_def": "الكوب",
+    "id": "dark",
+    "en": "Dark purple",
+    "fr": "Violet foncé",
+    "ar": "بنفسجي داكن",
+    "fr_def": "le violet foncé",
+    "ar_def": "البنفسجي الداكن",
+    "hex": "#5C176E",
     "at": [
-     0.88,
-     0.18,
-     0.32
+     0.78,
+     0.44,
+     0.6
     ]
    }
   ]
@@ -513,55 +453,45 @@
   },
   "parts": [
    {
-    "id": "heart",
-    "en": "Heart",
-    "fr": "Cœur",
-    "ar": "قلب",
-    "fr_def": "le cœur",
-    "ar_def": "القلب",
+    "id": "light",
+    "en": "Light pink",
+    "fr": "Rose clair",
+    "ar": "وردي فاتح",
+    "fr_def": "le rose clair",
+    "ar_def": "الوردي الفاتح",
+    "hex": "#F4AFCF",
     "at": [
-     0.21,
-     0.65,
-     0.64
+     0.28,
+     0.48,
+     0.73
     ]
    },
    {
-    "id": "fish",
-    "en": "Fish",
-    "fr": "Poisson",
-    "ar": "سمكة",
-    "fr_def": "le poisson",
-    "ar_def": "السمكة",
+    "id": "normal",
+    "en": "Pink",
+    "fr": "Rose",
+    "ar": "وردي",
+    "fr_def": "le rose",
+    "ar_def": "الوردي",
+    "hex": "#EC6FA9",
     "at": [
-     0.51,
-     0.47,
-     0.3
+     0.5,
+     0.53,
+     0.49
     ]
    },
    {
-    "id": "hat",
-    "en": "Party hat",
-    "fr": "Chapeau",
-    "ar": "قبعة",
-    "fr_def": "le chapeau",
-    "ar_def": "القبعة",
+    "id": "dark",
+    "en": "Dark pink",
+    "fr": "Rose foncé",
+    "ar": "وردي داكن",
+    "fr_def": "le rose foncé",
+    "ar_def": "الوردي الداكن",
+    "hex": "#99486D",
     "at": [
-     0.88,
-     0.62,
-     0.72
-    ]
-   },
-   {
-    "id": "cube",
-    "en": "Block",
-    "fr": "Cube",
-    "ar": "مكعب",
-    "fr_def": "le cube",
-    "ar_def": "المكعب",
-    "at": [
-     0.59,
-     0.36,
-     1
+     0.72,
+     0.48,
+     0.73
     ]
    }
   ]
@@ -594,55 +524,45 @@
   },
   "parts": [
    {
-    "id": "flower",
-    "en": "Flower",
-    "fr": "Fleur",
-    "ar": "زهرة",
-    "fr_def": "la fleur",
-    "ar_def": "الزهرة",
+    "id": "light",
+    "en": "Light brown",
+    "fr": "Marron clair",
+    "ar": "بني فاتح",
+    "fr_def": "le marron clair",
+    "ar_def": "البني الفاتح",
+    "hex": "#B5A19A",
     "at": [
-     0.17,
-     0.65,
-     0.44
+     0.22,
+     0.39,
+     0.77
     ]
    },
    {
-    "id": "ball",
-    "en": "Ball",
-    "fr": "Balle",
-    "ar": "كرة",
-    "fr_def": "la balle",
-    "ar_def": "الكرة",
+    "id": "normal",
+    "en": "Brown",
+    "fr": "Marron",
+    "ar": "بني",
+    "fr_def": "le marron",
+    "ar_def": "البني",
+    "hex": "#795548",
     "at": [
-     0.76,
-     0.47,
-     0.57
+     0.5,
+     0.46,
+     0.62
     ]
    },
    {
-    "id": "star",
-    "en": "Star",
-    "fr": "Étoile",
-    "ar": "نجمة",
-    "fr_def": "l'étoile",
-    "ar_def": "النجمة",
+    "id": "dark",
+    "en": "Dark brown",
+    "fr": "Marron foncé",
+    "ar": "بني داكن",
+    "fr_def": "le marron foncé",
+    "ar_def": "البني الداكن",
+    "hex": "#4E372E",
     "at": [
-     0.42,
-     0.51,
-     0.94
-    ]
-   },
-   {
-    "id": "hat",
-    "en": "Party hat",
-    "fr": "Chapeau",
-    "ar": "قبعة",
-    "fr_def": "le chapeau",
-    "ar_def": "القبعة",
-    "at": [
-     0.89,
-     0.44,
-     1
+     0.78,
+     0.53,
+     0.47
     ]
    }
   ]
@@ -675,55 +595,45 @@
   },
   "parts": [
    {
-    "id": "balloon",
-    "en": "Balloon",
-    "fr": "Ballon",
-    "ar": "بالون",
-    "fr_def": "le ballon",
-    "ar_def": "البالون",
+    "id": "light",
+    "en": "Grey",
+    "fr": "Gris",
+    "ar": "رمادي",
+    "fr_def": "le gris",
+    "ar_def": "الرمادي",
+    "hex": "#8A8A8A",
     "at": [
-     0.09,
-     0.65,
-     1
+     0.25,
+     0.44,
+     0.49
     ]
    },
    {
-    "id": "cube",
-    "en": "Block",
-    "fr": "Cube",
-    "ar": "مكعب",
-    "fr_def": "le cube",
-    "ar_def": "المكعب",
+    "id": "normal",
+    "en": "Black",
+    "fr": "Noir",
+    "ar": "أسود",
+    "fr_def": "le noir",
+    "ar_def": "الأسود",
+    "hex": "#2B2B2B",
     "at": [
-     0.34,
-     0.33,
-     0.59
+     0.5,
+     0.53,
+     0.8
     ]
    },
    {
-    "id": "fish",
-    "en": "Fish",
-    "fr": "Poisson",
-    "ar": "سمكة",
-    "fr_def": "le poisson",
-    "ar_def": "السمكة",
+    "id": "dark",
+    "en": "Jet black",
+    "fr": "Noir de jais",
+    "ar": "أسود فاحم",
+    "fr_def": "le noir de jais",
+    "ar_def": "الأسود الفاحم",
+    "hex": "#050505",
     "at": [
-     0.59,
-     0.35,
-     0.83
-    ]
-   },
-   {
-    "id": "heart",
-    "en": "Heart",
-    "fr": "Cœur",
-    "ar": "قلب",
-    "fr_def": "le cœur",
-    "ar_def": "القلب",
-    "at": [
-     0.83,
-     0.41,
-     0.34
+     0.75,
+     0.44,
+     0.49
     ]
    }
   ]
@@ -756,55 +666,45 @@
   },
   "parts": [
    {
-    "id": "cup",
-    "en": "Cup",
-    "fr": "Tasse",
-    "ar": "كوب",
-    "fr_def": "la tasse",
-    "ar_def": "الكوب",
+    "id": "light",
+    "en": "Cream",
+    "fr": "Crème",
+    "ar": "كريمي",
+    "fr_def": "la crème",
+    "ar_def": "الكريمي",
+    "hex": "#FFF1D0",
     "at": [
-     0.15,
-     0.28,
-     0.72
+     0.22,
+     0.32,
+     0.59
     ]
    },
    {
-    "id": "flower",
-    "en": "Flower",
-    "fr": "Fleur",
-    "ar": "زهرة",
-    "fr_def": "la fleur",
-    "ar_def": "الزهرة",
+    "id": "normal",
+    "en": "White",
+    "fr": "Blanc",
+    "ar": "أبيض",
+    "fr_def": "le blanc",
+    "ar_def": "الأبيض",
+    "hex": "#F5F5F5",
     "at": [
-     0.47,
-     0.65,
-     0.2
+     0.5,
+     0.43,
+     0.62
     ]
    },
    {
-    "id": "heart",
-    "en": "Heart",
-    "fr": "Cœur",
-    "ar": "قلب",
-    "fr_def": "le cœur",
-    "ar_def": "القلب",
+    "id": "dark",
+    "en": "Light grey",
+    "fr": "Gris clair",
+    "ar": "رمادي فاتح",
+    "fr_def": "le gris clair",
+    "ar_def": "الرمادي الفاتح",
+    "hex": "#C8C8C8",
     "at": [
-     0.78,
-     0.54,
-     0.58
-    ]
-   },
-   {
-    "id": "ball",
-    "en": "Ball",
-    "fr": "Balle",
-    "ar": "كرة",
-    "fr_def": "la balle",
-    "ar_def": "الكرة",
-    "at": [
-     0.49,
-     0.4,
-     1
+     0.79,
+     0.53,
+     0.65
     ]
    }
   ]

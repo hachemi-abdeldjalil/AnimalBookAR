@@ -222,7 +222,7 @@ void main() {
         scrollable: find.byType(Scrollable).first);
     await _openBook(tester, 'colors');
     expect(find.text('Discover red'), findsOneWidget);
-    expect(find.text('Things'), findsOneWidget); // level 2 is about the objects
+    expect(find.text('Shades'), findsOneWidget); // level 2: light, normal and dark
     await tester.tap(find.byKey(const Key('game-mix')));
     await _settle(tester);
     await tester.pump(const Duration(milliseconds: 400));
@@ -247,5 +247,50 @@ void main() {
     expect(find.text('Details'), findsOneWidget); // level 2
     expect(find.byKey(const Key('game-find')), findsOneWidget);
     expect(find.text('Find the treasure'), findsOneWidget);
+  });
+
+  testWidgets('animals: category tags on the card and the Sort game', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(400, 2400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final p = await _progress(tester, {'name': 'Yahia', 'met': ['horse']});
+    await tester.pumpWidget(AnimalBookApp(progress: p));
+    await _settle(tester);
+    await _openBook(tester, 'animals');
+
+    await tester.tap(find.text('Horse'));
+    await _settle(tester);
+    expect(find.text('Lives in: Farm'), findsOneWidget);
+    expect(find.text('Farm animal'), findsOneWidget);
+    expect(find.text('Eats plants'), findsOneWidget);
+    await tester.tapAt(const Offset(200, 40)); // close the sheet
+    await _settle(tester);
+
+    await tester.tap(find.byKey(const Key('game-sort')));
+    await _settle(tester);
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(find.byKey(const Key('sort-question')), findsOneWidget);
+    expect(find.byKey(const Key('sort-farm')), findsOneWidget); // the first question: where does it live?
+  });
+
+  testWidgets('Shapes and Numbers books open on their first page', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(400, 3200));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final p = await _progress(tester, {'name': 'Yahia'});
+    await tester.pumpWidget(AnimalBookApp(progress: p));
+    await _settle(tester);
+
+    expect(find.text('0 of 10 shapes'), findsWidgets);
+    await tester.scrollUntilVisible(find.byKey(const Key('book-shapes')), 300, scrollable: find.byType(Scrollable).first);
+    await _openBook(tester, 'shapes');
+    expect(find.text('Learn the circle'), findsOneWidget);
+    expect(find.text('Find the shape'), findsOneWidget);
+    await tester.tap(find.byKey(const Key('back-to-books')));
+    await _settle(tester);
+    await tester.pump(const Duration(milliseconds: 400));
+
+    await tester.scrollUntilVisible(find.byKey(const Key('book-numbers')), 300, scrollable: find.byType(Scrollable).first);
+    await _openBook(tester, 'numbers');
+    expect(find.text('Learn 1 · One'), findsOneWidget);
+    expect(find.text('Find the number'), findsOneWidget);
   });
 }

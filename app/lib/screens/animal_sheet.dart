@@ -67,6 +67,31 @@ class AnimalSheet extends StatelessWidget {
           const SizedBox(height: 12),
           Text(p.met(a.id) ? a.fact(lang) : s.notMet,
               style: const TextStyle(fontSize: 15, height: 1.35, color: Color(0xFF4A3C30))),
+          // categories: where it lives, farm / pet / wild, what it eats
+          if (a.habitat != null) ...[
+            const SizedBox(height: 12),
+            Wrap(spacing: 8, runSpacing: 8, children: [
+              _Tag(icon: _habitatIcon(a.habitat!), text: '${s.livesIn}: ${s.habitatName(a.habitat!)}', color: a.color),
+              if (a.group != null)
+                _Tag(
+                    icon: switch (a.group) {
+                      'farm' => Icons.agriculture_rounded,
+                      'pet' => Icons.home_rounded,
+                      _ => Icons.forest_rounded,
+                    },
+                    text: s.category(a.group!),
+                    color: a.color),
+              if (a.diet != null)
+                _Tag(
+                    icon: switch (a.diet) {
+                      'herbivore' => Icons.eco_rounded,
+                      'carnivore' => Icons.set_meal_rounded,
+                      _ => Icons.restaurant_rounded,
+                    },
+                    text: s.category(a.diet!),
+                    color: a.color),
+            ]),
+          ],
           if (a.parts.isNotEmpty) ...[
             const SizedBox(height: 14),
             Row(children: [
@@ -147,6 +172,42 @@ class _Chip extends StatelessWidget {
         Text(text,
             style: TextStyle(
                 fontWeight: FontWeight.w700, color: found ? const Color(0xFF1F7A4D) : const Color(0xFFA89A8C))),
+      ]),
+    );
+  }
+}
+
+IconData _habitatIcon(String h) => switch (h) {
+      'farm' => Icons.agriculture_rounded,
+      'home' => Icons.home_rounded,
+      'forest' => Icons.park_rounded,
+      'savannah' => Icons.grass_rounded,
+      'desert' => Icons.wb_sunny_rounded,
+      'wetland' => Icons.water_rounded,
+      _ => Icons.public_rounded,
+    };
+
+/// A small coloured label (habitat, group, diet).
+class _Tag extends StatelessWidget {
+  const _Tag({required this.icon, required this.text, required this.color});
+  final IconData icon;
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.12),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withOpacity(0.35)),
+      ),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        Icon(icon, size: 16, color: color),
+        const SizedBox(width: 5),
+        Text(text,
+            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13, color: Color.lerp(color, Colors.black, 0.35))),
       ]),
     );
   }

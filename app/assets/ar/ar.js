@@ -23,9 +23,10 @@ const SOUND_QUIZ = params.get('mode') === 'sound'; // "Who makes this sound?": s
 const HELPS = params.get('mode') === 'helps'; // vehicles: "There's a fire! Who helps?": scan the right page
 const SCAN_QUIZ = SOUND_QUIZ || HELPS; // both are answered by scanning a page
 const BOOK_ID = params.get('book') || 'animals';
+const PARTS_ON = params.get('parts') !== '0'; // off in level 1: the parts come with level 2
 let VEH = false; // the open book is about vehicles (set once books.json is read)
 let KIND = 'animals'; // animals | vehicles | letters | colors
-const SUFFIX = { vehicles: 'V', letters: 'L', colors: 'C', heritage: 'H' };
+const SUFFIX = { vehicles: 'V', letters: 'L', colors: 'C', heritage: 'H', shapes: 'S', numbers: 'N' };
 const QUIZ_GOAL = 3; // right answers per animal
 const QUIZ_DWELL_MS = 400; // aim at the right part this long to answer
 const PAGE_HALF_W = 0.5;
@@ -50,6 +51,7 @@ const TEXT = {
     loading: 'Starting the camera…', scan: 'Point the camera at an animal page',
     held: '✋ Holding: turn the phone to look around',
     hint: 'Aim the ◎ at a body part · 1 finger: turn and tip · 2 fingers: zoom, move',
+    hintMeet: 'Tap it to hear it · 1 finger: turn and tip · 2 fingers: zoom, move',
     sound: 'Sound', move: 'Move', hold: 'Hold', page: 'Page', reset: 'Reset',
     find: 'Find {p}!', wrong: "That's {p}. Try again!", right: "Bravo! That's {p}!", quizDone: 'Quiz done! 🎉',
     newAnimal: 'New animal! +1 ★', newPart: '+1 ★', levelUp: 'Level {n} unlocked!', allDone: 'All levels done! 🏆',
@@ -69,6 +71,8 @@ const TEXT = {
     hintC: 'Aim the ◎ at a thing · 1 finger: turn and tip · 2 fingers: zoom, move',
     scanH: 'Point the camera at an Algeria page', newAnimalH: 'New treasure! +1 ★', moveH: 'Spin', helpsRightH: "Yes! It's {a}!",
     hintH: 'Aim the ◎ at a detail · 1 finger: turn and tip · 2 fingers: zoom, move',
+    scanS: 'Point the camera at a shape page', newAnimalS: 'New shape! +1 ★', moveS: 'Spin', helpsRightS: "Yes! It's the {a}!", hintS: '1 finger: turn and tip · 2 fingers: zoom, move',
+    scanN: 'Point the camera at a number page', newAnimalN: 'New number! +1 ★', moveN: 'Spin', helpsRightN: 'Yes! {a}!', hintN: 'Count the stars! · 1 finger: turn and tip · 2 fingers: zoom, move',
     feedC: 'Paint', yumC: "Yes! It's {f}!", noThanksC: "That's {f}. Find the page's colour!", fullC: 'Well done! 🎉',
   },
   fr: {
@@ -79,6 +83,7 @@ const TEXT = {
     loading: 'Démarrage de la caméra…', scan: "Vise une page d'animal avec la caméra",
     held: '✋ Tenu : tourne le téléphone pour regarder autour',
     hint: 'Vise ◎ une partie du corps · 1 doigt : tourner, pencher · 2 doigts : zoomer, déplacer',
+    hintMeet: "Touche-le pour l'entendre · 1 doigt : tourner, pencher · 2 doigts : zoomer, déplacer",
     sound: 'Son', move: 'Bouger', hold: 'Tenir', page: 'Page', reset: 'Remettre',
     find: 'Trouve {p} !', wrong: "Ça, c'est {p}. Essaie encore !", right: "Bravo ! C'est {p} !", quizDone: 'Quiz fini ! 🎉',
     newAnimal: 'Nouvel animal ! +1 ★', newPart: '+1 ★', levelUp: 'Niveau {n} débloqué !', allDone: 'Tous les niveaux sont finis ! 🏆',
@@ -96,6 +101,8 @@ const TEXT = {
     hintC: 'Vise ◎ un objet · 1 doigt : tourner, pencher · 2 doigts : zoomer, déplacer',
     scanH: "Vise une page de l'Algérie avec la caméra", newAnimalH: 'Nouveau trésor ! +1 ★', moveH: 'Tourner', helpsRightH: "Oui ! C'est {a} !",
     hintH: 'Vise ◎ un détail · 1 doigt : tourner, pencher · 2 doigts : zoomer, déplacer',
+    scanS: 'Vise une page de forme avec la caméra', newAnimalS: 'Nouvelle forme ! +1 ★', moveS: 'Tourner', helpsRightS: "Oui ! C'est {a} !", hintS: '1 doigt : tourner, pencher · 2 doigts : zoomer, déplacer',
+    scanN: 'Vise une page de nombre avec la caméra', newAnimalN: 'Nouveau nombre ! +1 ★', moveN: 'Tourner', helpsRightN: 'Oui ! {a} !', hintN: 'Compte les étoiles ! · 1 doigt : tourner · 2 doigts : zoomer',
     feedC: 'Peindre', yumC: "Oui ! C'est {f} !", noThanksC: "Ça, c'est {f}. Trouve la couleur de la page !", fullC: 'Bravo ! 🎉',
   },
   ar: {
@@ -106,6 +113,7 @@ const TEXT = {
     loading: 'تشغيل الكاميرا…', scan: 'وجّه الكاميرا نحو صفحة حيوان',
     held: '✋ مثبّت: أدر الهاتف لترى ما حوله',
     hint: 'صوّب ◎ نحو جزء من الجسم · إصبع: تدوير وإمالة · إصبعان: تكبير وتحريك',
+    hintMeet: 'المسه لتسمعه · إصبع: تدوير وإمالة · إصبعان: تكبير وتحريك',
     sound: 'صوت', move: 'حركة', hold: 'تثبيت', page: 'الصفحة', reset: 'إعادة',
     find: 'أين {p}؟', wrong: 'هذا {p}. حاول مرة أخرى!', right: 'أحسنت! هذا {p}!', quizDone: 'انتهى الاختبار! 🎉',
     newAnimal: 'حيوان جديد! +1 ★', newPart: '+1 ★', levelUp: 'فتحت المستوى {n}!', allDone: 'أكملت كل المستويات! 🏆',
@@ -123,6 +131,8 @@ const TEXT = {
     hintC: 'صوّب ◎ نحو شيء · إصبع: تدوير وإمالة · إصبعان: تكبير وتحريك',
     scanH: 'وجّه الكاميرا نحو صفحة من الجزائر', newAnimalH: 'كنز جديد! +1 ★', moveH: 'دوران', helpsRightH: 'أحسنت! إنه {a}!',
     hintH: 'صوّب ◎ نحو تفصيل · إصبع: تدوير وإمالة · إصبعان: تكبير وتحريك',
+    scanS: 'وجّه الكاميرا نحو صفحة شكل', newAnimalS: 'شكل جديد! +1 ★', moveS: 'دوران', helpsRightS: 'أحسنت! إنه {a}!', hintS: 'إصبع: تدوير وإمالة · إصبعان: تكبير وتحريك',
+    scanN: 'وجّه الكاميرا نحو صفحة عدد', newAnimalN: 'عدد جديد! +1 ★', moveN: 'دوران', helpsRightN: 'أحسنت! {a}!', hintN: 'عُدّ النجوم! · إصبع: تدوير · إصبعان: تكبير',
     feedC: 'تلوين', yumC: 'نعم! إنه {f}!', noThanksC: 'هذا {f}. ابحث عن لون الصفحة!', fullC: 'أحسنت! 🎉',
   },
 };
@@ -204,7 +214,7 @@ function speak(text, lang = LANG) {
 }
 
 // "the fox" / "le renard" / "الثعلب"
-const animalWithArticle = (a) => (KIND === 'letters' || KIND === 'colors' || KIND === 'heritage' ? a[LANG] : {
+const animalWithArticle = (a) => (['letters', 'colors', 'heritage', 'shapes', 'numbers'].includes(KIND) ? (KIND === 'shapes' ? { en: 'the ' + a.en.toLowerCase(), fr: a.fr_of.replace(/^du /, 'le ').replace(/^de /, ''), ar: a.ar_def }[LANG] : a[LANG]) : {
   en: 'the ' + a.en.toLowerCase(),
   fr: a.fr_of.startsWith('du ') ? 'le ' + a.fr_of.slice(3) : a.fr_of.replace(/^de /, ''),
   ar: a.ar_def,
@@ -243,8 +253,8 @@ function setPhase(phase) {
   $('loading').classList.toggle('hidden', phase !== 'loading');
   $('scan').classList.toggle('hidden', phase !== 'scanning');
   $('card').classList.toggle('hidden', !showing);
-  $('aim').classList.toggle('hidden', !showing);
-  $('parts').classList.toggle('hidden', !showing);
+  $('aim').classList.toggle('hidden', !showing || !PARTS_ON);
+  $('parts').classList.toggle('hidden', !showing || !PARTS_ON);
   $('held-badge').classList.toggle('hidden', phase !== 'held');
   $('quiz').classList.toggle('hidden', !((QUIZ && showing) || SCAN_QUIZ) || !$('quiz-text').textContent);
   $('btn-photo').classList.toggle('hidden', !showing);
@@ -338,12 +348,12 @@ function applyLanguage() {
   $('loading-text').textContent = t('loading');
   $('scan-hint').textContent = t('scan');
   $('held-badge').textContent = t('held');
-  $('gesture-hint').textContent = t('hint');
-  const icons = { animals: ['🔊', '🐾', '🍽️'], vehicles: ['📢', '🚗', '🧰'], letters: ['🔊', '🔄', ''], colors: ['🔊', '🔄', '🎨'], heritage: ['🔊', '🔄', ''] }[KIND];
+  $('gesture-hint').textContent = PARTS_ON ? t('hint') : t('hintMeet');
+  const icons = { animals: ['🔊', '🐾', '🍽️'], vehicles: ['📢', '🚗', '🧰'], letters: ['🔊', '🔄', ''], colors: ['🔊', '🔄', '🎨'], heritage: ['🔊', '🔄', ''], shapes: ['🔊', '🔄', ''], numbers: ['🔊', '🔄', ''] }[KIND];
   for (const [id, key, icon] of [['btn-sound', 'sound', icons[0]], ['btn-move', 'move', icons[1]], ['btn-feed', 'feed', icons[2]], ['btn-hold', 'hold', '✋'], ['btn-reset', 'reset', '↺']]) {
     $(id).innerHTML = `<span>${icon}</span>${t(key)}`;
   }
-  $('btn-feed').classList.toggle('hidden', KIND === 'letters' || KIND === 'heritage'); // nothing to give
+  $('btn-feed').classList.toggle('hidden', ['letters', 'heritage', 'shapes', 'numbers'].includes(KIND)); // nothing to give
 }
 applyLanguage();
 
@@ -732,7 +742,7 @@ async function main() {
   }
 
   function updateParts(now) {
-    const showing = state.phase === 'found' || state.phase === 'held';
+    const showing = (state.phase === 'found' || state.phase === 'held') && PARTS_ON;
     if (!current || !current.model || !showing) {
       if (selection.part) { selection.part = null; renderSelection(); }
       if (state.parts.visible.length) state.parts = { visible: [], selected: null };
@@ -1074,13 +1084,18 @@ async function main() {
   // A wrong colour goes back to the page's colour after a moment.
   function paint(entry, hex, keep) {
     if (!entry.model) return;
-    const base = new THREE.Color(entry.a.color);
+    // the colour pages: three balls named "shade:light|normal|dark" take the three shades of the new colour
+    const white = new THREE.Color('#ffffff'), black = new THREE.Color('#000000');
     entry.model.traverse((o) => {
       if (!o.isMesh) return;
       for (const m of [].concat(o.material)) {
+        if (!m.name || !m.name.startsWith('shade:')) continue;
         if (!m.userData.orig) m.userData.orig = m.color.clone();
-        const o0 = m.userData.orig;
-        if (Math.abs(o0.r - base.r) + Math.abs(o0.g - base.g) + Math.abs(o0.b - base.b) < 0.06) m.color.set(hex);
+        if (hex === entry.a.color) { m.color.copy(m.userData.orig); continue; } // back to the page's own shades
+        const c = new THREE.Color(hex);
+        if (m.name === 'shade:light') c.lerp(white, 0.45);
+        if (m.name === 'shade:dark') c.lerp(black, 0.35);
+        m.color.copy(c);
       }
     });
     clearTimeout(entry.paintTimer);

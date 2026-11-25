@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Writes the items files of the Arabic letters, Colors and Algeria books.
+"""Writes the items files of the Arabic letters, Colors, Algeria, Shapes and Numbers books.
 
     python3 tool/make_learning_books.py
 
@@ -231,6 +231,77 @@ def algeria():
     return items
 
 
+
+# Shapes: id, names (en, fr, ar), fr_def, ar_def, sides/corners fact (en, fr, ar).
+SHAPES = [
+    ("circle", "Circle", "Cercle", "دائرة", "le cercle", "الدائرة",
+     ("A circle is round: no sides, no corners. Like a wheel!", "Un cercle est rond : ni côtés ni coins. Comme une roue !",
+      "الدائرة مستديرة: بلا أضلاع ولا زوايا. مثل العجلة!")),
+    ("square", "Square", "Carré", "مربع", "le carré", "المربع",
+     ("A square has 4 equal sides and 4 corners.", "Un carré a 4 côtés égaux et 4 coins.", "للمربع 4 أضلاع متساوية و4 زوايا.")),
+    ("triangle", "Triangle", "Triangle", "مثلث", "le triangle", "المثلث",
+     ("A triangle has 3 sides and 3 corners.", "Un triangle a 3 côtés et 3 coins.", "للمثلث 3 أضلاع و3 زوايا.")),
+    ("rectangle", "Rectangle", "Rectangle", "مستطيل", "le rectangle", "المستطيل",
+     ("A rectangle has 4 sides: 2 long and 2 short. Like a door!", "Un rectangle a 4 côtés : 2 longs et 2 courts. Comme une porte !",
+      "للمستطيل 4 أضلاع: ضلعان طويلان وضلعان قصيران. مثل الباب!")),
+    ("oval", "Oval", "Ovale", "بيضاوي", "l'ovale", "الشكل البيضاوي",
+     ("An oval is a stretched circle. Like an egg!", "Un ovale est un cercle étiré. Comme un œuf !",
+      "الشكل البيضاوي دائرة ممدودة. مثل البيضة!")),
+    ("star", "Star", "Étoile", "نجمة", "l'étoile", "النجمة",
+     ("This star has 5 points.", "Cette étoile a 5 pointes.", "لهذه النجمة 5 رؤوس.")),
+    ("heart", "Heart", "Cœur", "قلب", "le cœur", "القلب",
+     ("A heart shape means love!", "Un cœur veut dire « je t'aime » !", "شكل القلب يعني الحب!")),
+    ("diamond", "Diamond", "Losange", "معين", "le losange", "المعين",
+     ("A diamond has 4 equal sides, standing on a corner.", "Un losange a 4 côtés égaux, posé sur un coin.",
+      "للمعين 4 أضلاع متساوية، ويقف على زاوية.")),
+    ("pentagon", "Pentagon", "Pentagone", "مخمس", "le pentagone", "المخمس",
+     ("A pentagon has 5 sides and 5 corners.", "Un pentagone a 5 côtés et 5 coins.", "للمخمس 5 أضلاع و5 زوايا.")),
+    ("hexagon", "Hexagon", "Hexagone", "مسدس", "l'hexagone", "المسدس",
+     ("A hexagon has 6 sides. Bees build hexagons!", "Un hexagone a 6 côtés. Les abeilles en construisent !",
+      "للمسدس 6 أضلاع. النحل يبني خلايا سداسية!")),
+]
+
+# Numbers 1 to 10: the word in each language.
+NUMBERS = [
+    (1, "One", "Un", "واحد"), (2, "Two", "Deux", "اثنان"), (3, "Three", "Trois", "ثلاثة"), (4, "Four", "Quatre", "أربعة"),
+    (5, "Five", "Cinq", "خمسة"), (6, "Six", "Six", "ستة"), (7, "Seven", "Sept", "سبعة"), (8, "Eight", "Huit", "ثمانية"),
+    (9, "Nine", "Neuf", "تسعة"), (10, "Ten", "Dix", "عشرة"),
+]
+EASTERN = "٠١٢٣٤٥٦٧٨٩"
+
+
+def shapes_book():
+    items = []
+    for i, (sid, en, fr, ar, fr_def, ar_def, (fen, ffr, far)) in enumerate(SHAPES):
+        items.append({
+            "id": f"shape_{sid}", "page": i + 1, "en": en, "fr": fr, "ar": ar,
+            "fr_of": ("du " + fr_def[3:]) if fr_def.startswith("le ") else ("de " + fr_def), "ar_def": ar_def,
+            "fact_en": fen, "fact_fr": ffr, "fact_ar": far,
+            "model": f"books/shapes/models/{sid}.glb", "sound": None, "letter": f"shape:{sid}", "shape": sid,
+            "color": RAINBOW[i % len(RAINBOW)], "size": 0.42, "lift": 0, "turn": 0,
+            "helps": {"en": f"Where is the {en.lower()}?", "fr": f"Où est {fr_def} ?", "ar": f"أين {ar_def}؟"},
+            "parts": [],
+        })
+    return items
+
+
+def numbers_book():
+    items = []
+    for i, (n, en, fr, ar) in enumerate(NUMBERS):
+        east = "".join(EASTERN[int(d)] for d in str(n))
+        items.append({
+            "id": f"num_{n}", "page": i + 1, "en": f"{n} · {en}", "fr": f"{n} · {fr}", "ar": f"{east} · {ar}",
+            "fr_of": f"du nombre {n}", "ar_def": f"العدد {ar}",
+            "fact_en": f"Count the stars: there are {n}!", "fact_fr": f"Compte les étoiles : il y en a {n} !",
+            "fact_ar": f"عُدّ النجوم: إنها {ar}!",
+            "model": f"books/numbers/models/num_{n}.glb", "sound": None, "letter": str(n), "number": n, "eastern": east,
+            "color": RAINBOW[i % len(RAINBOW)], "size": 0.5, "lift": 0, "turn": 0,
+            "helps": {"en": f"Where is number {en.lower()}?", "fr": f"Où est le nombre {fr.lower()} ?", "ar": f"أين العدد {ar}؟"},
+            "parts": [],
+        })
+    return items
+
+
 def write(book, items):
     d = AR / book
     for sub in ["models", "pages", "thumbs", "sounds"] if book == "algeria" else ["models", "pages", "thumbs"]:
@@ -253,3 +324,5 @@ if __name__ == "__main__":
     write("letters_ar", letters_ar())
     write("colors", colors())
     write("algeria", algeria())
+    write("shapes", shapes_book())
+    write("numbers", numbers_book())

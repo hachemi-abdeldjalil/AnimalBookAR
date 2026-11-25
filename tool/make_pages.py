@@ -69,7 +69,7 @@ html, body { background: #fff; }
 """
 
 
-ICON = {"vehicles": "🚗", "letters": "✏️", "colors": "🎨", "heritage": "🌴"}.get(BOOK.kind, "🐾")
+ICON = {"vehicles": "🚗", "letters": "✏️", "colors": "🎨", "heritage": "🌴", "shapes": "🔷", "numbers": "🔢"}.get(BOOK.kind, "🐾")
 
 
 def page_html(a, num, credit):
@@ -107,7 +107,12 @@ LEARN_CSS = """
   font-size: 74px; font-weight: 800; color: #333; font-family: "Geeza Pro", "Avenir Next", sans-serif; }
 .forms-label { position: absolute; top: 722px; left: 0; right: 0; text-align: center; font-size: 20px; color: #777; }
 .splash { position: absolute; top: 70px; left: 20px; right: 20px; height: 640px; }
-.scene { position: absolute; top: 110px; left: 60px; right: 60px; height: 560px; }
+.scene { position: absolute; top: 95px; left: 60px; right: 60px; height: 470px; }
+.shades { position: absolute; top: 572px; left: 40px; right: 40px; display: flex; justify-content: center; gap: 26px; }
+.shade { width: 200px; text-align: center; }
+.shade b { display: block; width: 62px; height: 62px; margin: 0 auto 6px; border-radius: 50%; border: 3px solid rgba(0,0,0,.15); }
+.shade .n { font-size: 19px; font-weight: 800; color: #333; }
+.shade .o { font-size: 14px; color: #666; }
 .scene img { width: 100%; height: 100%; object-fit: contain; }
 .cname { position: absolute; top: 715px; left: 40px; right: 40px; text-align: center; }
 .cname .en { -webkit-text-stroke: 3px #333; }
@@ -151,14 +156,118 @@ def color_page(a, num):
     return f"""
 <section class="page" style="--c:{edge}">
   <div class="badge">{num}</div>
+  {pattern(num * 13 + 5, 60, 700, avoid=(150, 150, 650, 560))}
   <svg class="splash" viewBox="0 0 800 640" preserveAspectRatio="none"><path d="{SPLASH}" fill="{a['color']}" opacity=".28"
     stroke="{edge}" stroke-width="6" stroke-dasharray="18 12"/></svg>
   <div class="scene"><img src="{scene.as_uri()}"></div>
+  <div class="shades">{"".join(f'<div class="shade"><b style="background:{p["hex"]}"></b><div class="n">{e(p["en"])}</div>'
+                               f'<div class="o">{e(p["fr"])} · <span dir="rtl">{e(p["ar"])}</span></div></div>'
+                               for p in a["parts"])}</div>
   <div class="cname">
     <div class="en" style="color:{a['color']};font-size:96px;font-weight:900;line-height:1">{e(a['en'])}</div>
     <div class="row"><span class="fr">{e(a['fr'])}</span><span class="ar" dir="rtl">{e(a['ar'])}</span></div>
   </div>
   <div class="facts">
+    <p>{ICON} {e(a['fact_en'])}</p>
+    <p>{ICON} {e(a['fact_fr'])}</p>
+    <p class="far">{e(a['fact_ar'])} {ICON}</p>
+  </div>
+  <div class="foot"><span>Point the Animal Book AR app at this page ({e(BOOK.cfg["en"])})</span><span>Pictures: Animal Book AR</span></div>
+</section>"""
+
+
+# Shapes drawn in a 200 x 200 box (the printed Shapes pages).
+SHAPE_SVG = {
+    "circle": '<circle cx="100" cy="100" r="86"/>',
+    "square": '<rect x="22" y="22" width="156" height="156"/>',
+    "triangle": '<polygon points="100,14 192,172 8,172"/>',
+    "rectangle": '<rect x="6" y="46" width="188" height="108"/>',
+    "oval": '<ellipse cx="100" cy="100" rx="94" ry="60"/>',
+    "star": '<polygon points="100,8 123,72 192,72 136,112 157,180 100,140 43,180 64,112 8,72 77,72"/>',
+    "heart": '<path d="M100 178 C40 130 6 98 14 60 C22 22 74 14 100 52 C126 14 178 22 186 60 C194 98 160 130 100 178Z"/>',
+    "diamond": '<polygon points="100,6 166,100 100,194 34,100"/>',
+    "pentagon": '<polygon points="100,10 188,74 154,180 46,180 12,74"/>',
+    "hexagon": '<polygon points="190,100 145,178 55,178 10,100 55,22 145,22"/>',
+}
+STAR_SVG = '<svg viewBox="0 0 40 40"><polygon fill="#F2B705" stroke="#C98A00" stroke-width="1.5" points="20,2 25,15 39,15 28,24 32,38 20,30 8,38 12,24 1,15 15,15"/></svg>'
+
+
+def pattern(seed, top, bottom, avoid=None, count=70, opacity=0.6):
+    """A layer of small shapes across the page between [top] and [bottom] px, different on every
+    page (seeded): pages that would otherwise look alike in black and white (the same balls,
+    the same layout) each get their own pattern for the camera to recognise. [avoid] is a box
+    (x0, y0, x1, y1) left empty."""
+    import random
+    rnd = random.Random(seed * 104729 + 17)
+    kinds = list(SHAPE_SVG)
+    colors = ["#C0392B", "#D35400", "#B7950B", "#1E8449", "#1F618D", "#6C3483", "#A93226", "#2E4053"]
+    out = []
+    for _ in range(count * 3):
+        if len(out) >= count:
+            break
+        x, y = rnd.uniform(10, 784), rnd.uniform(top, bottom)
+        if avoid and avoid[0] < x < avoid[2] and avoid[1] < y < avoid[3]:
+            continue
+        sc = rnd.uniform(0.09, 0.17)
+        out.append(f'<g transform="translate({x - 100 * sc:.0f},{y - 100 * sc:.0f}) scale({sc:.2f}) '
+                   f'rotate({rnd.randint(0, 359)} 100 100)" fill="{rnd.choice(colors)}">{SHAPE_SVG[rnd.choice(kinds)]}</g>')
+    return (f'<svg style="position:absolute;left:0;top:0;width:794px;height:1123px;opacity:{opacity}" '
+            f'viewBox="0 0 794 1123">{"".join(out)}</svg>')
+
+
+def confetti(seed):
+    """Small faint shapes scattered around the page's big one: more detail for
+    the camera to track, and a different pattern on every page."""
+    import random
+    rnd = random.Random(seed * 7919)
+    kinds = list(SHAPE_SVG)
+    colors = ["#E4572E", "#F29E1F", "#E8B90C", "#4CAF50", "#1E88E5", "#7E57C2", "#D81B60"]
+    out = []
+    for _ in range(44):
+        x, y = rnd.uniform(0, 620), rnd.uniform(0, 360)
+        if 170 < x < 470 and 40 < y < 340:
+            continue  # keep the middle for the big shape
+        k = rnd.choice(kinds)
+        out.append(f'<g transform="translate({x - 20:.0f},{y - 20:.0f}) scale(.2) rotate({rnd.randint(0, 90)} 100 100)" '
+                   f'fill="{rnd.choice(colors)}" opacity=".7">{SHAPE_SVG[k]}</g>')
+    return "".join(out)
+
+
+def shape_page(a, num):
+    e = html.escape
+    return f"""
+<section class="page" style="--c:{a['color']}">
+  <div class="badge">{num}</div>
+  <div class="letter-top"><div class="big" style="background:#fff;border:6px solid var(--c)">
+    <svg viewBox="0 0 640 380" style="width:100%;height:100%">{confetti(num)}
+      <g transform="translate(200,70) scale(1.2)" fill="{a['color']}" stroke="rgba(0,0,0,.25)" stroke-width="4">{SHAPE_SVG[a['shape']]}</g></svg></div></div>
+  <div class="word"><div class="main">{e(a['en'])}</div>
+    <div class="row"><span class="fr">{e(a['fr'])}</span><span class="ar" dir="rtl">{e(a['ar'])}</span></div></div>
+  {pattern(num * 31 + 7, 470, 560, count=24, opacity=0.5)}
+  <div class="facts" style="top:800px">
+    <p>{ICON} {e(a['fact_en'])}</p>
+    <p>{ICON} {e(a['fact_fr'])}</p>
+    <p class="far">{e(a['fact_ar'])} {ICON}</p>
+  </div>
+  <div class="foot"><span>Point the Animal Book AR app at this page ({e(BOOK.cfg["en"])})</span><span>Pictures: Animal Book AR</span></div>
+</section>"""
+
+
+def number_page(a, num):
+    e = html.escape
+    n = a["number"]
+    stars = "".join(f'<span style="display:inline-block;width:{70 if n <= 5 else 62}px;margin:4px">{STAR_SVG}</span>' for _ in range(n))
+    return f"""
+<section class="page" style="--c:{a['color']}">
+  <div class="badge">{num}</div>
+  <div class="letter-top" style="height:380px"><div class="big fr" style="font-size:300px">{n}</div>
+    <div class="pic" style="display:flex;align-items:center;justify-content:center;background:#fff;font-size:200px;
+      font-weight:900;color:var(--c);font-family:'Geeza Pro',sans-serif">{e(a['eastern'])}</div></div>
+  {pattern(n * 53 + 11, 440, 680, avoid=(40, 470, 754, 600), count=40)}
+  <div style="position:absolute;top:490px;left:40px;right:40px;text-align:center">{stars}</div>
+  <div class="word" style="top:690px"><div class="main">{e(a['en'].split(' · ')[1])}</div>
+    <div class="row"><span class="fr">{e(a['fr'].split(' · ')[1])}</span><span class="ar" dir="rtl">{e(a['ar'].split(' · ')[1])}</span></div></div>
+  <div class="facts" style="top:930px">
     <p>{ICON} {e(a['fact_en'])}</p>
     <p>{ICON} {e(a['fact_fr'])}</p>
     <p class="far">{e(a['fact_ar'])} {ICON}</p>
@@ -209,6 +318,10 @@ def main():
     for i, a in enumerate(animals, 1):
         if BOOK.kind == "colors":
             sec = color_page(a, i)
+        elif BOOK.kind == "shapes":
+            sec = shape_page(a, i)
+        elif BOOK.kind == "numbers":
+            sec = number_page(a, i)
         else:
             c = credits[a.get("photo", a["id"]) + "_photo"]
             credit = f"{c['artist']}, {c['license']}, Wikimedia Commons"
@@ -223,7 +336,7 @@ def main():
             im = im.convert("RGB")
             im.thumbnail((900, 900 * PAGE_H // PAGE_W + 1))
             im.save(BOOK.app_pages / f"{a['id']}.jpg", quality=85, optimize=True)
-        if BOOK.kind not in ("letters", "colors"):  # those thumbnails come from make_shapes.py
+        if BOOK.kind not in ("letters", "colors", "shapes", "numbers"):  # those thumbnails come from make_shapes.py
             make_thumb(a["id"])
         print("page", out.relative_to(ROOT))
     book = tmp / "book.html"

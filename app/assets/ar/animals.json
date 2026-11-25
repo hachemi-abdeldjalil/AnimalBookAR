@@ -1,1927 +1,1969 @@
 [
-  {
-    "id": "horse",
-    "page": 1,
-    "en": "Horse",
-    "fr": "Cheval",
-    "ar": "حصان",
-    "fr_of": "du cheval",
-    "ar_def": "الحصان",
-    "fact_en": "Horses can sleep standing up.",
-    "fact_fr": "Le cheval peut dormir debout.",
-    "fact_ar": "يستطيع الحصان أن ينام واقفًا.",
-    "model": "models/Horse.glb",
-    "sound": "sounds/horse.m4a",
-    "color": "#b5651d",
-    "size": 0.6,
-    "lift": 0,
-    "turn": 60,
-    "eats": [
-      "grass",
-      "carrot",
-      "apple"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.82,
-          0.96
-        ]
-      },
-      {
-        "id": "ear",
-        "en": "Ear",
-        "fr": "Oreille",
-        "ar": "أذن",
-        "fr_def": "l'oreille",
-        "ar_def": "الأذن",
-        "at": [
-          0.5,
-          0.98,
-          0.93
-        ]
-      },
-      {
-        "id": "mane",
-        "en": "Mane",
-        "fr": "Crinière",
-        "ar": "عُرف",
-        "fr_def": "la crinière",
-        "ar_def": "العُرف",
-        "at": [
-          0.5,
-          0.82,
-          0.8
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Jambe",
-        "ar": "ساق",
-        "fr_def": "la jambe",
-        "ar_def": "الساق",
-        "at": [
-          0.5,
-          0.3,
-          0.72
-        ]
-      },
-      {
-        "id": "hoof",
-        "en": "Hoof",
-        "fr": "Sabot",
-        "ar": "حافر",
-        "fr_def": "le sabot",
-        "ar_def": "الحافر",
-        "at": [
-          0.5,
-          0.02,
-          0.72
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.72,
-          0.12
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.25,
-          0.88,
-          0.93
-        ]
-      },
-      {
-        "id": "nose",
-        "en": "Nose",
-        "fr": "Nez",
-        "ar": "أنف",
-        "fr_def": "le nez",
-        "ar_def": "الأنف",
-        "at": [
-          0.5,
-          0.72,
-          1.0
-        ]
-      },
-      {
-        "id": "back",
-        "en": "Back",
-        "fr": "Dos",
-        "ar": "ظهر",
-        "fr_def": "le dos",
-        "ar_def": "الظهر",
-        "at": [
-          0.5,
-          0.7,
-          0.45
-        ]
-      },
-      {
-        "id": "belly",
-        "en": "Belly",
-        "fr": "Ventre",
-        "ar": "بطن",
-        "fr_def": "le ventre",
-        "ar_def": "البطن",
-        "at": [
-          0.5,
-          0.42,
-          0.5
-        ]
-      }
+ {
+  "id": "horse",
+  "page": 1,
+  "en": "Horse",
+  "fr": "Cheval",
+  "ar": "حصان",
+  "fr_of": "du cheval",
+  "ar_def": "الحصان",
+  "fact_en": "Horses can sleep standing up.",
+  "fact_fr": "Le cheval peut dormir debout.",
+  "fact_ar": "يستطيع الحصان أن ينام واقفًا.",
+  "model": "models/Horse.glb",
+  "sound": "sounds/horse.m4a",
+  "color": "#b5651d",
+  "size": 0.6,
+  "lift": 0,
+  "turn": 60,
+  "habitat": "farm",
+  "group": "farm",
+  "diet": "herbivore",
+  "eats": [
+   "grass",
+   "carrot",
+   "apple"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.82,
+     0.96
     ]
-  },
-  {
-    "id": "fox",
-    "page": 2,
-    "en": "Fox",
-    "fr": "Renard",
-    "ar": "ثعلب",
-    "fr_of": "du renard",
-    "ar_def": "الثعلب",
-    "fact_en": "A fox uses its bushy tail as a warm blanket.",
-    "fact_fr": "Le renard se sert de sa queue touffue comme d'une couverture.",
-    "fact_ar": "يستعمل الثعلب ذيله الكثيف كغطاء دافئ.",
-    "model": "models/Fox.glb",
-    "sound": "sounds/fox.m4a",
-    "color": "#e8702a",
-    "size": 0.55,
-    "lift": 0,
-    "turn": 60,
-    "eats": [
-      "mouse",
-      "berries",
-      "insect"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.78,
-          0.92
-        ]
-      },
-      {
-        "id": "ear",
-        "en": "Ear",
-        "fr": "Oreille",
-        "ar": "أذن",
-        "fr_def": "l'oreille",
-        "ar_def": "الأذن",
-        "at": [
-          0.2,
-          0.97,
-          0.93
-        ]
-      },
-      {
-        "id": "snout",
-        "en": "Snout",
-        "fr": "Museau",
-        "ar": "خَطم",
-        "fr_def": "le museau",
-        "ar_def": "الخطم",
-        "at": [
-          0.5,
-          0.62,
-          0.99
-        ]
-      },
-      {
-        "id": "back",
-        "en": "Back",
-        "fr": "Dos",
-        "ar": "ظهر",
-        "fr_def": "le dos",
-        "ar_def": "الظهر",
-        "at": [
-          0.5,
-          0.9,
-          0.5
-        ]
-      },
-      {
-        "id": "paw",
-        "en": "Paw",
-        "fr": "Patte",
-        "ar": "قدم",
-        "fr_def": "la patte",
-        "ar_def": "القدم",
-        "at": [
-          0.5,
-          0.02,
-          0.77
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.3,
-          0.1
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.2,
-          0.85,
-          0.94
-        ]
-      },
-      {
-        "id": "chest",
-        "en": "Chest",
-        "fr": "Poitrine",
-        "ar": "صدر",
-        "fr_def": "la poitrine",
-        "ar_def": "الصدر",
-        "at": [
-          0.5,
-          0.55,
-          0.86
-        ]
-      },
-      {
-        "id": "belly",
-        "en": "Belly",
-        "fr": "Ventre",
-        "ar": "بطن",
-        "fr_def": "le ventre",
-        "ar_def": "البطن",
-        "at": [
-          0.5,
-          0.4,
-          0.6
-        ]
-      }
+   },
+   {
+    "id": "ear",
+    "en": "Ear",
+    "fr": "Oreille",
+    "ar": "أذن",
+    "fr_def": "l'oreille",
+    "ar_def": "الأذن",
+    "at": [
+     0.5,
+     0.98,
+     0.93
     ]
-  },
-  {
-    "id": "flamingo",
-    "page": 3,
-    "en": "Flamingo",
-    "fr": "Flamant rose",
-    "ar": "نحام",
-    "fr_of": "du flamant rose",
-    "ar_def": "النحام",
-    "fact_en": "Flamingos are pink because of the food they eat.",
-    "fact_fr": "Le flamant est rose grâce à ce qu'il mange.",
-    "fact_ar": "لون النحام وردي بسبب الطعام الذي يأكله.",
-    "model": "models/Flamingo.glb",
-    "sound": "sounds/flamingo.m4a",
-    "color": "#e4578b",
-    "size": 0.5,
-    "lift": 0.25,
-    "turn": 60,
-    "eats": [
-      "shrimp",
-      "seeds"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.92,
-          0.95
-        ]
-      },
-      {
-        "id": "beak",
-        "en": "Beak",
-        "fr": "Bec",
-        "ar": "منقار",
-        "fr_def": "le bec",
-        "ar_def": "المنقار",
-        "at": [
-          0.5,
-          0.82,
-          0.995
-        ]
-      },
-      {
-        "id": "neck",
-        "en": "Neck",
-        "fr": "Cou",
-        "ar": "رقبة",
-        "fr_def": "le cou",
-        "ar_def": "الرقبة",
-        "at": [
-          0.5,
-          0.9,
-          0.75
-        ]
-      },
-      {
-        "id": "wing",
-        "en": "Wing",
-        "fr": "Aile",
-        "ar": "جناح",
-        "fr_def": "l'aile",
-        "ar_def": "الجناح",
-        "at": [
-          0.2,
-          0.5,
-          0.45
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.5,
-          0.62,
-          0.15
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.3,
-          0.93,
-          0.96
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.75,
-          0.3
-        ]
-      }
+   },
+   {
+    "id": "mane",
+    "en": "Mane",
+    "fr": "Crinière",
+    "ar": "عُرف",
+    "fr_def": "la crinière",
+    "ar_def": "العُرف",
+    "at": [
+     0.5,
+     0.82,
+     0.8
     ]
-  },
-  {
-    "id": "parrot",
-    "page": 4,
-    "en": "Parrot",
-    "fr": "Perroquet",
-    "ar": "ببغاء",
-    "fr_of": "du perroquet",
-    "ar_def": "الببغاء",
-    "fact_en": "Parrots can learn to copy words.",
-    "fact_fr": "Le perroquet peut apprendre à répéter des mots.",
-    "fact_ar": "يستطيع الببغاء أن يتعلم تقليد الكلمات.",
-    "model": "models/Parrot.glb",
-    "sound": "sounds/parrot.m4a",
-    "color": "#2e8b57",
-    "size": 0.45,
-    "lift": 0.25,
-    "turn": 60,
-    "eats": [
-      "seeds",
-      "nuts",
-      "apple"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.55,
-          0.93
-        ]
-      },
-      {
-        "id": "beak",
-        "en": "Beak",
-        "fr": "Bec",
-        "ar": "منقار",
-        "fr_def": "le bec",
-        "ar_def": "المنقار",
-        "at": [
-          0.5,
-          0.4,
-          0.99
-        ]
-      },
-      {
-        "id": "wing",
-        "en": "Wing",
-        "fr": "Aile",
-        "ar": "جناح",
-        "fr_def": "l'aile",
-        "ar_def": "الجناح",
-        "at": [
-          0.15,
-          0.6,
-          0.78
-        ]
-      },
-      {
-        "id": "foot",
-        "en": "Foot",
-        "fr": "Patte",
-        "ar": "قدم",
-        "fr_def": "la patte",
-        "ar_def": "القدم",
-        "at": [
-          0.5,
-          0.08,
-          0.62
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.5,
-          0.1
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.3,
-          0.6,
-          0.95
-        ]
-      },
-      {
-        "id": "neck",
-        "en": "Neck",
-        "fr": "Cou",
-        "ar": "رقبة",
-        "fr_def": "le cou",
-        "ar_def": "الرقبة",
-        "at": [
-          0.5,
-          0.55,
-          0.88
-        ]
-      },
-      {
-        "id": "belly",
-        "en": "Belly",
-        "fr": "Ventre",
-        "ar": "بطن",
-        "fr_def": "le ventre",
-        "ar_def": "البطن",
-        "at": [
-          0.5,
-          0.3,
-          0.7
-        ]
-      }
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Jambe",
+    "ar": "ساق",
+    "fr_def": "la jambe",
+    "ar_def": "الساق",
+    "at": [
+     0.5,
+     0.3,
+     0.72
     ]
-  },
-  {
-    "id": "stork",
-    "page": 5,
-    "en": "Stork",
-    "fr": "Cigogne",
-    "ar": "لقلق",
-    "fr_of": "de la cigogne",
-    "ar_def": "اللقلق",
-    "fact_en": "White storks talk by clattering their beaks.",
-    "fact_fr": "La cigogne « parle » en claquant du bec.",
-    "fact_ar": "يتواصل اللقلق بطقطقة منقاره.",
-    "model": "models/Stork.glb",
-    "sound": "sounds/stork.m4a",
-    "color": "#3b6ea8",
-    "size": 0.55,
-    "lift": 0.25,
-    "turn": 60,
-    "eats": [
-      "fish",
-      "frog",
-      "insect"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.85,
-          0.9
-        ]
-      },
-      {
-        "id": "beak",
-        "en": "Beak",
-        "fr": "Bec",
-        "ar": "منقار",
-        "fr_def": "le bec",
-        "ar_def": "المنقار",
-        "at": [
-          0.5,
-          0.75,
-          0.99
-        ]
-      },
-      {
-        "id": "neck",
-        "en": "Neck",
-        "fr": "Cou",
-        "ar": "رقبة",
-        "fr_def": "le cou",
-        "ar_def": "الرقبة",
-        "at": [
-          0.5,
-          0.8,
-          0.78
-        ]
-      },
-      {
-        "id": "wing",
-        "en": "Wing",
-        "fr": "Aile",
-        "ar": "جناح",
-        "fr_def": "l'aile",
-        "ar_def": "الجناح",
-        "at": [
-          0.1,
-          0.8,
-          0.55
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.5,
-          0.3,
-          0.08
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.3,
-          0.88,
-          0.93
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.6,
-          0.25
-        ]
-      }
+   },
+   {
+    "id": "hoof",
+    "en": "Hoof",
+    "fr": "Sabot",
+    "ar": "حافر",
+    "fr_def": "le sabot",
+    "ar_def": "الحافر",
+    "at": [
+     0.5,
+     0.02,
+     0.72
     ]
-  },
-  {
-    "id": "cow",
-    "page": 6,
-    "en": "Cow",
-    "fr": "Vache",
-    "ar": "بقرة",
-    "fr_of": "de la vache",
-    "ar_def": "البقرة",
-    "fact_en": "A cow has a stomach with four parts to digest grass.",
-    "fact_fr": "La vache a un estomac en quatre parties pour digérer l'herbe.",
-    "fact_ar": "للبقرة معدة من أربعة أجزاء لهضم العشب.",
-    "model": "models/Cow.glb",
-    "sound": "sounds/cow.m4a",
-    "color": "#3f7d3a",
-    "size": 0.62,
-    "lift": 0,
-    "turn": 60,
-    "eats": [
-      "grass",
-      "hay"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.8,
-          0.97
-        ]
-      },
-      {
-        "id": "ear",
-        "en": "Ear",
-        "fr": "Oreille",
-        "ar": "أذن",
-        "fr_def": "l'oreille",
-        "ar_def": "الأذن",
-        "at": [
-          0.5,
-          0.95,
-          0.88
-        ]
-      },
-      {
-        "id": "udder",
-        "en": "Udder",
-        "fr": "Mamelle",
-        "ar": "ضرع",
-        "fr_def": "la mamelle",
-        "ar_def": "الضرع",
-        "at": [
-          0.5,
-          0.38,
-          0.38
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.5,
-          0.3,
-          0.82
-        ]
-      },
-      {
-        "id": "hoof",
-        "en": "Hoof",
-        "fr": "Sabot",
-        "ar": "حافر",
-        "fr_def": "le sabot",
-        "ar_def": "الحافر",
-        "at": [
-          0.5,
-          0.02,
-          0.82
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.6,
-          0.03
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.2,
-          0.85,
-          0.94
-        ]
-      },
-      {
-        "id": "nose",
-        "en": "Nose",
-        "fr": "Nez",
-        "ar": "أنف",
-        "fr_def": "le nez",
-        "ar_def": "الأنف",
-        "at": [
-          0.5,
-          0.7,
-          1.0
-        ]
-      },
-      {
-        "id": "back",
-        "en": "Back",
-        "fr": "Dos",
-        "ar": "ظهر",
-        "fr_def": "le dos",
-        "ar_def": "الظهر",
-        "at": [
-          0.5,
-          1.0,
-          0.5
-        ]
-      },
-      {
-        "id": "belly",
-        "en": "Belly",
-        "fr": "Ventre",
-        "ar": "بطن",
-        "fr_def": "le ventre",
-        "ar_def": "البطن",
-        "at": [
-          0.5,
-          0.4,
-          0.6
-        ]
-      }
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.72,
+     0.12
     ]
-  },
-  {
-    "id": "sheep",
-    "page": 8,
-    "en": "Sheep",
-    "fr": "Mouton",
-    "ar": "خروف",
-    "fr_of": "du mouton",
-    "ar_def": "الخروف",
-    "fact_en": "A sheep's wool keeps growing all its life.",
-    "fact_fr": "La laine du mouton pousse toute sa vie.",
-    "fact_ar": "صوف الخروف ينمو طوال حياته.",
-    "model": "models/Sheep.glb",
-    "sound": "sounds/sheep.m4a",
-    "color": "#7a6bb5",
-    "size": 0.5,
-    "lift": 0,
-    "turn": 60,
-    "eats": [
-      "grass",
-      "hay"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.85,
-          0.97
-        ]
-      },
-      {
-        "id": "ear",
-        "en": "Ear",
-        "fr": "Oreille",
-        "ar": "أذن",
-        "fr_def": "l'oreille",
-        "ar_def": "الأذن",
-        "at": [
-          0.5,
-          0.9,
-          0.88
-        ]
-      },
-      {
-        "id": "wool",
-        "en": "Wool",
-        "fr": "Laine",
-        "ar": "صوف",
-        "fr_def": "la laine",
-        "ar_def": "الصوف",
-        "at": [
-          0.5,
-          0.97,
-          0.5
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.5,
-          0.25,
-          0.78
-        ]
-      },
-      {
-        "id": "hoof",
-        "en": "Hoof",
-        "fr": "Sabot",
-        "ar": "حافر",
-        "fr_def": "le sabot",
-        "ar_def": "الحافر",
-        "at": [
-          0.5,
-          0.02,
-          0.8
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.2,
-          0.9,
-          0.94
-        ]
-      },
-      {
-        "id": "nose",
-        "en": "Nose",
-        "fr": "Nez",
-        "ar": "أنف",
-        "fr_def": "le nez",
-        "ar_def": "الأنف",
-        "at": [
-          0.5,
-          0.78,
-          1.0
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.6,
-          0.0
-        ]
-      },
-      {
-        "id": "belly",
-        "en": "Belly",
-        "fr": "Ventre",
-        "ar": "بطن",
-        "fr_def": "le ventre",
-        "ar_def": "البطن",
-        "at": [
-          0.5,
-          0.35,
-          0.5
-        ]
-      }
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.25,
+     0.88,
+     0.93
     ]
-  },
-  {
-    "id": "zebra",
-    "page": 10,
-    "en": "Zebra",
-    "fr": "Zèbre",
-    "ar": "حمار وحشي",
-    "fr_of": "du zèbre",
-    "ar_def": "الحمار الوحشي",
-    "fact_en": "No two zebras have the same stripes.",
-    "fact_fr": "Il n'y a pas deux zèbres avec les mêmes rayures.",
-    "fact_ar": "لا يوجد حماران وحشيان لهما الخطوط نفسها.",
-    "model": "models/Zebra.glb",
-    "sound": "sounds/zebra.m4a",
-    "color": "#3d3d3d",
-    "size": 0.6,
-    "lift": 0,
-    "turn": 60,
-    "eats": [
-      "grass"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.78,
-          0.97
-        ]
-      },
-      {
-        "id": "ear",
-        "en": "Ear",
-        "fr": "Oreille",
-        "ar": "أذن",
-        "fr_def": "l'oreille",
-        "ar_def": "الأذن",
-        "at": [
-          0.5,
-          1.0,
-          0.9
-        ]
-      },
-      {
-        "id": "mane",
-        "en": "Mane",
-        "fr": "Crinière",
-        "ar": "عُرف",
-        "fr_def": "la crinière",
-        "ar_def": "العُرف",
-        "at": [
-          0.5,
-          0.85,
-          0.8
-        ]
-      },
-      {
-        "id": "stripes",
-        "en": "Stripes",
-        "fr": "Rayures",
-        "ar": "خطوط",
-        "fr_def": "les rayures",
-        "ar_def": "الخطوط",
-        "at": [
-          0.5,
-          0.55,
-          0.45
-        ]
-      },
-      {
-        "id": "hoof",
-        "en": "Hoof",
-        "fr": "Sabot",
-        "ar": "حافر",
-        "fr_def": "le sabot",
-        "ar_def": "الحافر",
-        "at": [
-          0.5,
-          0.02,
-          0.75
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.6,
-          0.02
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.2,
-          0.85,
-          0.94
-        ]
-      },
-      {
-        "id": "nose",
-        "en": "Nose",
-        "fr": "Nez",
-        "ar": "أنف",
-        "fr_def": "le nez",
-        "ar_def": "الأنف",
-        "at": [
-          0.5,
-          0.72,
-          1.0
-        ]
-      },
-      {
-        "id": "back",
-        "en": "Back",
-        "fr": "Dos",
-        "ar": "ظهر",
-        "fr_def": "le dos",
-        "ar_def": "الظهر",
-        "at": [
-          0.5,
-          0.78,
-          0.45
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.5,
-          0.3,
-          0.78
-        ]
-      }
+   },
+   {
+    "id": "nose",
+    "en": "Nose",
+    "fr": "Nez",
+    "ar": "أنف",
+    "fr_def": "le nez",
+    "ar_def": "الأنف",
+    "at": [
+     0.5,
+     0.72,
+     1.0
     ]
-  },
-  {
-    "id": "llama",
-    "page": 12,
-    "en": "Llama",
-    "fr": "Lama",
-    "ar": "لاما",
-    "fr_of": "du lama",
-    "ar_def": "اللاما",
-    "fact_en": "Llamas hum to talk to each other.",
-    "fact_fr": "Les lamas fredonnent pour se parler.",
-    "fact_ar": "يتواصل اللاما مع بعضه بالهمهمة.",
-    "model": "models/Llama.glb",
-    "sound": null,
-    "color": "#1f8a8a",
-    "size": 0.5,
-    "lift": 0,
-    "turn": 60,
-    "eats": [
-      "grass",
-      "hay"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.95,
-          0.9
-        ]
-      },
-      {
-        "id": "ear",
-        "en": "Ear",
-        "fr": "Oreille",
-        "ar": "أذن",
-        "fr_def": "l'oreille",
-        "ar_def": "الأذن",
-        "at": [
-          0.5,
-          1.0,
-          0.8
-        ]
-      },
-      {
-        "id": "neck",
-        "en": "Neck",
-        "fr": "Cou",
-        "ar": "رقبة",
-        "fr_def": "le cou",
-        "ar_def": "الرقبة",
-        "at": [
-          0.5,
-          0.72,
-          0.8
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.5,
-          0.25,
-          0.72
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.55,
-          0.02
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.3,
-          0.97,
-          0.93
-        ]
-      },
-      {
-        "id": "nose",
-        "en": "Nose",
-        "fr": "Nez",
-        "ar": "أنف",
-        "fr_def": "le nez",
-        "ar_def": "الأنف",
-        "at": [
-          0.5,
-          0.92,
-          1.0
-        ]
-      },
-      {
-        "id": "back",
-        "en": "Back",
-        "fr": "Dos",
-        "ar": "ظهر",
-        "fr_def": "le dos",
-        "ar_def": "الظهر",
-        "at": [
-          0.5,
-          0.6,
-          0.4
-        ]
-      },
-      {
-        "id": "belly",
-        "en": "Belly",
-        "fr": "Ventre",
-        "ar": "بطن",
-        "fr_def": "le ventre",
-        "ar_def": "البطن",
-        "at": [
-          0.5,
-          0.4,
-          0.4
-        ]
-      }
+   },
+   {
+    "id": "back",
+    "en": "Back",
+    "fr": "Dos",
+    "ar": "ظهر",
+    "fr_def": "le dos",
+    "ar_def": "الظهر",
+    "at": [
+     0.5,
+     0.7,
+     0.45
     ]
-  },
-  {
-    "id": "dog",
-    "page": 14,
-    "en": "Dog",
-    "fr": "Chien",
-    "ar": "كلب",
-    "fr_of": "du chien",
-    "ar_def": "الكلب",
-    "fact_en": "A dog's nose is thousands of times better than ours.",
-    "fact_fr": "Le flair du chien est des milliers de fois meilleur que le nôtre.",
-    "fact_ar": "حاسة الشم عند الكلب أقوى من حاستنا آلاف المرات.",
-    "model": "models/Dog.glb",
-    "sound": "sounds/dog.m4a",
-    "color": "#c98a12",
-    "size": 0.42,
-    "lift": 0,
-    "turn": 60,
-    "eats": [
-      "meat",
-      "fish"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.8,
-          0.95
-        ]
-      },
-      {
-        "id": "ear",
-        "en": "Ear",
-        "fr": "Oreille",
-        "ar": "أذن",
-        "fr_def": "l'oreille",
-        "ar_def": "الأذن",
-        "at": [
-          0.5,
-          0.95,
-          0.92
-        ]
-      },
-      {
-        "id": "snout",
-        "en": "Snout",
-        "fr": "Museau",
-        "ar": "خَطم",
-        "fr_def": "le museau",
-        "ar_def": "الخطم",
-        "at": [
-          0.5,
-          0.72,
-          1.0
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.5,
-          0.25,
-          0.8
-        ]
-      },
-      {
-        "id": "paw",
-        "en": "Paw",
-        "fr": "Patte",
-        "ar": "قدم",
-        "fr_def": "la patte",
-        "ar_def": "القدم",
-        "at": [
-          0.5,
-          0.02,
-          0.82
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.85,
-          0.05
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.2,
-          0.85,
-          0.95
-        ]
-      },
-      {
-        "id": "back",
-        "en": "Back",
-        "fr": "Dos",
-        "ar": "ظهر",
-        "fr_def": "le dos",
-        "ar_def": "الظهر",
-        "at": [
-          0.5,
-          0.85,
-          0.5
-        ]
-      },
-      {
-        "id": "belly",
-        "en": "Belly",
-        "fr": "Ventre",
-        "ar": "بطن",
-        "fr_def": "le ventre",
-        "ar_def": "البطن",
-        "at": [
-          0.5,
-          0.45,
-          0.5
-        ]
-      }
+   },
+   {
+    "id": "belly",
+    "en": "Belly",
+    "fr": "Ventre",
+    "ar": "بطن",
+    "fr_def": "le ventre",
+    "ar_def": "البطن",
+    "at": [
+     0.5,
+     0.42,
+     0.5
     ]
-  },
-  {
-    "id": "lion",
-    "page": 11,
-    "en": "Lion",
-    "fr": "Lion",
-    "ar": "أسد",
-    "fr_of": "du lion",
-    "ar_def": "الأسد",
-    "fact_en": "A lion's roar can be heard 8 km away.",
-    "fact_fr": "Le rugissement du lion s'entend à 8 km.",
-    "fact_ar": "يُسمع زئير الأسد من مسافة 8 كيلومترات.",
-    "model": "models/Lion.glb",
-    "sound": "sounds/lion.m4a",
-    "color": "#c0802a",
-    "size": 0.6,
-    "lift": 0,
-    "turn": 60,
-    "eats": [
-      "meat"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.8,
-          0.97
-        ]
-      },
-      {
-        "id": "mane",
-        "en": "Mane",
-        "fr": "Crinière",
-        "ar": "لِبدة",
-        "fr_def": "la crinière",
-        "ar_def": "اللِبدة",
-        "at": [
-          0.5,
-          0.85,
-          0.86
-        ]
-      },
-      {
-        "id": "nose",
-        "en": "Nose",
-        "fr": "Nez",
-        "ar": "أنف",
-        "fr_def": "le nez",
-        "ar_def": "الأنف",
-        "at": [
-          0.5,
-          0.7,
-          1.0
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.25,
-          0.85,
-          0.96
-        ]
-      },
-      {
-        "id": "back",
-        "en": "Back",
-        "fr": "Dos",
-        "ar": "ظهر",
-        "fr_def": "le dos",
-        "ar_def": "الظهر",
-        "at": [
-          0.5,
-          0.72,
-          0.5
-        ]
-      },
-      {
-        "id": "belly",
-        "en": "Belly",
-        "fr": "Ventre",
-        "ar": "بطن",
-        "fr_def": "le ventre",
-        "ar_def": "البطن",
-        "at": [
-          0.5,
-          0.35,
-          0.5
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.5,
-          0.25,
-          0.85
-        ]
-      },
-      {
-        "id": "paw",
-        "en": "Paw",
-        "fr": "Patte",
-        "ar": "قدم",
-        "fr_def": "la patte",
-        "ar_def": "القدم",
-        "at": [
-          0.5,
-          0.02,
-          0.85
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.4,
-          0.0
-        ]
-      }
+   }
+  ]
+ },
+ {
+  "id": "fox",
+  "page": 2,
+  "en": "Fox",
+  "fr": "Renard",
+  "ar": "ثعلب",
+  "fr_of": "du renard",
+  "ar_def": "الثعلب",
+  "fact_en": "A fox uses its bushy tail as a warm blanket.",
+  "fact_fr": "Le renard se sert de sa queue touffue comme d'une couverture.",
+  "fact_ar": "يستعمل الثعلب ذيله الكثيف كغطاء دافئ.",
+  "model": "models/Fox.glb",
+  "sound": "sounds/fox.m4a",
+  "color": "#e8702a",
+  "size": 0.55,
+  "lift": 0,
+  "turn": 60,
+  "habitat": "forest",
+  "group": "wild",
+  "diet": "omnivore",
+  "eats": [
+   "mouse",
+   "berries",
+   "insect"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.78,
+     0.92
     ]
-  },
-  {
-    "id": "elephant",
-    "page": 12,
-    "en": "Elephant",
-    "fr": "Éléphant",
-    "ar": "فيل",
-    "fr_of": "de l'éléphant",
-    "ar_def": "الفيل",
-    "fact_en": "An elephant uses its trunk to drink, smell and say hello.",
-    "fact_fr": "L'éléphant se sert de sa trompe pour boire, sentir et dire bonjour.",
-    "fact_ar": "يستعمل الفيل خرطومه ليشرب ويشمّ ويُلقي التحية.",
-    "model": "models/Elephant.glb",
-    "sound": "sounds/elephant.m4a",
-    "color": "#6b7a8f",
-    "size": 0.6,
-    "lift": 0,
-    "turn": -30,
-    "eats": [
-      "grass",
-      "hay",
-      "apple"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.92,
-          0.85,
-          0.5
-        ]
-      },
-      {
-        "id": "ear",
-        "en": "Ear",
-        "fr": "Oreille",
-        "ar": "أذن",
-        "fr_def": "l'oreille",
-        "ar_def": "الأذن",
-        "at": [
-          0.8,
-          0.75,
-          0.95
-        ]
-      },
-      {
-        "id": "trunk",
-        "en": "Trunk",
-        "fr": "Trompe",
-        "ar": "خرطوم",
-        "fr_def": "la trompe",
-        "ar_def": "الخرطوم",
-        "at": [
-          1.0,
-          0.25,
-          0.5
-        ]
-      },
-      {
-        "id": "tusk",
-        "en": "Tusk",
-        "fr": "Défense",
-        "ar": "ناب",
-        "fr_def": "la défense",
-        "ar_def": "الناب",
-        "at": [
-          0.97,
-          0.35,
-          0.62
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.95,
-          0.72,
-          0.75
-        ]
-      },
-      {
-        "id": "back",
-        "en": "Back",
-        "fr": "Dos",
-        "ar": "ظهر",
-        "fr_def": "le dos",
-        "ar_def": "الظهر",
-        "at": [
-          0.4,
-          1.0,
-          0.5
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.75,
-          0.25,
-          0.7
-        ]
-      },
-      {
-        "id": "foot",
-        "en": "Foot",
-        "fr": "Pied",
-        "ar": "خُفّ",
-        "fr_def": "le pied",
-        "ar_def": "الخف",
-        "at": [
-          0.75,
-          0.02,
-          0.7
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.0,
-          0.55,
-          0.5
-        ]
-      }
+   },
+   {
+    "id": "ear",
+    "en": "Ear",
+    "fr": "Oreille",
+    "ar": "أذن",
+    "fr_def": "l'oreille",
+    "ar_def": "الأذن",
+    "at": [
+     0.2,
+     0.97,
+     0.93
     ]
-  },
-  {
-    "id": "giraffe",
-    "page": 13,
-    "en": "Giraffe",
-    "fr": "Girafe",
-    "ar": "زرافة",
-    "fr_of": "de la girafe",
-    "ar_def": "الزرافة",
-    "fact_en": "The giraffe is the tallest animal in the world.",
-    "fact_fr": "La girafe est l'animal le plus grand du monde.",
-    "fact_ar": "الزرافة أطول حيوان في العالم.",
-    "model": "models/Giraffe.glb",
-    "sound": "sounds/giraffe.m4a",
-    "color": "#d4a017",
-    "size": 0.5,
-    "lift": 0,
-    "turn": -30,
-    "eats": [
-      "leaves"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.98,
-          0.95,
-          0.5
-        ]
-      },
-      {
-        "id": "horn",
-        "en": "Horn",
-        "fr": "Corne",
-        "ar": "قرن",
-        "fr_def": "la corne",
-        "ar_def": "القرن",
-        "at": [
-          0.9,
-          1.0,
-          0.5
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.95,
-          0.92,
-          0.75
-        ]
-      },
-      {
-        "id": "neck",
-        "en": "Neck",
-        "fr": "Cou",
-        "ar": "رقبة",
-        "fr_def": "le cou",
-        "ar_def": "الرقبة",
-        "at": [
-          0.85,
-          0.75,
-          0.5
-        ]
-      },
-      {
-        "id": "back",
-        "en": "Back",
-        "fr": "Dos",
-        "ar": "ظهر",
-        "fr_def": "le dos",
-        "ar_def": "الظهر",
-        "at": [
-          0.4,
-          0.6,
-          0.5
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.7,
-          0.2,
-          0.6
-        ]
-      },
-      {
-        "id": "hoof",
-        "en": "Hoof",
-        "fr": "Sabot",
-        "ar": "حافر",
-        "fr_def": "le sabot",
-        "ar_def": "الحافر",
-        "at": [
-          0.7,
-          0.02,
-          0.6
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.05,
-          0.5,
-          0.5
-        ]
-      }
+   },
+   {
+    "id": "snout",
+    "en": "Snout",
+    "fr": "Museau",
+    "ar": "خَطم",
+    "fr_def": "le museau",
+    "ar_def": "الخطم",
+    "at": [
+     0.5,
+     0.62,
+     0.99
     ]
-  },
-  {
-    "id": "camel",
-    "page": 14,
-    "en": "Camel",
-    "fr": "Dromadaire",
-    "ar": "جمل",
-    "fr_of": "du dromadaire",
-    "ar_def": "الجمل",
-    "fact_en": "A camel can go many days in the desert without drinking.",
-    "fact_fr": "Le dromadaire peut passer plusieurs jours dans le désert sans boire.",
-    "fact_ar": "يستطيع الجمل أن يبقى أيامًا في الصحراء دون أن يشرب.",
-    "model": "models/Camel.glb",
-    "sound": null,
-    "color": "#b5651d",
-    "size": 0.6,
-    "lift": 0,
-    "turn": 60,
-    "eats": [
-      "dates",
-      "hay",
-      "grass"
-    ],
-    "parts": [
-      {
-        "id": "head",
-        "en": "Head",
-        "fr": "Tête",
-        "ar": "رأس",
-        "fr_def": "la tête",
-        "ar_def": "الرأس",
-        "at": [
-          0.5,
-          0.85,
-          0.97
-        ]
-      },
-      {
-        "id": "eye",
-        "en": "Eye",
-        "fr": "Œil",
-        "ar": "عين",
-        "fr_def": "l'œil",
-        "ar_def": "العين",
-        "at": [
-          0.3,
-          0.88,
-          0.93
-        ]
-      },
-      {
-        "id": "neck",
-        "en": "Neck",
-        "fr": "Cou",
-        "ar": "رقبة",
-        "fr_def": "le cou",
-        "ar_def": "الرقبة",
-        "at": [
-          0.5,
-          0.65,
-          0.85
-        ]
-      },
-      {
-        "id": "hump",
-        "en": "Hump",
-        "fr": "Bosse",
-        "ar": "سَنام",
-        "fr_def": "la bosse",
-        "ar_def": "السنام",
-        "at": [
-          0.5,
-          1.0,
-          0.45
-        ]
-      },
-      {
-        "id": "belly",
-        "en": "Belly",
-        "fr": "Ventre",
-        "ar": "بطن",
-        "fr_def": "le ventre",
-        "ar_def": "البطن",
-        "at": [
-          0.5,
-          0.45,
-          0.5
-        ]
-      },
-      {
-        "id": "leg",
-        "en": "Leg",
-        "fr": "Patte",
-        "ar": "ساق",
-        "fr_def": "la patte",
-        "ar_def": "الساق",
-        "at": [
-          0.5,
-          0.25,
-          0.75
-        ]
-      },
-      {
-        "id": "foot",
-        "en": "Foot",
-        "fr": "Pied",
-        "ar": "خُفّ",
-        "fr_def": "le pied",
-        "ar_def": "الخف",
-        "at": [
-          0.5,
-          0.02,
-          0.75
-        ]
-      },
-      {
-        "id": "tail",
-        "en": "Tail",
-        "fr": "Queue",
-        "ar": "ذيل",
-        "fr_def": "la queue",
-        "ar_def": "الذيل",
-        "at": [
-          0.5,
-          0.6,
-          0.0
-        ]
-      }
+   },
+   {
+    "id": "back",
+    "en": "Back",
+    "fr": "Dos",
+    "ar": "ظهر",
+    "fr_def": "le dos",
+    "ar_def": "الظهر",
+    "at": [
+     0.5,
+     0.9,
+     0.5
     ]
-  }
+   },
+   {
+    "id": "paw",
+    "en": "Paw",
+    "fr": "Patte",
+    "ar": "قدم",
+    "fr_def": "la patte",
+    "ar_def": "القدم",
+    "at": [
+     0.5,
+     0.02,
+     0.77
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.3,
+     0.1
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.2,
+     0.85,
+     0.94
+    ]
+   },
+   {
+    "id": "chest",
+    "en": "Chest",
+    "fr": "Poitrine",
+    "ar": "صدر",
+    "fr_def": "la poitrine",
+    "ar_def": "الصدر",
+    "at": [
+     0.5,
+     0.55,
+     0.86
+    ]
+   },
+   {
+    "id": "belly",
+    "en": "Belly",
+    "fr": "Ventre",
+    "ar": "بطن",
+    "fr_def": "le ventre",
+    "ar_def": "البطن",
+    "at": [
+     0.5,
+     0.4,
+     0.6
+    ]
+   }
+  ]
+ },
+ {
+  "id": "flamingo",
+  "page": 3,
+  "en": "Flamingo",
+  "fr": "Flamant rose",
+  "ar": "نحام",
+  "fr_of": "du flamant rose",
+  "ar_def": "النحام",
+  "fact_en": "Flamingos are pink because of the food they eat.",
+  "fact_fr": "Le flamant est rose grâce à ce qu'il mange.",
+  "fact_ar": "لون النحام وردي بسبب الطعام الذي يأكله.",
+  "model": "models/Flamingo.glb",
+  "sound": "sounds/flamingo.m4a",
+  "color": "#e4578b",
+  "size": 0.5,
+  "lift": 0.25,
+  "turn": 60,
+  "habitat": "wetland",
+  "group": "wild",
+  "diet": "omnivore",
+  "eats": [
+   "shrimp",
+   "seeds"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.92,
+     0.95
+    ]
+   },
+   {
+    "id": "beak",
+    "en": "Beak",
+    "fr": "Bec",
+    "ar": "منقار",
+    "fr_def": "le bec",
+    "ar_def": "المنقار",
+    "at": [
+     0.5,
+     0.82,
+     0.995
+    ]
+   },
+   {
+    "id": "neck",
+    "en": "Neck",
+    "fr": "Cou",
+    "ar": "رقبة",
+    "fr_def": "le cou",
+    "ar_def": "الرقبة",
+    "at": [
+     0.5,
+     0.9,
+     0.75
+    ]
+   },
+   {
+    "id": "wing",
+    "en": "Wing",
+    "fr": "Aile",
+    "ar": "جناح",
+    "fr_def": "l'aile",
+    "ar_def": "الجناح",
+    "at": [
+     0.2,
+     0.5,
+     0.45
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.5,
+     0.62,
+     0.15
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.3,
+     0.93,
+     0.96
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.75,
+     0.3
+    ]
+   }
+  ]
+ },
+ {
+  "id": "parrot",
+  "page": 4,
+  "en": "Parrot",
+  "fr": "Perroquet",
+  "ar": "ببغاء",
+  "fr_of": "du perroquet",
+  "ar_def": "الببغاء",
+  "fact_en": "Parrots can learn to copy words.",
+  "fact_fr": "Le perroquet peut apprendre à répéter des mots.",
+  "fact_ar": "يستطيع الببغاء أن يتعلم تقليد الكلمات.",
+  "model": "models/Parrot.glb",
+  "sound": "sounds/parrot.m4a",
+  "color": "#2e8b57",
+  "size": 0.45,
+  "lift": 0.25,
+  "turn": 60,
+  "habitat": "forest",
+  "group": "wild",
+  "diet": "herbivore",
+  "eats": [
+   "seeds",
+   "nuts",
+   "apple"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.55,
+     0.93
+    ]
+   },
+   {
+    "id": "beak",
+    "en": "Beak",
+    "fr": "Bec",
+    "ar": "منقار",
+    "fr_def": "le bec",
+    "ar_def": "المنقار",
+    "at": [
+     0.5,
+     0.4,
+     0.99
+    ]
+   },
+   {
+    "id": "wing",
+    "en": "Wing",
+    "fr": "Aile",
+    "ar": "جناح",
+    "fr_def": "l'aile",
+    "ar_def": "الجناح",
+    "at": [
+     0.15,
+     0.6,
+     0.78
+    ]
+   },
+   {
+    "id": "foot",
+    "en": "Foot",
+    "fr": "Patte",
+    "ar": "قدم",
+    "fr_def": "la patte",
+    "ar_def": "القدم",
+    "at": [
+     0.5,
+     0.08,
+     0.62
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.5,
+     0.1
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.3,
+     0.6,
+     0.95
+    ]
+   },
+   {
+    "id": "neck",
+    "en": "Neck",
+    "fr": "Cou",
+    "ar": "رقبة",
+    "fr_def": "le cou",
+    "ar_def": "الرقبة",
+    "at": [
+     0.5,
+     0.55,
+     0.88
+    ]
+   },
+   {
+    "id": "belly",
+    "en": "Belly",
+    "fr": "Ventre",
+    "ar": "بطن",
+    "fr_def": "le ventre",
+    "ar_def": "البطن",
+    "at": [
+     0.5,
+     0.3,
+     0.7
+    ]
+   }
+  ]
+ },
+ {
+  "id": "stork",
+  "page": 5,
+  "en": "Stork",
+  "fr": "Cigogne",
+  "ar": "لقلق",
+  "fr_of": "de la cigogne",
+  "ar_def": "اللقلق",
+  "fact_en": "White storks talk by clattering their beaks.",
+  "fact_fr": "La cigogne « parle » en claquant du bec.",
+  "fact_ar": "يتواصل اللقلق بطقطقة منقاره.",
+  "model": "models/Stork.glb",
+  "sound": "sounds/stork.m4a",
+  "color": "#3b6ea8",
+  "size": 0.55,
+  "lift": 0.25,
+  "turn": 60,
+  "habitat": "wetland",
+  "group": "wild",
+  "diet": "carnivore",
+  "eats": [
+   "fish",
+   "frog",
+   "insect"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.85,
+     0.9
+    ]
+   },
+   {
+    "id": "beak",
+    "en": "Beak",
+    "fr": "Bec",
+    "ar": "منقار",
+    "fr_def": "le bec",
+    "ar_def": "المنقار",
+    "at": [
+     0.5,
+     0.75,
+     0.99
+    ]
+   },
+   {
+    "id": "neck",
+    "en": "Neck",
+    "fr": "Cou",
+    "ar": "رقبة",
+    "fr_def": "le cou",
+    "ar_def": "الرقبة",
+    "at": [
+     0.5,
+     0.8,
+     0.78
+    ]
+   },
+   {
+    "id": "wing",
+    "en": "Wing",
+    "fr": "Aile",
+    "ar": "جناح",
+    "fr_def": "l'aile",
+    "ar_def": "الجناح",
+    "at": [
+     0.1,
+     0.8,
+     0.55
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.5,
+     0.3,
+     0.08
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.3,
+     0.88,
+     0.93
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.6,
+     0.25
+    ]
+   }
+  ]
+ },
+ {
+  "id": "cow",
+  "page": 6,
+  "en": "Cow",
+  "fr": "Vache",
+  "ar": "بقرة",
+  "fr_of": "de la vache",
+  "ar_def": "البقرة",
+  "fact_en": "A cow has a stomach with four parts to digest grass.",
+  "fact_fr": "La vache a un estomac en quatre parties pour digérer l'herbe.",
+  "fact_ar": "للبقرة معدة من أربعة أجزاء لهضم العشب.",
+  "model": "models/Cow.glb",
+  "sound": "sounds/cow.m4a",
+  "color": "#3f7d3a",
+  "size": 0.62,
+  "lift": 0,
+  "turn": 60,
+  "habitat": "farm",
+  "group": "farm",
+  "diet": "herbivore",
+  "eats": [
+   "grass",
+   "hay"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.8,
+     0.97
+    ]
+   },
+   {
+    "id": "ear",
+    "en": "Ear",
+    "fr": "Oreille",
+    "ar": "أذن",
+    "fr_def": "l'oreille",
+    "ar_def": "الأذن",
+    "at": [
+     0.5,
+     0.95,
+     0.88
+    ]
+   },
+   {
+    "id": "udder",
+    "en": "Udder",
+    "fr": "Mamelle",
+    "ar": "ضرع",
+    "fr_def": "la mamelle",
+    "ar_def": "الضرع",
+    "at": [
+     0.5,
+     0.38,
+     0.38
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.5,
+     0.3,
+     0.82
+    ]
+   },
+   {
+    "id": "hoof",
+    "en": "Hoof",
+    "fr": "Sabot",
+    "ar": "حافر",
+    "fr_def": "le sabot",
+    "ar_def": "الحافر",
+    "at": [
+     0.5,
+     0.02,
+     0.82
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.6,
+     0.03
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.2,
+     0.85,
+     0.94
+    ]
+   },
+   {
+    "id": "nose",
+    "en": "Nose",
+    "fr": "Nez",
+    "ar": "أنف",
+    "fr_def": "le nez",
+    "ar_def": "الأنف",
+    "at": [
+     0.5,
+     0.7,
+     1.0
+    ]
+   },
+   {
+    "id": "back",
+    "en": "Back",
+    "fr": "Dos",
+    "ar": "ظهر",
+    "fr_def": "le dos",
+    "ar_def": "الظهر",
+    "at": [
+     0.5,
+     1.0,
+     0.5
+    ]
+   },
+   {
+    "id": "belly",
+    "en": "Belly",
+    "fr": "Ventre",
+    "ar": "بطن",
+    "fr_def": "le ventre",
+    "ar_def": "البطن",
+    "at": [
+     0.5,
+     0.4,
+     0.6
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sheep",
+  "page": 8,
+  "en": "Sheep",
+  "fr": "Mouton",
+  "ar": "خروف",
+  "fr_of": "du mouton",
+  "ar_def": "الخروف",
+  "fact_en": "A sheep's wool keeps growing all its life.",
+  "fact_fr": "La laine du mouton pousse toute sa vie.",
+  "fact_ar": "صوف الخروف ينمو طوال حياته.",
+  "model": "models/Sheep.glb",
+  "sound": "sounds/sheep.m4a",
+  "color": "#7a6bb5",
+  "size": 0.5,
+  "lift": 0,
+  "turn": 60,
+  "habitat": "farm",
+  "group": "farm",
+  "diet": "herbivore",
+  "eats": [
+   "grass",
+   "hay"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.85,
+     0.97
+    ]
+   },
+   {
+    "id": "ear",
+    "en": "Ear",
+    "fr": "Oreille",
+    "ar": "أذن",
+    "fr_def": "l'oreille",
+    "ar_def": "الأذن",
+    "at": [
+     0.5,
+     0.9,
+     0.88
+    ]
+   },
+   {
+    "id": "wool",
+    "en": "Wool",
+    "fr": "Laine",
+    "ar": "صوف",
+    "fr_def": "la laine",
+    "ar_def": "الصوف",
+    "at": [
+     0.5,
+     0.97,
+     0.5
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.5,
+     0.25,
+     0.78
+    ]
+   },
+   {
+    "id": "hoof",
+    "en": "Hoof",
+    "fr": "Sabot",
+    "ar": "حافر",
+    "fr_def": "le sabot",
+    "ar_def": "الحافر",
+    "at": [
+     0.5,
+     0.02,
+     0.8
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.2,
+     0.9,
+     0.94
+    ]
+   },
+   {
+    "id": "nose",
+    "en": "Nose",
+    "fr": "Nez",
+    "ar": "أنف",
+    "fr_def": "le nez",
+    "ar_def": "الأنف",
+    "at": [
+     0.5,
+     0.78,
+     1.0
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.6,
+     0.0
+    ]
+   },
+   {
+    "id": "belly",
+    "en": "Belly",
+    "fr": "Ventre",
+    "ar": "بطن",
+    "fr_def": "le ventre",
+    "ar_def": "البطن",
+    "at": [
+     0.5,
+     0.35,
+     0.5
+    ]
+   }
+  ]
+ },
+ {
+  "id": "zebra",
+  "page": 10,
+  "en": "Zebra",
+  "fr": "Zèbre",
+  "ar": "حمار وحشي",
+  "fr_of": "du zèbre",
+  "ar_def": "الحمار الوحشي",
+  "fact_en": "No two zebras have the same stripes.",
+  "fact_fr": "Il n'y a pas deux zèbres avec les mêmes rayures.",
+  "fact_ar": "لا يوجد حماران وحشيان لهما الخطوط نفسها.",
+  "model": "models/Zebra.glb",
+  "sound": "sounds/zebra.m4a",
+  "color": "#3d3d3d",
+  "size": 0.6,
+  "lift": 0,
+  "turn": 60,
+  "habitat": "savannah",
+  "group": "wild",
+  "diet": "herbivore",
+  "eats": [
+   "grass"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.78,
+     0.97
+    ]
+   },
+   {
+    "id": "ear",
+    "en": "Ear",
+    "fr": "Oreille",
+    "ar": "أذن",
+    "fr_def": "l'oreille",
+    "ar_def": "الأذن",
+    "at": [
+     0.5,
+     1.0,
+     0.9
+    ]
+   },
+   {
+    "id": "mane",
+    "en": "Mane",
+    "fr": "Crinière",
+    "ar": "عُرف",
+    "fr_def": "la crinière",
+    "ar_def": "العُرف",
+    "at": [
+     0.5,
+     0.85,
+     0.8
+    ]
+   },
+   {
+    "id": "stripes",
+    "en": "Stripes",
+    "fr": "Rayures",
+    "ar": "خطوط",
+    "fr_def": "les rayures",
+    "ar_def": "الخطوط",
+    "at": [
+     0.5,
+     0.55,
+     0.45
+    ]
+   },
+   {
+    "id": "hoof",
+    "en": "Hoof",
+    "fr": "Sabot",
+    "ar": "حافر",
+    "fr_def": "le sabot",
+    "ar_def": "الحافر",
+    "at": [
+     0.5,
+     0.02,
+     0.75
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.6,
+     0.02
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.2,
+     0.85,
+     0.94
+    ]
+   },
+   {
+    "id": "nose",
+    "en": "Nose",
+    "fr": "Nez",
+    "ar": "أنف",
+    "fr_def": "le nez",
+    "ar_def": "الأنف",
+    "at": [
+     0.5,
+     0.72,
+     1.0
+    ]
+   },
+   {
+    "id": "back",
+    "en": "Back",
+    "fr": "Dos",
+    "ar": "ظهر",
+    "fr_def": "le dos",
+    "ar_def": "الظهر",
+    "at": [
+     0.5,
+     0.78,
+     0.45
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.5,
+     0.3,
+     0.78
+    ]
+   }
+  ]
+ },
+ {
+  "id": "llama",
+  "page": 12,
+  "en": "Llama",
+  "fr": "Lama",
+  "ar": "لاما",
+  "fr_of": "du lama",
+  "ar_def": "اللاما",
+  "fact_en": "Llamas hum to talk to each other.",
+  "fact_fr": "Les lamas fredonnent pour se parler.",
+  "fact_ar": "يتواصل اللاما مع بعضه بالهمهمة.",
+  "model": "models/Llama.glb",
+  "sound": null,
+  "color": "#1f8a8a",
+  "size": 0.5,
+  "lift": 0,
+  "turn": 60,
+  "habitat": "farm",
+  "group": "farm",
+  "diet": "herbivore",
+  "eats": [
+   "grass",
+   "hay"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.95,
+     0.9
+    ]
+   },
+   {
+    "id": "ear",
+    "en": "Ear",
+    "fr": "Oreille",
+    "ar": "أذن",
+    "fr_def": "l'oreille",
+    "ar_def": "الأذن",
+    "at": [
+     0.5,
+     1.0,
+     0.8
+    ]
+   },
+   {
+    "id": "neck",
+    "en": "Neck",
+    "fr": "Cou",
+    "ar": "رقبة",
+    "fr_def": "le cou",
+    "ar_def": "الرقبة",
+    "at": [
+     0.5,
+     0.72,
+     0.8
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.5,
+     0.25,
+     0.72
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.55,
+     0.02
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.3,
+     0.97,
+     0.93
+    ]
+   },
+   {
+    "id": "nose",
+    "en": "Nose",
+    "fr": "Nez",
+    "ar": "أنف",
+    "fr_def": "le nez",
+    "ar_def": "الأنف",
+    "at": [
+     0.5,
+     0.92,
+     1.0
+    ]
+   },
+   {
+    "id": "back",
+    "en": "Back",
+    "fr": "Dos",
+    "ar": "ظهر",
+    "fr_def": "le dos",
+    "ar_def": "الظهر",
+    "at": [
+     0.5,
+     0.6,
+     0.4
+    ]
+   },
+   {
+    "id": "belly",
+    "en": "Belly",
+    "fr": "Ventre",
+    "ar": "بطن",
+    "fr_def": "le ventre",
+    "ar_def": "البطن",
+    "at": [
+     0.5,
+     0.4,
+     0.4
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dog",
+  "page": 14,
+  "en": "Dog",
+  "fr": "Chien",
+  "ar": "كلب",
+  "fr_of": "du chien",
+  "ar_def": "الكلب",
+  "fact_en": "A dog's nose is thousands of times better than ours.",
+  "fact_fr": "Le flair du chien est des milliers de fois meilleur que le nôtre.",
+  "fact_ar": "حاسة الشم عند الكلب أقوى من حاستنا آلاف المرات.",
+  "model": "models/Dog.glb",
+  "sound": "sounds/dog.m4a",
+  "color": "#c98a12",
+  "size": 0.42,
+  "lift": 0,
+  "turn": 60,
+  "habitat": "home",
+  "group": "pet",
+  "diet": "omnivore",
+  "eats": [
+   "meat",
+   "fish"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.8,
+     0.95
+    ]
+   },
+   {
+    "id": "ear",
+    "en": "Ear",
+    "fr": "Oreille",
+    "ar": "أذن",
+    "fr_def": "l'oreille",
+    "ar_def": "الأذن",
+    "at": [
+     0.5,
+     0.95,
+     0.92
+    ]
+   },
+   {
+    "id": "snout",
+    "en": "Snout",
+    "fr": "Museau",
+    "ar": "خَطم",
+    "fr_def": "le museau",
+    "ar_def": "الخطم",
+    "at": [
+     0.5,
+     0.72,
+     1.0
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.5,
+     0.25,
+     0.8
+    ]
+   },
+   {
+    "id": "paw",
+    "en": "Paw",
+    "fr": "Patte",
+    "ar": "قدم",
+    "fr_def": "la patte",
+    "ar_def": "القدم",
+    "at": [
+     0.5,
+     0.02,
+     0.82
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.85,
+     0.05
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.2,
+     0.85,
+     0.95
+    ]
+   },
+   {
+    "id": "back",
+    "en": "Back",
+    "fr": "Dos",
+    "ar": "ظهر",
+    "fr_def": "le dos",
+    "ar_def": "الظهر",
+    "at": [
+     0.5,
+     0.85,
+     0.5
+    ]
+   },
+   {
+    "id": "belly",
+    "en": "Belly",
+    "fr": "Ventre",
+    "ar": "بطن",
+    "fr_def": "le ventre",
+    "ar_def": "البطن",
+    "at": [
+     0.5,
+     0.45,
+     0.5
+    ]
+   }
+  ]
+ },
+ {
+  "id": "lion",
+  "page": 11,
+  "en": "Lion",
+  "fr": "Lion",
+  "ar": "أسد",
+  "fr_of": "du lion",
+  "ar_def": "الأسد",
+  "fact_en": "A lion's roar can be heard 8 km away.",
+  "fact_fr": "Le rugissement du lion s'entend à 8 km.",
+  "fact_ar": "يُسمع زئير الأسد من مسافة 8 كيلومترات.",
+  "model": "models/Lion.glb",
+  "sound": "sounds/lion.m4a",
+  "color": "#c0802a",
+  "size": 0.6,
+  "lift": 0,
+  "turn": 60,
+  "habitat": "savannah",
+  "group": "wild",
+  "diet": "carnivore",
+  "eats": [
+   "meat"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.8,
+     0.97
+    ]
+   },
+   {
+    "id": "mane",
+    "en": "Mane",
+    "fr": "Crinière",
+    "ar": "لِبدة",
+    "fr_def": "la crinière",
+    "ar_def": "اللِبدة",
+    "at": [
+     0.5,
+     0.85,
+     0.86
+    ]
+   },
+   {
+    "id": "nose",
+    "en": "Nose",
+    "fr": "Nez",
+    "ar": "أنف",
+    "fr_def": "le nez",
+    "ar_def": "الأنف",
+    "at": [
+     0.5,
+     0.7,
+     1.0
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.25,
+     0.85,
+     0.96
+    ]
+   },
+   {
+    "id": "back",
+    "en": "Back",
+    "fr": "Dos",
+    "ar": "ظهر",
+    "fr_def": "le dos",
+    "ar_def": "الظهر",
+    "at": [
+     0.5,
+     0.72,
+     0.5
+    ]
+   },
+   {
+    "id": "belly",
+    "en": "Belly",
+    "fr": "Ventre",
+    "ar": "بطن",
+    "fr_def": "le ventre",
+    "ar_def": "البطن",
+    "at": [
+     0.5,
+     0.35,
+     0.5
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.5,
+     0.25,
+     0.85
+    ]
+   },
+   {
+    "id": "paw",
+    "en": "Paw",
+    "fr": "Patte",
+    "ar": "قدم",
+    "fr_def": "la patte",
+    "ar_def": "القدم",
+    "at": [
+     0.5,
+     0.02,
+     0.85
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.4,
+     0.0
+    ]
+   }
+  ]
+ },
+ {
+  "id": "elephant",
+  "page": 12,
+  "en": "Elephant",
+  "fr": "Éléphant",
+  "ar": "فيل",
+  "fr_of": "de l'éléphant",
+  "ar_def": "الفيل",
+  "fact_en": "An elephant uses its trunk to drink, smell and say hello.",
+  "fact_fr": "L'éléphant se sert de sa trompe pour boire, sentir et dire bonjour.",
+  "fact_ar": "يستعمل الفيل خرطومه ليشرب ويشمّ ويُلقي التحية.",
+  "model": "models/Elephant.glb",
+  "sound": "sounds/elephant.m4a",
+  "color": "#6b7a8f",
+  "size": 0.6,
+  "lift": 0,
+  "turn": -30,
+  "habitat": "savannah",
+  "group": "wild",
+  "diet": "herbivore",
+  "eats": [
+   "grass",
+   "hay",
+   "apple"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.92,
+     0.85,
+     0.5
+    ]
+   },
+   {
+    "id": "ear",
+    "en": "Ear",
+    "fr": "Oreille",
+    "ar": "أذن",
+    "fr_def": "l'oreille",
+    "ar_def": "الأذن",
+    "at": [
+     0.8,
+     0.75,
+     0.95
+    ]
+   },
+   {
+    "id": "trunk",
+    "en": "Trunk",
+    "fr": "Trompe",
+    "ar": "خرطوم",
+    "fr_def": "la trompe",
+    "ar_def": "الخرطوم",
+    "at": [
+     1.0,
+     0.25,
+     0.5
+    ]
+   },
+   {
+    "id": "tusk",
+    "en": "Tusk",
+    "fr": "Défense",
+    "ar": "ناب",
+    "fr_def": "la défense",
+    "ar_def": "الناب",
+    "at": [
+     0.97,
+     0.35,
+     0.62
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.95,
+     0.72,
+     0.75
+    ]
+   },
+   {
+    "id": "back",
+    "en": "Back",
+    "fr": "Dos",
+    "ar": "ظهر",
+    "fr_def": "le dos",
+    "ar_def": "الظهر",
+    "at": [
+     0.4,
+     1.0,
+     0.5
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.75,
+     0.25,
+     0.7
+    ]
+   },
+   {
+    "id": "foot",
+    "en": "Foot",
+    "fr": "Pied",
+    "ar": "خُفّ",
+    "fr_def": "le pied",
+    "ar_def": "الخف",
+    "at": [
+     0.75,
+     0.02,
+     0.7
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.0,
+     0.55,
+     0.5
+    ]
+   }
+  ]
+ },
+ {
+  "id": "giraffe",
+  "page": 13,
+  "en": "Giraffe",
+  "fr": "Girafe",
+  "ar": "زرافة",
+  "fr_of": "de la girafe",
+  "ar_def": "الزرافة",
+  "fact_en": "The giraffe is the tallest animal in the world.",
+  "fact_fr": "La girafe est l'animal le plus grand du monde.",
+  "fact_ar": "الزرافة أطول حيوان في العالم.",
+  "model": "models/Giraffe.glb",
+  "sound": "sounds/giraffe.m4a",
+  "color": "#d4a017",
+  "size": 0.5,
+  "lift": 0,
+  "turn": -30,
+  "habitat": "savannah",
+  "group": "wild",
+  "diet": "herbivore",
+  "eats": [
+   "leaves"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.98,
+     0.95,
+     0.5
+    ]
+   },
+   {
+    "id": "horn",
+    "en": "Horn",
+    "fr": "Corne",
+    "ar": "قرن",
+    "fr_def": "la corne",
+    "ar_def": "القرن",
+    "at": [
+     0.9,
+     1.0,
+     0.5
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.95,
+     0.92,
+     0.75
+    ]
+   },
+   {
+    "id": "neck",
+    "en": "Neck",
+    "fr": "Cou",
+    "ar": "رقبة",
+    "fr_def": "le cou",
+    "ar_def": "الرقبة",
+    "at": [
+     0.85,
+     0.75,
+     0.5
+    ]
+   },
+   {
+    "id": "back",
+    "en": "Back",
+    "fr": "Dos",
+    "ar": "ظهر",
+    "fr_def": "le dos",
+    "ar_def": "الظهر",
+    "at": [
+     0.4,
+     0.6,
+     0.5
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.7,
+     0.2,
+     0.6
+    ]
+   },
+   {
+    "id": "hoof",
+    "en": "Hoof",
+    "fr": "Sabot",
+    "ar": "حافر",
+    "fr_def": "le sabot",
+    "ar_def": "الحافر",
+    "at": [
+     0.7,
+     0.02,
+     0.6
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.05,
+     0.5,
+     0.5
+    ]
+   }
+  ]
+ },
+ {
+  "id": "camel",
+  "page": 14,
+  "en": "Camel",
+  "fr": "Dromadaire",
+  "ar": "جمل",
+  "fr_of": "du dromadaire",
+  "ar_def": "الجمل",
+  "fact_en": "A camel can go many days in the desert without drinking.",
+  "fact_fr": "Le dromadaire peut passer plusieurs jours dans le désert sans boire.",
+  "fact_ar": "يستطيع الجمل أن يبقى أيامًا في الصحراء دون أن يشرب.",
+  "model": "models/Camel.glb",
+  "sound": null,
+  "color": "#b5651d",
+  "size": 0.6,
+  "lift": 0,
+  "turn": 60,
+  "habitat": "desert",
+  "group": "farm",
+  "diet": "herbivore",
+  "eats": [
+   "dates",
+   "hay",
+   "grass"
+  ],
+  "parts": [
+   {
+    "id": "head",
+    "en": "Head",
+    "fr": "Tête",
+    "ar": "رأس",
+    "fr_def": "la tête",
+    "ar_def": "الرأس",
+    "at": [
+     0.5,
+     0.85,
+     0.97
+    ]
+   },
+   {
+    "id": "eye",
+    "en": "Eye",
+    "fr": "Œil",
+    "ar": "عين",
+    "fr_def": "l'œil",
+    "ar_def": "العين",
+    "at": [
+     0.3,
+     0.88,
+     0.93
+    ]
+   },
+   {
+    "id": "neck",
+    "en": "Neck",
+    "fr": "Cou",
+    "ar": "رقبة",
+    "fr_def": "le cou",
+    "ar_def": "الرقبة",
+    "at": [
+     0.5,
+     0.65,
+     0.85
+    ]
+   },
+   {
+    "id": "hump",
+    "en": "Hump",
+    "fr": "Bosse",
+    "ar": "سَنام",
+    "fr_def": "la bosse",
+    "ar_def": "السنام",
+    "at": [
+     0.5,
+     1.0,
+     0.45
+    ]
+   },
+   {
+    "id": "belly",
+    "en": "Belly",
+    "fr": "Ventre",
+    "ar": "بطن",
+    "fr_def": "le ventre",
+    "ar_def": "البطن",
+    "at": [
+     0.5,
+     0.45,
+     0.5
+    ]
+   },
+   {
+    "id": "leg",
+    "en": "Leg",
+    "fr": "Patte",
+    "ar": "ساق",
+    "fr_def": "la patte",
+    "ar_def": "الساق",
+    "at": [
+     0.5,
+     0.25,
+     0.75
+    ]
+   },
+   {
+    "id": "foot",
+    "en": "Foot",
+    "fr": "Pied",
+    "ar": "خُفّ",
+    "fr_def": "le pied",
+    "ar_def": "الخف",
+    "at": [
+     0.5,
+     0.02,
+     0.75
+    ]
+   },
+   {
+    "id": "tail",
+    "en": "Tail",
+    "fr": "Queue",
+    "ar": "ذيل",
+    "fr_def": "la queue",
+    "ar_def": "الذيل",
+    "at": [
+     0.5,
+     0.6,
+     0.0
+    ]
+   }
+  ]
+ }
 ]

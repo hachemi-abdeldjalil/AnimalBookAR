@@ -130,7 +130,7 @@ async function main() {
         done = true;
         await sleep(500);
         const s = await h.state();
-        check(s.parts.visible.length >= 2, `the red scene's objects show as parts (${s.parts.visible.join(', ')})`);
+        check(s.parts.visible.length >= 2, `the red shades show as parts (${s.parts.visible.join(', ')})`);
         const paintBtn = await h.centerOf('#btn-feed');
         await h.tap(paintBtn.x, paintBtn.y);
         await sleep(300);
@@ -176,6 +176,15 @@ async function main() {
     check(st && st.modelsLoaded === 12, `all 12 Algeria models loaded (${st?.modelsLoaded})`);
     check(seen.join(' > ') === 'dz_flag > lost > dz_fennec > lost', `Algeria pages found in order (${seen.join(' > ')})`);
   });
+
+  // ---- Shapes and Numbers: the pages are found, the models load ----
+  for (const [book, pages, total] of [['shapes', ['shape_circle', 'shape_triangle'], 10], ['numbers', ['num_1', 'num_3'], 10]]) {
+    await run(book, pages, async (h) => {
+      const { seen, st } = await watch(h, pages, async (id) => h.shot(`${book}-found-${id}.png`));
+      check(st && st.modelsLoaded === total, `all ${total} ${book} models loaded (${st?.modelsLoaded})`);
+      check(seen.join(' > ') === `${pages[0]} > lost > ${pages[1]} > lost`, `${book} pages found in order (${seen.join(' > ')})`);
+    });
+  }
 
   console.log(failures.length ? `\n${failures.length} check(s) failed` : '\nall checks passed');
   process.exit(failures.length ? 1 : 0);

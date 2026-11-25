@@ -10,6 +10,7 @@ import 'animal_sheet.dart';
 import 'ar_screen.dart';
 import 'memory_game.dart';
 import 'mix_game.dart';
+import 'sort_game.dart';
 import 'parents_screen.dart';
 
 const brand = Color(0xFFE8702A);
@@ -112,6 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.of(context).push(MaterialPageRoute(builder: (_) => MemoryGame(progress: p))),
                     onSoundQuiz: () => _openAr(soundQuiz: true),
                     onMix: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => MixGame(progress: p))),
+                    onSort: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => SortGame(progress: p))),
                   ),
                 ),
                 const SizedBox(height: 14),
@@ -454,12 +456,14 @@ class _Games extends StatelessWidget {
     required this.onSoundQuiz,
     required this.onHelps,
     required this.onMix,
+    required this.onSort,
   });
   final Progress progress;
   final VoidCallback onMemory;
   final VoidCallback onSoundQuiz;
   final VoidCallback onHelps;
   final VoidCallback onMix;
+  final VoidCallback onSort;
 
   @override
   Widget build(BuildContext context) {
@@ -510,6 +514,8 @@ class _Games extends StatelessWidget {
               const Color(0xFFD9483B), onHelps),
           'find' => tile(const Key('game-find'), kind == 'colors' ? Icons.colorize_rounded : Icons.spellcheck_rounded,
               s.findGame(kind), s.findHint, const Color(0xFF1F8A8A), onHelps),
+          'sort' => tile(
+              const Key('game-sort'), Icons.category_rounded, s.sortGame, s.sortHint, const Color(0xFF6B8E23), onSort),
           'mix' =>
             tile(const Key('game-mix'), Icons.palette_rounded, s.mixGame, s.mixHint, const Color(0xFFD9483B), onMix),
           _ => const SizedBox.shrink(),

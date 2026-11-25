@@ -53,18 +53,19 @@ class S {
         'letters' => _t('Learn ${a.en}', 'Apprends ${a.fr}', 'تعلّم ${a.ar}'),
         'colors' => _t('Discover ${a.en.toLowerCase()}', 'Découvre ${a.frDef}', 'تعرّف على ${a.arDef}'),
         'heritage' => _t('Discover ${a.en}', 'Découvre ${a.frDef}', 'تعرّف على ${a.arDef}'),
+        'shapes' => _t('Learn the ${a.en.toLowerCase()}', 'Apprends ${a.frDef}', 'تعلّم ${a.arDef}'),
+        'numbers' => _t('Learn ${a.en}', 'Apprends ${a.fr}', 'تعلّم ${a.ar}'),
         _ => _t('Meet the ${a.en.toLowerCase()}', 'Découvre ${a.frDef}', 'تعرّف على ${a.arDef}'),
       };
   String findPart(Animal a, BodyPart p, {String kind = 'animals'}) => kind == 'heritage'
       ? _t('${a.en}: find the ${p.en.toLowerCase()}', 'Trouve ${p.frDef} ${a.frOf}', 'ابحث عن ${p.ar} في ${a.arDef}')
       : kind == 'colors'
-          ? _t('Find the ${a.en.toLowerCase()} ${p.en.toLowerCase()}', 'Trouve ${p.frDef} ${a.fr.toLowerCase()}',
-              'ابحث عن ${p.ar} ${a.ar}')
+          ? _t('Find ${p.en.toLowerCase()}', 'Trouve ${p.frDef}', 'ابحث عن ${p.ar}')
           : _t('Find the ${a.en.toLowerCase()}\'s ${p.en.toLowerCase()}', 'Trouve ${p.frDef} ${a.frOf}',
               'ابحث عن ${p.ar} ${a.arDef}');
   String partsTitle(String kind) => switch (kind) {
         'vehicles' => _t('Parts', 'Les pièces', 'الأجزاء'),
-        'colors' => _t('Things', 'Les objets', 'الأشياء'),
+        'colors' => _t('Shades', 'Les nuances', 'الدرجات'),
         'heritage' => _t('Details', 'Les détails', 'التفاصيل'),
         _ => _t('Body parts', 'Le corps', 'أجزاء الجسم'),
       };
@@ -202,6 +203,8 @@ class S {
         'letters' => _t('$done of $total letters', '$done sur $total lettres', '$done من $total حروف'),
         'colors' => _t('$done of $total colours', '$done sur $total couleurs', '$done من $total ألوان'),
         'heritage' => _t('$done of $total treasures', '$done sur $total trésors', '$done من $total كنوز'),
+        'shapes' => _t('$done of $total shapes', '$done sur $total formes', '$done من $total أشكال'),
+        'numbers' => _t('$done of $total numbers', '$done sur $total nombres', '$done من $total أعداد'),
         _ => _t('$done of $total animals', '$done sur $total animaux', '$done من $total حيوانات'),
       };
   String statMet(String kind) => switch (kind) {
@@ -209,15 +212,49 @@ class S {
         'letters' => _t('Letters learned', 'Lettres apprises', 'حروف تعلّمها'),
         'colors' => _t('Colours met', 'Couleurs découvertes', 'ألوان تعرّف عليها'),
         'heritage' => _t('Treasures discovered', 'Trésors découverts', 'كنوز اكتشفها'),
+        'shapes' => _t('Shapes learned', 'Formes apprises', 'أشكال تعلّمها'),
+        'numbers' => _t('Numbers learned', 'Nombres appris', 'أعداد تعلّمها'),
         _ => statAnimals,
       };
   String findGame(String kind) => switch (kind) {
         'colors' => _t('Find the colour', 'Trouve la couleur', 'ابحث عن اللون'),
         'heritage' => _t('Find the treasure', 'Trouve le trésor', 'ابحث عن الكنز'),
+        'shapes' => _t('Find the shape', 'Trouve la forme', 'ابحث عن الشكل'),
+        'numbers' => _t('Find the number', 'Trouve le nombre', 'ابحث عن العدد'),
         _ => _t('Find the letter', 'Trouve la lettre', 'ابحث عن الحرف'),
       };
   String get findHint =>
       _t('Listen, then scan the right page', 'Écoute, puis scanne la bonne page', 'استمع ثم امسح الصفحة الصحيحة');
+  // Animal categories
+  String category(String id) => switch (id) {
+        'farm' => _t('Farm animal', 'Animal de la ferme', 'حيوان المزرعة'),
+        'pet' => _t('Pet', 'Animal domestique', 'حيوان أليف'),
+        'wild' => _t('Wild animal', 'Animal sauvage', 'حيوان بري'),
+        'herbivore' => _t('Eats plants', 'Mange des plantes', 'آكل الأعشاب'),
+        'carnivore' => _t('Eats meat', 'Mange de la viande', 'آكل اللحوم'),
+        'omnivore' => _t('Eats everything', 'Mange de tout', 'يأكل كل شيء'),
+        _ => id,
+      };
+  String habitatName(String id) => switch (id) {
+        'farm' => _t('Farm', 'Ferme', 'المزرعة'),
+        'home' => _t('Home', 'Maison', 'البيت'),
+        'forest' => _t('Forest', 'Forêt', 'الغابة'),
+        'savannah' => _t('Savannah', 'Savane', 'السافانا'),
+        'desert' => _t('Desert', 'Désert', 'الصحراء'),
+        'wetland' => _t('Lake & marsh', 'Lac et marais', 'البحيرة'),
+        _ => id,
+      };
+  String get livesIn => _t('Lives in', 'Vit dans', 'يعيش في');
+  String get sortGame => _t('Sort the animals', 'Classe les animaux', 'صنّف الحيوانات');
+  String get sortHint =>
+      _t('Farm or wild? Plants or meat?', 'Ferme ou sauvage ? Plantes ou viande ?', 'مزرعة أم بري؟ أعشاب أم لحوم؟');
+  String get sortWhere => _t('Where does it live?', 'Où vit-il ?', 'أين يعيش؟');
+  String get sortEats => _t('What does it eat?', 'Que mange-t-il ?', 'ماذا يأكل؟');
+  String sortRight(String a, String c) => _t('Yes! The $a: $c.', 'Oui ! $a : $c.', 'نعم! $a: $c.');
+  String get sortWrong =>
+      _t('Not quite, look again!', 'Pas tout à fait, regarde encore !', 'ليس تمامًا، انظر مرة أخرى!');
+  String sortDone(int right, int total) =>
+      _t('$right of $total right!', '$right sur $total justes !', '$right من $total صحيحة!');
   String get mixGame => _t('Mix colours', 'Mélange les couleurs', 'امزج الألوان');
   String get mixHint =>
       _t('Two paints make a new colour', 'Deux peintures font une couleur', 'لونان يصنعان لونًا جديدًا');
@@ -239,6 +276,8 @@ class S {
         'letters' => _t('Match each letter to its word', 'Associe chaque lettre à son mot', 'طابق كل حرف مع كلمته'),
         'colors' => _t('Match each colour to its name', 'Associe chaque couleur à son nom', 'طابق كل لون مع اسمه'),
         'heritage' => _t('Match each picture to its name', 'Associe chaque image à son nom', 'طابق كل صورة مع اسمها'),
+        'shapes' => _t('Match each shape to its name', 'Associe chaque forme à son nom', 'طابق كل شكل مع اسمه'),
+        'numbers' => _t('Match each number to its name', 'Associe chaque nombre à son nom', 'طابق كل عدد مع اسمه'),
         _ => _t('Match each animal to its name', 'Associe chaque animal à son nom', 'طابق كل حيوان مع اسمه'),
       };
   String get soundQuiz => _t('Sound quiz', 'Quiz des sons', 'اختبار الأصوات');

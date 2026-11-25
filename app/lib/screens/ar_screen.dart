@@ -148,6 +148,9 @@ class _ArScreenState extends State<ArScreen> with WidgetsBindingObserver {
         'book': widget.progress.book.id,
         if (widget.progress.name.isNotEmpty) 'name': widget.progress.name,
         if (widget.mode != ArMode.explore) 'mode': widget.mode.name,
+        // Level 1 is about meeting the animals: the parts to find come with level 2.
+        if (widget.mode == ArMode.explore && widget.progress.book.levels > 1 && !widget.progress.unlocked(2))
+          'parts': '0',
       });
 
   @override
