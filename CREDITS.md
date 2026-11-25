@@ -10,13 +10,13 @@ publishing.
 |---|---|---|---|
 | Horse | Alvesgaspar | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Horse_December_2014-1.jpg) |
 | Fox | ClaudiaTen | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Portrait_of_a_red_fox_in_Rautas_fj%C3%A4llurskog_(cropped).jpg) |
-| Flamingo | Giles Laurent | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:010_Greater_flamingos_male_and_female_in_the_Camargue_during_mating_season_Photo_by_Giles_Laurent.jpg) |
+| Flamingo | Giles Laurent | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:017_Greater_flamingo_drinking_in_the_Camargue_Photo_by_Giles_Laurent.jpg) |
 | Parrot | Charles J. Sharp | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Scarlet_macaw_(Ara_macao_cyanopterus)_Copan.jpg) |
 | Stork | Charles J. Sharp | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:White_stork_(Ciconia_ciconia)_Bia%C5%82owieza.jpg) |
 | Cow | Kim Hansen | CC BY-SA 3.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cow_(Fleckvieh_breed)_Oeschinensee_Slaunger_2009-07-07.jpg) |
-| Sheep | Keith Weller | Public domain | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Flock_of_sheep.jpg) |
+| Sheep | Dominic Nelson | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sheep_in_a_field_in_Alsager_02.jpg) |
 | Zebra | Yathin S Krishnappa | CC BY-SA 3.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Equus_quagga_burchellii_-_Etosha,_2014.jpg) |
-| Llama | Andrija12345678 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Llamas,_Vernagt-Stausee,_Italy.jpg) |
+| Llama | Dguendel | CC BY 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Petersberg_(bei_Halle),_Tierpark,_Lama.jpg) |
 | Dog | Mops_oct09.jpg :  Dagur Brynjólfsson  from Hafnarfjordur, Iceland;   derivative work:  Anka Friedrich | CC BY-SA 2.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Mops_oct09_cropped2.jpg) |
 | Lion | Giles Laurent | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg) |
 | Elephant | Giles Laurent | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg) |
@@ -29,20 +29,20 @@ publishing.
 | Fire truck | William Murphy | CC BY-SA 2.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Dublin_Fire_Brigade_Pump_Ladder_D32.jpg) |
 | School bus | Atomic Taco | CC BY-SA 2.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:IC_CE_school_bus_(shortened_chassis).jpg) |
 | Tractor | Mulad | CC BY 2.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Ford_8N.jpg) |
-| Truck | Ralf Roletschek | CC BY 3.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:13-08-09-hongkong-by-RalfR-091.jpg) |
+| Truck | Lav Ulv | CC BY 2.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:BF10131_(19.08.23,_Motorvej_501,_Viby_J)DSC_0382Flickr_(51887339056).jpg) |
 | Motorcycle | Lothar Spurzem | CC BY-SA 2.0 de | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:2007-06-15_34_Moto_Guzzi_PE,_Fg.-Nr._SP7032.jpg) |
 | Taa · Apple | George Chernilevsky | Public domain | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Apples_in_basket_2018_G1.jpg) |
 | Daal · Bear | Malene Thyssen | CC BY 2.5 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Brown_bear_(Ursus_arctos_arctos)_running.jpg) |
 | Thaal · Corn | Dietmar Rabich | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Hausd%C3%BClmen,_Maisfeld_am_Sythener_Hellweg_--_2021_--_0616.jpg) |
 | Raa · Pomegranate | Kritzolina | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Granat%C3%A4pfel_am_Baum.jpg) |
-| Saad · Falcon | Isiwal | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Adlerwarte_Obernberg_am_Inn_Falkner_Wanderfalke-9506.jpg) |
+| Saad · Falcon | Andy Reago &amp; Chrissy McClarren | CC BY 2.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Peregrine_Falcon_(1_-_perched_and_called)_(32008126958).jpg) |
 | Daad · Frog | LiquidGhoul | Public domain | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Australia_green_tree_frog_(Litoria_caerulea)_crop.jpg) |
 | Taa · Airplane | NASA | Public domain | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Convair_990_in_flight_EC89-0042-11.jpg) |
 | Thaa · Gazelle | מינוזיג - MinoZig | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gazella_dorcas,_Israel.jpg) |
 | Ayn · Sparrow | Diliff | CC BY-SA 3.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:House_Sparrow,_England_-_May_09.jpg) |
 | Ghayn · Cloud | W.carter | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Altocumulus_and_cumulus_over_G%C3%A5seberg.jpg) |
 | Qaaf · Cat | Terragio67 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Calico_cat,_-_Assisi,_Italy.jpg) |
-| Miim · Banana | Wilfredor | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Ancient_banana_vendor.jpg) |
+| Miim · Banana | NW Indian Language Institute ( NW Indian Language Institute  (  talk  )) | CC BY 3.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Banana_bunch.jpeg) |
 | Nuun · Bee | Bernard Ladenthin | CC BY 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:20200601_135745_Flowers_and_Bees.jpg) |
 | Haa · Hoopoe | Giles Laurent | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:008_Eurasian_hoopoe_eating_in_Keoladeo_National_Park_Photo_by_Giles_Laurent.jpg) |
 | Waaw · Rose | Acabashi | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A_red_rose_in_Great_Waltham,_Essex,_England_01.JPG) |
@@ -166,6 +166,26 @@ publishing.
 | Couscous | Animal Book AR, built in code by `tool/make_shapes.py` | same as the app | |
 | Mint tea | Animal Book AR, built in code by `tool/make_shapes.py` | same as the app | |
 | Darbuka | Animal Book AR, built in code by `tool/make_shapes.py` | same as the app | |
+| Circle | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| Square | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| Triangle | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| Rectangle | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| Oval | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| Star | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| Heart | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| Diamond | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| Pentagon | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| Hexagon | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| 1 · One | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| 2 · Two | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| 3 · Three | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| 4 · Four | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| 5 · Five | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| 6 · Six | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| 7 · Seven | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| 8 · Eight | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| 9 · Nine | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
+| 10 · Ten | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
 
 The horse, flamingo, parrot and stork from the three.js examples have no licence of their own. Fine for a
 prototype, but **replace them before publishing** (Quaternius has CC0 horses and birds).

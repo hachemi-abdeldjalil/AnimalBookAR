@@ -187,6 +187,8 @@ class _MemoryGameState extends State<MemoryGame> {
                         'letters' => Icons.abc_rounded,
                         'colors' => Icons.palette_rounded,
                         'heritage' => Icons.mosque_rounded,
+                        'shapes' => Icons.category_rounded,
+                        'numbers' => Icons.pin_rounded,
                         _ => Icons.pets_rounded,
                       },
                       color: Colors.white,

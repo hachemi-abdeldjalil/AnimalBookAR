@@ -222,6 +222,20 @@ pages, put photos of its pages in `book/pages/<id>.png` and run only
 `compile_targets.py`. Pages with lots of detail track best; plain or repetitive
 pages track badly.
 
+## Shapes and Numbers, habitats and categories
+
+- **Shapes** (10) and **Numbers** (1–10) are made like the letter books:
+  `tool/make_learning_books.py` writes their items, `tool/make_shapes.py`
+  builds the 3D shapes and the digits with stars to count, `make_pages.py`
+  prints them (a seeded pattern on each page keeps similar pages apart for the
+  camera: test with `node tool/test_learning_ar.mjs`).
+- **Colours**: each page is three balls, the light, normal and dark shade
+  (level 2 asks for a shade); Mix colours is the book's first game.
+- **Animals** carry `habitat`, `group` (farm / pet / wild) and `diet`: the zoo
+  map draws each animal's row in its habitat, the animal card shows the three,
+  and "Sort the animals" asks where each lives or what it eats.
+- In level 1 the AR page hides the body parts (`?parts=0`): they come with level 2.
+
 ## Map stickers, app icon and printable books
 
 ```bash

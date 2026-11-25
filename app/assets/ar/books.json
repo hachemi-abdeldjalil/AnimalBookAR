@@ -13,7 +13,8 @@
   "thumbsDir": "assets/thumbs",
   "games": [
    "memory",
-   "sound"
+   "sound",
+   "sort"
   ],
   "levels": 3
  },
@@ -67,9 +68,9 @@
   "pagesDir": "assets/ar/books/colors/pages",
   "thumbsDir": "assets/ar/books/colors/thumbs",
   "games": [
-   "memory",
+   "mix",
    "find",
-   "mix"
+   "memory"
   ],
   "levels": 3
  },
@@ -90,5 +91,41 @@
    "find"
   ],
   "levels": 3
+ },
+ {
+  "id": "shapes",
+  "en": "Shapes",
+  "fr": "Les formes",
+  "ar": "الأشكال",
+  "kind": "shapes",
+  "map": "playroom",
+  "color": "#7E57C2",
+  "data": "books/shapes/items.json",
+  "targets": "books/shapes/targets.mind",
+  "pagesDir": "assets/ar/books/shapes/pages",
+  "thumbsDir": "assets/ar/books/shapes/thumbs",
+  "games": [
+   "find",
+   "memory"
+  ],
+  "levels": 1
+ },
+ {
+  "id": "numbers",
+  "en": "Numbers",
+  "fr": "Les nombres",
+  "ar": "الأعداد",
+  "kind": "numbers",
+  "map": "school",
+  "color": "#1E88E5",
+  "data": "books/numbers/items.json",
+  "targets": "books/numbers/targets.mind",
+  "pagesDir": "assets/ar/books/numbers/pages",
+  "thumbsDir": "assets/ar/books/numbers/thumbs",
+  "games": [
+   "find",
+   "memory"
+  ],
+  "levels": 1
  }
 ]

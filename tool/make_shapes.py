@@ -3,7 +3,7 @@
 
     python3 tool/make_shapes.py
 
-Run after tool/make_learning_books.py (--only=letters|colors|algeria builds one book). It opens tool/make_shapes.html in
+Run after tool/make_learning_books.py (--only=letters|colors|algeria|shapes|numbers builds one book). It opens tool/make_shapes.html in
 headless Chrome (three.js builds the shapes there) and writes:
   app/assets/ar/books/letters_ar/models/*.glb  one extruded letter per page
   app/assets/ar/books/colors/models/*.glb      four objects in each colour
@@ -33,40 +33,67 @@ CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 ADDONS = ["loaders/TTFLoader.js", "loaders/FontLoader.js", "geometries/TextGeometry.js", "libs/opentype.module.js",
           "exporters/GLTFExporter.js", "utils/TextureUtils.js"]
 
-# The objects in each colour scene, and their names.
-OBJECTS = {
-    "ball": ("Ball", "Balle", "كرة", "la balle", "الكرة"),
-    "star": ("Star", "Étoile", "نجمة", "l'étoile", "النجمة"),
-    "heart": ("Heart", "Cœur", "قلب", "le cœur", "القلب"),
-    "balloon": ("Balloon", "Ballon", "بالون", "le ballon", "البالون"),
-    "cube": ("Block", "Cube", "مكعب", "le cube", "المكعب"),
-    "flower": ("Flower", "Fleur", "زهرة", "la fleur", "الزهرة"),
-    "cup": ("Cup", "Tasse", "كوب", "la tasse", "الكوب"),
-    "hat": ("Party hat", "Chapeau", "قبعة", "le chapeau", "القبعة"),
-    "fish": ("Fish", "Poisson", "سمكة", "le poisson", "السمكة"),
+# Colour pages: three balls, the light, normal and dark shade of the colour
+# (one shape, so the page is about the colour). Light = mixed with white,
+# dark = mixed with black; white and black get their own neighbours.
+SHADE_LIGHT, SHADE_DARK = 0.45, 0.35
+SPECIAL_SHADES = {
+    "white": {"light": ("#FFF1D0", "Cream", "Crème", "كريمي", "la crème", "الكريمي"),
+              "dark": ("#C8C8C8", "Light grey", "Gris clair", "رمادي فاتح", "le gris clair", "الرمادي الفاتح")},
+    "black": {"light": ("#8A8A8A", "Grey", "Gris", "رمادي", "le gris", "الرمادي"),
+              "dark": ("#050505", "Jet black", "Noir de jais", "أسود فاحم", "le noir de jais", "الأسود الفاحم")},
 }
-SETS = [["ball", "star", "balloon", "cup"], ["heart", "fish", "hat", "cube"], ["flower", "ball", "star", "hat"],
-        ["balloon", "cube", "fish", "heart"], ["cup", "flower", "heart", "ball"]]
-# Four spots per scene: x, z, scale (different on each page, so each page looks different to the tracker).
+# Where the three balls stand (x, z, scale): a different layout on each page,
+# so the pages also look different to the tracker, not only in colour.
 LAYOUTS = [
-    [[-0.85, 0.25, 1.0], [0.05, -0.35, 1.1], [0.85, 0.2, 1.0], [0.1, 0.55, 0.85]],
-    [[-0.8, -0.3, 1.1], [0.6, -0.35, 1.0], [-0.2, 0.5, 0.9], [0.9, 0.45, 0.85]],
-    [[-0.9, 0.4, 0.9], [-0.25, -0.4, 1.05], [0.55, 0.15, 1.1], [1.05, -0.45, 0.85]],
+    [[-1.0, 0.0, 0.9], [0.0, 0.0, 1.1], [1.0, 0.0, 0.9]],
+    [[-0.8, 0.4, 1.0], [0.0, -0.5, 1.1], [0.8, 0.4, 1.0]],
+    [[-1.0, 0.6, 0.85], [0.0, 0.0, 1.0], [1.0, -0.6, 1.15]],
+    [[-0.9, -0.4, 0.9], [0.0, 0.6, 1.1], [0.9, -0.4, 0.9]],
+    [[-1.0, 0.0, 0.75], [0.0, 0.0, 1.0], [1.05, 0.0, 1.25]],
 ]
-ONLY = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--only=")), "")  # letters | colors | algeria
+
+
+def mix(hex_color, k):
+    """k > 0: towards white, k < 0: towards black."""
+    r, g, b = (int(hex_color[i:i + 2], 16) for i in (1, 3, 5))
+    t = 255 if k > 0 else 0
+    return "#%02X%02X%02X" % tuple(int(c + (t - c) * abs(k)) for c in (r, g, b))
+
+
+def shades(it):
+    """The three shades of a colour item: id, hex, names (en, fr, ar, fr_def, ar_def)."""
+    cid = it["id"].removeprefix("color_")
+    en, fr, ar = it["en"], it["fr"], it["ar"]
+    base_def = it["ar_def"].removeprefix("اللون ")
+    fr_base = it["fr_of"].replace("du ", "le ", 1).replace("de l'", "l'", 1)
+    out = [
+        ("light", mix(it["color"], SHADE_LIGHT), f"Light {en.lower()}", f"{fr} clair", f"{ar} فاتح",
+         f"{fr_base} clair", f"{base_def} الفاتح"),
+        ("normal", it["color"], en, fr, ar, fr_base, base_def),
+        ("dark", mix(it["color"], -SHADE_DARK), f"Dark {en.lower()}", f"{fr} foncé", f"{ar} داكن",
+         f"{fr_base} foncé", f"{base_def} الداكن"),
+    ]
+    for k, (hexc, e, f, a, fd, ad) in SPECIAL_SHADES.get(cid, {}).items():
+        out = [(k, hexc, e, f, a, fd, ad) if o[0] == k else o for o in out]
+    return out
+
+
+ONLY = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--only=")), "")  # letters|colors|algeria|shapes|numbers
 done = threading.Event()
 result = {}
 
 
 def config():
-    books = {b: json.loads((BOOKS / b / "items.json").read_text()) for b in ["letters_ar", "colors"]}
+    books = {b: json.loads((BOOKS / b / "items.json").read_text()) for b in ["letters_ar", "colors", "shapes", "numbers"]}
     colors = []
     for i, it in enumerate(books["colors"]):
-        colors.append({"id": it["id"], "cid": it["id"].removeprefix("color_"), "model": it["model"],
-                       "color": it["color"], "objects": SETS[i % len(SETS)]})
+        colors.append({"id": it["id"], "cid": it["id"].removeprefix("color_"), "model": it["model"], "color": it["color"],
+                       "shades": [{"id": sid, "hex": hexc} for sid, hexc, *_ in shades(it)]})
     dz = json.loads((BOOKS / "algeria" / "items.json").read_text())
     algeria = [{"id": it["id"], "key": it["id"].removeprefix("dz_"), "model": it["model"]} for it in dz]
-    return {"only": ONLY, "algeria": algeria, "letters_ar": books["letters_ar"], "colors": colors, "layouts": LAYOUTS}
+    return {"only": ONLY, "algeria": algeria, "letters_ar": books["letters_ar"], "shapes": books["shapes"],
+            "numbers": books["numbers"], "colors": colors, "layouts": LAYOUTS}
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
@@ -126,6 +153,8 @@ def fetch_addons():
 def finish():
     # thumbnails as JPEG (the app's thumbAsset), on their own background
     for png in BOOKS.glob("*/thumbs/*.png"):
+        if png.stem.endswith("_sticker"):  # the map stickers (make_stickers.py) stay transparent PNGs
+            continue
         with Image.open(png) as im:
             im.convert("RGB").save(png.with_suffix(".jpg"), quality=88)
         png.unlink()
@@ -143,11 +172,10 @@ def finish():
     # the measured parts of each colour scene
     f = BOOKS / "colors" / "items.json"
     items = json.loads(f.read_text())
-    parts = {c["id"]: c["parts"] for c in result["done"]["colors"]}
+    parts = {c["id"]: {p["id"]: p["at"] for p in c["parts"]} for c in result["done"]["colors"]}
     for it in items:
-        it["parts"] = [{"id": p["id"], "en": OBJECTS[p["id"]][0], "fr": OBJECTS[p["id"]][1], "ar": OBJECTS[p["id"]][2],
-                        "fr_def": OBJECTS[p["id"]][3], "ar_def": OBJECTS[p["id"]][4], "at": p["at"]}
-                       for p in parts[it["id"]]]
+        it["parts"] = [{"id": sid, "en": e, "fr": f, "ar": a, "fr_def": fd, "ar_def": ad, "hex": hexc,
+                        "at": parts[it["id"]][sid]} for sid, hexc, e, f, a, fd, ad in shades(it)]
     f.write_text(json.dumps(items, ensure_ascii=False, indent=1))
     print("parts written to", f.relative_to(ROOT))
 

@@ -98,6 +98,14 @@ flutter:
     - assets/ar/books/algeria/pages/
     - assets/ar/books/algeria/thumbs/
     - assets/ar/books/algeria/sounds/
+    - assets/ar/books/shapes/
+    - assets/ar/books/shapes/models/
+    - assets/ar/books/shapes/pages/
+    - assets/ar/books/shapes/thumbs/
+    - assets/ar/books/numbers/
+    - assets/ar/books/numbers/models/
+    - assets/ar/books/numbers/pages/
+    - assets/ar/books/numbers/thumbs/
 
   # Poppins (Latin) with Tajawal for Arabic; both SIL Open Font License (assets/fonts/OFL-*.txt)
   fonts:

@@ -34,6 +34,7 @@ class ZooPath extends StatelessWidget {
     'school': Color(0xFF2E5E4E),
     'studio': Color(0xFF6A4FB5),
     'desert': Color(0xFF006233),
+    'playroom': Color(0xFF7E57C2),
   };
   static const _step = 152.0; // between enclosures
 
@@ -65,6 +66,8 @@ class ZooPath extends StatelessWidget {
               ids: [for (final a in animals) a.id],
               colors: [for (final a in animals) a.color],
               labels: [for (final a in animals) a.letter ?? ''],
+              habitats: [for (final a in animals) a.habitat ?? ''],
+              habitatNames: [for (final a in animals) a.habitat == null ? '' : progress.s.habitatName(a.habitat!)],
             )),
           ),
           for (var i = 0; i < animals.length; i++)
@@ -278,13 +281,17 @@ class _ZooPainter extends CustomPainter {
     required this.ids,
     this.colors = const [],
     this.labels = const [],
+    this.habitats = const [],
+    this.habitatNames = const [],
   });
 
-  final String style; // zoo | town | school | studio | desert
+  final String style; // zoo | town | school | studio | desert | playroom
   final String gateText;
   final List<String> ids; // item ids in path order, for their scenes
   final List<Color> colors; // each item's colour (paint pots)
   final List<String> labels; // each item's letter (toy blocks)
+  final List<String> habitats; // the zoo: each animal's habitat, drawn as the ground of its row
+  final List<String> habitatNames; // its name, on a little sign
 
   bool get town => style == 'town';
 
@@ -320,6 +327,7 @@ class _ZooPainter extends CustomPainter {
     canvas.save();
     canvas.clipRRect(bg);
     _ground(canvas, w, h, rnd);
+    if (style == 'zoo') _habitats(canvas, w, h, spots);
 
     // ---- the path: gate -> each stop -> exit ----
     final path = Path()..moveTo(w / 2, 96);
@@ -356,7 +364,7 @@ class _ZooPainter extends CustomPainter {
       switch (style) {
         case 'town':
           _townBuilding(canvas, ids[i], o);
-        case 'school':
+        case 'school' || 'playroom':
           _block(canvas, o, labels.length > i && labels[i].isNotEmpty ? labels[i] : '?', color);
         case 'studio':
           _paintPot(canvas, o, color);
@@ -396,6 +404,7 @@ class _ZooPainter extends CustomPainter {
       if (!free(o, 4)) continue;
       _speck(canvas, o, i);
     }
+    if (style == 'zoo') _habitatSigns(canvas, w, h, spots);
     canvas.restore(); // clip
 
     _gate(canvas, const Offset(w / 2, 58));
@@ -449,6 +458,17 @@ class _ZooPainter extends CustomPainter {
           c.drawOval(Rect.fromCenter(center: Offset(x0 + 110, y + 8), width: 170, height: 34),
               Paint()..color = const Color(0x18FFFFFF));
         }
+      case 'playroom': // a wooden floor
+        c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = const Color(0xFFEBD2A6));
+        final plank = Paint()
+          ..color = const Color(0x33A0723A)
+          ..strokeWidth = 1.5;
+        for (var y = 0.0, row = 0; y < h; y += 30, row++) {
+          c.drawLine(Offset(0, y), Offset(w, y), plank);
+          for (var x = (row.isEven ? 40.0 : 110.0); x < w; x += 150) {
+            c.drawLine(Offset(x, y), Offset(x, y + 30), plank);
+          }
+        }
       case 'town':
         c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = const Color(0xFFD5E3C6));
         _patches(c, w, h, const Color(0xFFE3ECD6));
@@ -482,6 +502,10 @@ class _ZooPainter extends CustomPainter {
         c.drawPath(path, _stroke(const Color(0xFFF7C948), 34));
         c.drawPath(path, _stroke(const Color(0x66FFFFFF), 8));
         _alongPath(c, path, 22, (a, b) => c.drawLine(a, b, _stroke(const Color(0x88444444), 2.4)), dash: 9);
+      case 'playroom': // a soft blue rug with white stitches
+        c.drawPath(path, _stroke(const Color(0xFF3F6CC0), 46));
+        c.drawPath(path, _stroke(const Color(0xFF6C98E6), 38));
+        _alongPath(c, path, 16, (a, b) => c.drawLine(a, b, _stroke(const Color(0xCCFFFFFF), 2)), dash: 7);
       case 'studio': // a rainbow
         for (var i = 0; i < _rainbow.length; i++) {
           c.drawPath(path, _stroke(_rainbow[i], 46 - i * 7.0));
@@ -524,6 +548,12 @@ class _ZooPainter extends CustomPainter {
         } else {
           _pencil(c, o, i.isEven ? 0.4 : -0.3);
         }
+      case 'playroom':
+        if (i % 2 == 0) {
+          _toyBall(c, o, _rainbow[i % _rainbow.length]);
+        } else {
+          _block(c, o, '', _rainbow[(i + 2) % _rainbow.length]);
+        }
       case 'studio':
         if (i % 2 == 0) {
           _splat(c, o, _rainbow[i % _rainbow.length]);
@@ -539,6 +569,39 @@ class _ZooPainter extends CustomPainter {
           _dune(c, o);
         }
       default:
+        // in the zoo, each row's decorations come from its animal's habitat
+        final spots = ZooPath.spotsFor(ids.length);
+        var k = 0;
+        for (var j = 1; j < spots.length; j++) {
+          if ((spots[j].dy - o.dy).abs() < (spots[k].dy - o.dy).abs()) k = j;
+        }
+        switch (habitats.length > k ? habitats[k] : '') {
+          case 'forest':
+            _pine(c, o, 18 + (i % 4) * 2.0);
+            return;
+          case 'savannah':
+            if (i.isEven) {
+              _acacia(c, o + const Offset(0, -10));
+            } else {
+              _grassTuft(c, o, const Color(0xFFB8A04A));
+            }
+            return;
+          case 'desert':
+            if (i.isEven) {
+              _palm(c, o + const Offset(0, -16));
+            } else {
+              _rocks(c, o);
+            }
+            return;
+          case 'wetland':
+            _reeds(c, o);
+            return;
+          case 'farm':
+            if (i % 3 == 0) {
+              _hay(c, o);
+              return;
+            }
+        }
         if (i % 3 == 1) {
           _pine(c, o, 18 + (i % 4) * 2.0);
         } else {
@@ -585,6 +648,171 @@ class _ZooPainter extends CustomPainter {
       default:
         _roundTree(canvas, o, 24);
     }
+  }
+
+  // ---- zoo habitats ----
+  static const _habitatColors = {
+    'farm': Color(0xFFE9DCA8),
+    'home': Color(0xFFD8EFC2),
+    'forest': Color(0xFFA9CF8C),
+    'savannah': Color(0xFFEBD48A),
+    'desert': Color(0xFFF2DBAA),
+    'wetland': Color(0xFFB7E0D3),
+  };
+
+  /// Each animal's row takes the colour of its habitat (rows of the same
+  /// habitat merge), with a little texture and a sign naming it.
+  void _habitats(Canvas c, double w, double h, List<Offset> spots) {
+    for (var i = 0; i < spots.length && i < habitats.length; i++) {
+      final color = _habitatColors[habitats[i]];
+      if (color == null) continue;
+      final top = i == 0 ? 120.0 : (spots[i - 1].dy + spots[i].dy) / 2;
+      final bottom = i == spots.length - 1 ? h : (spots[i].dy + spots[i + 1].dy) / 2;
+      final band = Rect.fromLTRB(0, top, w, bottom);
+      c.drawRect(band, Paint()..color = color);
+      final rnd = math.Random(i * 31 + 3);
+      switch (habitats[i]) {
+        case 'farm': // furrows of a field
+          final line = Paint()
+            ..color = const Color(0x22A07A3A)
+            ..strokeWidth = 3;
+          for (var y = top + 12; y < bottom; y += 16) {
+            c.drawLine(Offset(0, y), Offset(w, y + 6), line);
+          }
+        case 'wetland': // water
+          c.drawOval(
+              Rect.fromCenter(center: Offset(spots[i].dx < w / 2 ? w - 70 : 70, bottom - 34), width: 120, height: 36),
+              Paint()..color = const Color(0x667CC4E4));
+        case 'desert' || 'savannah': // ripples in the sand / dry grass
+          final ripple = Paint()
+            ..color = const Color(0x22B5762E)
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2;
+          for (var k = 0; k < 4; k++) {
+            final x = rnd.nextDouble() * w, y = top + 20 + rnd.nextDouble() * (bottom - top - 40);
+            c.drawArc(Rect.fromCenter(center: Offset(x, y), width: 70, height: 22), math.pi * 1.1, math.pi * 0.8, false,
+                ripple);
+          }
+        default:
+          break;
+      }
+    }
+  }
+
+  /// The habitat signs, drawn after the trees so nothing covers them.
+  void _habitatSigns(Canvas c, double w, double h, List<Offset> spots) {
+    for (var i = 0; i < spots.length && i < habitats.length; i++) {
+      final color = _habitatColors[habitats[i]];
+      if (color == null) continue;
+      final top = i == 0 ? 120.0 : (spots[i - 1].dy + spots[i].dy) / 2;
+      // the sign, on the stop's side, near the top of the row
+      if (i < habitatNames.length && habitatNames[i].isNotEmpty && (i == 0 || habitats[i] != habitats[i - 1])) {
+        final tp = TextPainter(
+          text: TextSpan(
+              text: habitatNames[i].toUpperCase(),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 10.5,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 0.8,
+                  fontFamilyFallback: ['Tajawal', 'Poppins'])),
+          textDirection: TextDirection.ltr,
+        )..layout();
+        final left = spots[i].dx < w / 2;
+        final r = Rect.fromLTWH(left ? 12 : w - 12 - tp.width - 16, top + 10, tp.width + 16, tp.height + 8);
+        c.drawRRect(RRect.fromRectAndRadius(r.shift(const Offset(0, 2)), const Radius.circular(8)),
+            Paint()..color = const Color(0x33000000));
+        c.drawRRect(RRect.fromRectAndRadius(r, const Radius.circular(8)),
+            Paint()..color = Color.lerp(color, Colors.black, 0.45)!);
+        tp.paint(c, r.topLeft + const Offset(8, 4));
+      }
+    }
+  }
+
+  void _grassTuft(Canvas c, Offset o, Color color) {
+    final p = Paint()
+      ..color = color
+      ..strokeWidth = 2.2
+      ..strokeCap = StrokeCap.round;
+    for (var k = -3; k <= 3; k++) {
+      c.drawLine(o + const Offset(0, 8), o + Offset(k * 3.5, -8 - (3 - k.abs()) * 3.0), p);
+    }
+  }
+
+  void _reeds(Canvas c, Offset o) {
+    final stem = Paint()
+      ..color = const Color(0xFF5E8C3A)
+      ..strokeWidth = 2.2
+      ..strokeCap = StrokeCap.round;
+    for (var k = -2; k <= 2; k++) {
+      final top = o + Offset(k * 6.0, -22 + k.abs() * 4.0);
+      c.drawLine(o + Offset(k * 3.0, 10), top, stem);
+      c.drawOval(Rect.fromCenter(center: top + const Offset(0, 4), width: 5, height: 11),
+          Paint()..color = const Color(0xFF7A4E27));
+    }
+  }
+
+  /// A small flat shape (circle, square, triangle...) of radius about [r].
+  void _shapeIcon(Canvas c, Offset o, String id, double r, Paint paint) {
+    Path poly(int n, double rot) {
+      final p = Path();
+      for (var i = 0; i < n; i++) {
+        final a = rot + i * 2 * math.pi / n;
+        final pt = o + Offset(math.cos(a), math.sin(a)) * r;
+        i == 0 ? p.moveTo(pt.dx, pt.dy) : p.lineTo(pt.dx, pt.dy);
+      }
+      return p..close();
+    }
+
+    switch (id) {
+      case 'circle':
+        c.drawCircle(o, r, paint);
+      case 'square':
+        c.drawRect(Rect.fromCenter(center: o, width: r * 1.7, height: r * 1.7), paint);
+      case 'rectangle':
+        c.drawRect(Rect.fromCenter(center: o, width: r * 2.1, height: r * 1.2), paint);
+      case 'oval':
+        c.drawOval(Rect.fromCenter(center: o, width: r * 2.1, height: r * 1.3), paint);
+      case 'triangle':
+        c.drawPath(poly(3, -math.pi / 2), paint);
+      case 'diamond':
+        c.drawPath(
+            Path()
+              ..moveTo(o.dx, o.dy - r)
+              ..lineTo(o.dx + r * 0.7, o.dy)
+              ..lineTo(o.dx, o.dy + r)
+              ..lineTo(o.dx - r * 0.7, o.dy)
+              ..close(),
+            paint);
+      case 'pentagon':
+        c.drawPath(poly(5, -math.pi / 2), paint);
+      case 'hexagon':
+        c.drawPath(poly(6, 0), paint);
+      case 'star':
+        final p = Path();
+        for (var i = 0; i < 10; i++) {
+          final rr = i.isEven ? r : r * 0.45, a = -math.pi / 2 + i * math.pi / 5;
+          final pt = o + Offset(math.cos(a), math.sin(a)) * rr;
+          i == 0 ? p.moveTo(pt.dx, pt.dy) : p.lineTo(pt.dx, pt.dy);
+        }
+        c.drawPath(p..close(), paint);
+      case 'heart':
+        c.drawPath(
+            Path()
+              ..moveTo(o.dx, o.dy + r)
+              ..cubicTo(o.dx - r * 1.4, o.dy, o.dx - r * 0.8, o.dy - r * 1.2, o.dx, o.dy - r * 0.4)
+              ..cubicTo(o.dx + r * 0.8, o.dy - r * 1.2, o.dx + r * 1.4, o.dy, o.dx, o.dy + r)
+              ..close(),
+            paint);
+    }
+  }
+
+  void _toyBall(Canvas c, Offset o, Color color) {
+    _shadow(c, o + const Offset(0, 14), 14, 4);
+    c.drawCircle(o, 13, Paint()..color = color);
+    c.drawArc(Rect.fromCircle(center: o, radius: 13), -0.4, math.pi * 0.8, false,
+        _stroke(Colors.white.withOpacity(0.85), 4)..strokeCap = StrokeCap.butt);
+    c.drawCircle(o + const Offset(-4, -5), 3, Paint()..color = Colors.white.withOpacity(0.6));
   }
 
   // ---- school, studio and desert pieces ----
@@ -859,6 +1087,13 @@ class _ZooPainter extends CustomPainter {
           const Color(0xFFB07A44),
           Colors.white
         ),
+      'playroom' => (
+          const Color(0xFFE53935),
+          const Color(0xFFB71C1C),
+          const Color(0xFF7E57C2),
+          const Color(0xFFFDD835),
+          Colors.white
+        ),
       'studio' => (
           const Color(0xFFEDE3D5),
           const Color(0xFFD9CBB8),
@@ -892,7 +1127,7 @@ class _ZooPainter extends CustomPainter {
           _palm(c, side + const Offset(0, -18));
         case 'studio':
           _paintPot(c, side + const Offset(0, 10), dx > 0 ? const Color(0xFF1E88E5) : const Color(0xFFE53935));
-        case 'school':
+        case 'school' || 'playroom':
           _block(c, side + const Offset(0, 10), labels.length > 1 ? labels[dx > 0 ? 1 : 0] : (dx > 0 ? 'B' : 'A'),
               dx > 0 ? const Color(0xFF1E88E5) : const Color(0xFFE53935));
         default:
@@ -963,6 +1198,11 @@ class _ZooPainter extends CustomPainter {
     c.drawPath(top, Paint()..color = Color.lerp(color, Colors.white, 0.35)!);
     c.drawRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: o, width: 40, height: 40), const Radius.circular(4)),
         Paint()..color = color);
+    if (letter.isEmpty) return;
+    if (letter.startsWith('shape:')) {
+      _shapeIcon(c, o, letter.substring(6), 13, Paint()..color = Colors.white);
+      return;
+    }
     final latin = RegExp(r'^[\x00-\x7F]*$').hasMatch(letter);
     final tp = TextPainter(
       text: TextSpan(
@@ -1160,7 +1400,10 @@ class _ZooPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _ZooPainter old) =>
-      old.gateText != gateText || old.style != style || old.ids.join() != ids.join();
+      old.gateText != gateText ||
+      old.style != style ||
+      old.ids.join() != ids.join() ||
+      old.habitatNames.join() != habitatNames.join();
 }
 
 /// Keeps 40% of the colour (the rest goes grey), for items not met yet.

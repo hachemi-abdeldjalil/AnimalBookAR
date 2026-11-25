@@ -30,6 +30,8 @@ THEME = {
     "vehicles": ("Drive 9 vehicles in 3D!", "Conduis 9 véhicules en 3D !", "قُد 9 مركبات بالأبعاد الثلاثة!", "🚗"),
     "letters": ("The 28 Arabic letters come alive!", "Les 28 lettres arabes prennent vie !", "الحروف العربية الـ28 تنبض بالحياة!", "✏️"),
     "colors": ("Ten colours to find and mix!", "Dix couleurs à trouver et mélanger !", "عشرة ألوان لتكتشفها وتمزجها!", "🎨"),
+    "shapes": ("Ten shapes to name and count!", "Dix formes à nommer et compter !", "عشرة أشكال لتسميها وتعدّ أضلاعها!", "🔷"),
+    "numbers": ("Count from 1 to 10 in 3D!", "Compte de 1 à 10 en 3D !", "عُدّ من 1 إلى 10 بالأبعاد الثلاثة!", "🔢"),
     "heritage": ("12 treasures of Algeria in 3D!", "12 trésors de l'Algérie en 3D !", "12 كنزًا من الجزائر بالأبعاد الثلاثة!", "🌴"),
 }
 PAGES = {"animals": ROOT / "book" / "pages"}  # the first book keeps its old folder

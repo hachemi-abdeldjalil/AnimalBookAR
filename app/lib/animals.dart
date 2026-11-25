@@ -56,6 +56,9 @@ class Animal {
     this.thumbsDir = 'assets/thumbs',
     this.helps,
     this.letter,
+    this.habitat,
+    this.group,
+    this.diet,
   });
 
   final String id;
@@ -80,6 +83,13 @@ class Animal {
 
   /// The letter books: the letter shown on the map ("ب", "Aa").
   final String? letter;
+
+  /// Animals only: where it lives (farm, home, forest, savannah, desert,
+  /// wetland), who it lives with (farm, pet, wild) and what it eats
+  /// (herbivore, carnivore, omnivore). For the habitat map and the sorting game.
+  final String? habitat;
+  final String? group;
+  final String? diet;
 
   String get pageAsset => '$pagesDir/$id.jpg';
   String get thumbAsset => '$thumbsDir/$id.jpg';
@@ -112,6 +122,9 @@ class Animal {
         thumbsDir: thumbsDir,
         helps: (j['helps'] as Map?)?.map((k, v) => MapEntry(k as String, v as String)),
         letter: j['letter'] as String?,
+        habitat: j['habitat'] as String?,
+        group: j['group'] as String?,
+        diet: j['diet'] as String?,
       );
 
   static Future<List<Animal>> load([AssetBundle? bundle]) async {
