@@ -276,7 +276,7 @@ class _AccountCard extends StatelessWidget {
     if (user != null) {
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          const Icon(Icons.verified_user_rounded, color: Color(0xFF2E9E6A)),
+          const Icon(Icons.verified_user_rounded, color: Color(0xFF22B07D)),
           const SizedBox(width: 8),
           Expanded(
               child: Text(s.signedInAs(user.email ?? user.displayName ?? ''),
@@ -285,9 +285,9 @@ class _AccountCard extends StatelessWidget {
         const SizedBox(height: 6),
         Row(children: [
           if (c.syncing) const SizedBox(width: 14, height: 14, child: CircularProgressIndicator(strokeWidth: 2)),
-          if (!c.syncing) const Icon(Icons.cloud_done_rounded, size: 18, color: Color(0xFF2E9E6A)),
+          if (!c.syncing) const Icon(Icons.cloud_done_rounded, size: 18, color: Color(0xFF22B07D)),
           const SizedBox(width: 6),
-          Text(c.syncing ? s.syncingNow : s.synced, style: const TextStyle(color: Color(0xFF7A6A5C))),
+          Text(c.syncing ? s.syncingNow : s.synced, style: const TextStyle(color: Color(0xFF666C8F))),
         ]),
         if (error != null)
           Padding(
@@ -452,7 +452,7 @@ class _ChildrenCard extends StatelessWidget {
           leading: Avatar(name: c.name, size: 40, selected: c.id == p.child.id && p.children.length > 1),
           title: Text(c.name, style: TextStyle(fontWeight: c.id == p.child.id ? FontWeight.w800 : FontWeight.w600)),
           subtitle: Row(children: [
-            const Icon(Icons.star_rounded, size: 16, color: Color(0xFFF2A60C)),
+            const Icon(Icons.star_rounded, size: 16, color: Color(0xFFFFB81C)),
             Text(' ${p.starsOf(c)}'),
           ]),
           trailing: PopupMenuButton<String>(

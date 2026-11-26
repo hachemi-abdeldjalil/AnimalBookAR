@@ -12,9 +12,10 @@ import 'memory_game.dart';
 import 'mix_game.dart';
 import 'sort_game.dart';
 import 'parents_screen.dart';
+import 'profile_screen.dart';
 
-const brand = Color(0xFFE8702A);
-const ink = Color(0xFF2B2118);
+const brand = AppColors.brand;
+const ink = AppColors.ink;
 
 /// Home: greeting and stars, the next mission, the three levels, and the zoo
 /// path with one stop per animal. The round button opens the AR camera.
@@ -30,11 +31,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int? _shownLevel; // null = follow the current level
 
+  /// The level shown on the home screen: what the camera does follows it.
+  int get _level {
+    final current = p.currentLevel.clamp(1, p.book.levels);
+    return (_shownLevel != null && p.unlocked(_shownLevel!)) ? _shownLevel! : current;
+  }
+
   Progress get p => widget.progress;
 
-  void _openAr({bool quiz = false, bool soundQuiz = false, bool helps = false}) {
+  void _openAr({bool quiz = false, bool soundQuiz = false, bool helps = false, int? level}) {
     final mode = helps ? ArMode.helps : (soundQuiz ? ArMode.sound : (quiz ? ArMode.quiz : ArMode.explore));
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => ArScreen(progress: p, mode: mode)));
+    final l = level ?? (quiz ? 3 : _level);
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => ArScreen(progress: p, mode: mode, level: l)));
   }
 
   void _openAnimal(Animal a) {
@@ -42,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       isScrollControlled: true,
       showDragHandle: true,
-      backgroundColor: const Color(0xFFFFFAF0),
+      backgroundColor: const Color(0xFFFFF8EF),
       builder: (_) => AnimalSheet(
         animal: a,
         progress: p,
@@ -78,7 +86,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 18),
                     child: FadeSlideIn(
                       delay: const Duration(milliseconds: 100),
-                      child: _MissionCard(mission: mission, progress: p, onGo: () => _openAr(quiz: mission.quiz)),
+                      child: _MissionCard(
+                          mission: mission,
+                          progress: p,
+                          onGo: () => _openAr(quiz: mission.quiz, level: mission.level.clamp(1, 3))),
                     ),
                   ),
                 ),
@@ -103,6 +114,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 if (p.book.levels > 1) const SizedBox(height: 10),
                 _LevelBar(progress: p, level: level),
+                const SizedBox(height: 8),
+                _LevelGoal(progress: p, level: level),
                 const SizedBox(height: 14),
                 FadeSlideIn(
                   delay: const Duration(milliseconds: 220),
@@ -173,10 +186,23 @@ class _BookHeader extends StatelessWidget {
               icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
             ),
           Expanded(
-            child: Text(s.hello(progress.name.isEmpty ? s.explorer : progress.name),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 13.5)),
+            child: GestureDetector(
+              key: const Key('open-profile'),
+              behavior: HitTestBehavior.opaque,
+              onTap: () =>
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => ProfileScreen(progress: progress))),
+              child: Row(children: [
+                Avatar(name: progress.name, size: 30, picture: progress.avatarOf(progress.child.id)),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(s.hello(progress.name.isEmpty ? s.explorer : progress.name),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: Colors.white.withOpacity(0.95), fontSize: 13.5, fontWeight: FontWeight.w700)),
+                ),
+              ]),
+            ),
           ),
           StarsChip(progress.stars),
           const SizedBox(width: 6),
@@ -306,8 +332,8 @@ class _MissionCard extends StatelessWidget {
               child: a == null
                   ? const CircleAvatar(
                       radius: 38,
-                      backgroundColor: Color(0xFFFFF0C2),
-                      child: Icon(Icons.emoji_events_rounded, size: 40, color: Color(0xFFF2A60C)))
+                      backgroundColor: Color(0xFFFFF1C7),
+                      child: Icon(Icons.emoji_events_rounded, size: 40, color: Color(0xFFFFB81C)))
                   : ClipOval(
                       child: Container(
                         width: 76,
@@ -341,7 +367,7 @@ class _LevelSwitcher extends StatelessWidget {
     final s = progress.s;
     return Container(
       padding: const EdgeInsets.all(4),
-      decoration: BoxDecoration(color: const Color(0xFFF1E9DD), borderRadius: BorderRadius.circular(18)),
+      decoration: BoxDecoration(color: const Color(0xFFF3EEE7), borderRadius: BorderRadius.circular(18)),
       child: Row(children: [
         for (final l in [1, 2, 3])
           Expanded(
@@ -361,14 +387,14 @@ class _LevelSwitcher extends StatelessWidget {
                 child: Column(children: [
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     if (progress.levelDone(l))
-                      const Icon(Icons.check_circle_rounded, size: 15, color: Color(0xFF2E9E6A))
+                      const Icon(Icons.check_circle_rounded, size: 15, color: Color(0xFF22B07D))
                     else if (!progress.unlocked(l))
-                      const Icon(Icons.lock_rounded, size: 14, color: Color(0xFFA89A8C))
+                      const Icon(Icons.lock_rounded, size: 14, color: Color(0xFFA3A8C3))
                     else
                       const Icon(Icons.play_circle_fill_rounded, size: 15, color: brand),
                     const SizedBox(width: 3),
                     Text('$l',
-                        style: const TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF7A6A5C), fontSize: 12)),
+                        style: const TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF666C8F), fontSize: 12)),
                   ]),
                   Text(s.levelName(l, kind: progress.book.kind),
                       maxLines: 1,
@@ -376,12 +402,61 @@ class _LevelSwitcher extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 12.5,
                         fontWeight: l == selected ? FontWeight.w800 : FontWeight.w600,
-                        color: progress.unlocked(l) ? ink : const Color(0xFFA89A8C),
+                        color: progress.unlocked(l) ? ink : const Color(0xFFA3A8C3),
                       )),
                 ]),
               ),
             ),
           ),
+      ]),
+    );
+  }
+}
+
+/// What the shown level asks, and what comes next (and when it opens).
+class _LevelGoal extends StatelessWidget {
+  const _LevelGoal({required this.progress, required this.level});
+  final Progress progress;
+  final int level;
+
+  @override
+  Widget build(BuildContext context) {
+    final s = progress.s;
+    final b = progress.book;
+    final next = level + 1;
+    final icon = switch (level) {
+      1 => Icons.photo_camera_rounded,
+      2 => Icons.center_focus_strong_rounded,
+      _ => Icons.quiz_rounded
+    };
+    return Container(
+      key: const Key('level-goal'),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: b.color.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: b.color.withOpacity(0.25)),
+      ),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        CircleAvatar(radius: 16, backgroundColor: b.color, child: Icon(icon, size: 18, color: Colors.white)),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(s.levelGoal(level, b.kind, b.items.length),
+                style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13.5, color: ink, height: 1.3)),
+            if (next <= b.levels && !progress.unlocked(next)) ...[
+              const SizedBox(height: 4),
+              Row(children: [
+                const Icon(Icons.lock_rounded, size: 13, color: Color(0xFFA3A8C3)),
+                const SizedBox(width: 4),
+                Expanded(
+                  child: Text(s.nextLevel(next, s.levelName(next, kind: b.kind)),
+                      style: const TextStyle(fontSize: 12, color: Color(0xFF666C8F))),
+                ),
+              ]),
+            ],
+          ]),
+        ),
       ]),
     );
   }
@@ -405,14 +480,14 @@ class _LevelBar extends StatelessWidget {
           child: LinearProgressIndicator(
             value: total == 0 ? 0 : done / total,
             minHeight: 8,
-            backgroundColor: const Color(0xFFEDE3D5),
-            color: progress.levelDone(level) ? const Color(0xFF2E9E6A) : const Color(0xFFF2A60C),
+            backgroundColor: const Color(0xFFECE5DA),
+            color: progress.levelDone(level) ? const Color(0xFF22B07D) : const Color(0xFFFFB81C),
           ),
         ),
       ),
       const SizedBox(width: 10),
       Text(s.levelProgress(level, done, total, kind: progress.book.kind),
-          style: const TextStyle(fontSize: 12, color: Color(0xFF7A6A5C))),
+          style: const TextStyle(fontSize: 12, color: Color(0xFF666C8F))),
     ]);
   }
 }
@@ -507,17 +582,16 @@ class _Games extends StatelessWidget {
       for (final g in progress.book.games)
         switch (g) {
           'memory' => tile(const Key('game-memory'), Icons.grid_view_rounded, s.memoryGame, s.memoryHint(kind: kind),
-              const Color(0xFF7A6BB5), onMemory),
-          'sound' => tile(const Key('game-sound'), Icons.hearing_rounded, s.soundQuiz, s.soundQuizHint,
-              const Color(0xFF1F8A8A), onSoundQuiz),
+              AppColors.grape, onMemory),
+          'sound' => tile(const Key('game-sound'), Icons.hearing_rounded, s.soundQuiz, s.soundQuizHint, AppColors.mint,
+              onSoundQuiz),
           'helps' => tile(const Key('game-helps'), Icons.volunteer_activism_rounded, s.helpsGame, s.helpsHint,
-              const Color(0xFFD9483B), onHelps),
+              AppColors.berry, onHelps),
           'find' => tile(const Key('game-find'), kind == 'colors' ? Icons.colorize_rounded : Icons.spellcheck_rounded,
-              s.findGame(kind), s.findHint, const Color(0xFF1F8A8A), onHelps),
-          'sort' => tile(
-              const Key('game-sort'), Icons.category_rounded, s.sortGame, s.sortHint, const Color(0xFF6B8E23), onSort),
-          'mix' =>
-            tile(const Key('game-mix'), Icons.palette_rounded, s.mixGame, s.mixHint, const Color(0xFFD9483B), onMix),
+              s.findGame(kind), s.findHint, AppColors.sky, onHelps),
+          'sort' =>
+            tile(const Key('game-sort'), Icons.category_rounded, s.sortGame, s.sortHint, AppColors.green, onSort),
+          'mix' => tile(const Key('game-mix'), Icons.palette_rounded, s.mixGame, s.mixHint, AppColors.brand, onMix),
           _ => const SizedBox.shrink(),
         },
     ];

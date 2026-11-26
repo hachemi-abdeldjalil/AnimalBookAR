@@ -35,6 +35,7 @@ class ZooPath extends StatelessWidget {
     'studio': Color(0xFF6A4FB5),
     'desert': Color(0xFF006233),
     'playroom': Color(0xFF7E57C2),
+    'math': Color(0xFF1F5FA8),
   };
   static const _step = 152.0; // between enclosures
 
@@ -285,7 +286,7 @@ class _ZooPainter extends CustomPainter {
     this.habitatNames = const [],
   });
 
-  final String style; // zoo | town | school | studio | desert | playroom
+  final String style; // zoo | town | school | studio | desert | playroom | math
   final String gateText;
   final List<String> ids; // item ids in path order, for their scenes
   final List<Color> colors; // each item's colour (paint pots)
@@ -364,7 +365,7 @@ class _ZooPainter extends CustomPainter {
       switch (style) {
         case 'town':
           _townBuilding(canvas, ids[i], o);
-        case 'school' || 'playroom':
+        case 'school' || 'playroom' || 'math':
           _block(canvas, o, labels.length > i && labels[i].isNotEmpty ? labels[i] : '?', color);
         case 'studio':
           _paintPot(canvas, o, color);
@@ -414,8 +415,13 @@ class _ZooPainter extends CustomPainter {
   // ---- per theme ----
   void _ground(Canvas c, double w, double h, math.Random rnd) {
     switch (style) {
-      case 'school': // a page of a school notebook
+      case 'school': // a page of a school notebook, punched, with faint letters practised on it
         c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = const Color(0xFFFFFDF4));
+        for (var y = 140.0, k = 0; y < h - 30; y += 120, k++) {
+          final letter = labels.isEmpty ? 'A' : labels[k % labels.length];
+          if (letter.isEmpty || letter.startsWith('shape:')) continue;
+          _faintText(c, letter, Offset(k.isEven ? 48 : w - 74, y), const Color(0x1A1F2547), 48);
+        }
         final line = Paint()
           ..color = const Color(0x553F7FD0)
           ..strokeWidth = 1;
@@ -428,13 +434,62 @@ class _ZooPainter extends CustomPainter {
             Paint()
               ..color = const Color(0x88E04F3F)
               ..strokeWidth = 1.6);
-      case 'studio': // a white canvas with soft splashes of every colour
+      case 'math': // squared maths paper
+        c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = const Color(0xFFFBFDFF));
+        final fine = Paint()
+          ..color = const Color(0x332D9CDB)
+          ..strokeWidth = 0.8;
+        final bold = Paint()
+          ..color = const Color(0x552D9CDB)
+          ..strokeWidth = 1.4;
+        for (var x = 0.0, k = 0; x < w; x += 15, k++) {
+          c.drawLine(Offset(x, 0), Offset(x, h), k % 4 == 0 ? bold : fine);
+        }
+        for (var y = 0.0, k = 0; y < h; y += 15, k++) {
+          c.drawLine(Offset(0, y), Offset(w, y), k % 4 == 0 ? bold : fine);
+        }
+        // faint sums written in pencil
+        for (var y = 170.0, k = 0; y < h - 40; y += 230, k++) {
+          final a = 1 + k % 5, b = 2 + k % 4;
+          _faintText(c, '$a + $b = ${a + b}', Offset(k.isEven ? 26 : w - 110, y), const Color(0x552D4A6B), 17);
+        }
+      case 'studio': // a canvas with soft splashes of every colour, paint dripping from the top
         c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = const Color(0xFFFFFCF7));
+        final weave = Paint()
+          ..color = const Color(0x0F8A7A60)
+          ..strokeWidth = 1;
+        for (var x = 0.0; x < w; x += 6) {
+          c.drawLine(Offset(x, 0), Offset(x, h), weave);
+        }
+        for (var y = 0.0; y < h; y += 6) {
+          c.drawLine(Offset(0, y), Offset(w, y), weave);
+        }
+        for (var k = 0; k < 9; k++) {
+          final col = _rainbow[k % _rainbow.length].withOpacity(0.55);
+          final x = 12.0 + k * 42, len = 30.0 + (k * 37) % 70;
+          c.drawRRect(
+              RRect.fromRectAndRadius(Rect.fromLTWH(x, 0, 10, len), const Radius.circular(5)), Paint()..color = col);
+          c.drawCircle(Offset(x + 5, len), 7, Paint()..color = col);
+        }
         for (var y = 80.0, i = 0; y < h; y += 110, i++) {
           final col = (colors.isEmpty ? _rainbow : colors)[i % (colors.isEmpty ? _rainbow.length : colors.length)];
           c.drawOval(Rect.fromCenter(center: Offset(i.isEven ? 50 : 310, y), width: 170, height: 110),
               Paint()..color = col.withOpacity(0.12));
         }
+      default:
+        break;
+    }
+    // things that go on top of the ground
+    switch (style) {
+      case 'school':
+        for (var y = 60.0; y < h; y += 90) {
+          c.drawCircle(Offset(14, y), 6.5, Paint()..color = const Color(0xFFE8E2D4)); // punched holes
+          c.drawCircle(Offset(14, y), 6.5, _stroke(const Color(0x33000000), 1));
+        }
+      default:
+        break;
+    }
+    switch (style) {
       case 'desert': // the Sahara: warm sand and dunes
         c.drawRect(
             Rect.fromLTWH(0, 0, w, h),
@@ -472,7 +527,7 @@ class _ZooPainter extends CustomPainter {
       case 'town':
         c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = const Color(0xFFD5E3C6));
         _patches(c, w, h, const Color(0xFFE3ECD6));
-      default:
+      case 'zoo':
         c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = _grass);
         _patches(c, w, h, _grassLight);
     }
@@ -502,6 +557,17 @@ class _ZooPainter extends CustomPainter {
         c.drawPath(path, _stroke(const Color(0xFFF7C948), 34));
         c.drawPath(path, _stroke(const Color(0x66FFFFFF), 8));
         _alongPath(c, path, 22, (a, b) => c.drawLine(a, b, _stroke(const Color(0x88444444), 2.4)), dash: 9);
+      case 'math': // a wooden ruler with its marks
+        c.drawPath(path, _stroke(const Color(0xFFC98A3F), 40));
+        c.drawPath(path, _stroke(const Color(0xFFF2C46B), 34));
+        var tick = 0;
+        _alongPath(c, path, 9, (a, b) {
+          final d = b - a;
+          final n = Offset(-d.dy, d.dx) / (d.distance == 0 ? 1 : d.distance);
+          final len = tick % 5 == 0 ? 12.0 : 6.0;
+          c.drawLine(a + n * 16, a + n * (16 - len), _stroke(const Color(0xAA6B4A1E), 1.6));
+          tick++;
+        }, dash: 1);
       case 'playroom': // a soft blue rug with white stitches
         c.drawPath(path, _stroke(const Color(0xFF3F6CC0), 46));
         c.drawPath(path, _stroke(const Color(0xFF6C98E6), 38));
@@ -541,12 +607,23 @@ class _ZooPainter extends CustomPainter {
   void _decoration(Canvas c, Offset o, int i) {
     switch (style) {
       case 'school':
-        if (i % 3 == 0) {
+        if (i % 4 == 3) {
+          _eraser(c, o);
+        } else if (i % 3 == 0) {
           _crayon(c, o, _rainbow[i % _rainbow.length], i.isEven ? -0.6 : 0.5);
         } else if (i % 3 == 1) {
           _doodleStar(c, o, _rainbow[(i + 2) % _rainbow.length]);
         } else {
           _pencil(c, o, i.isEven ? 0.4 : -0.3);
+        }
+      case 'math':
+        switch (i % 3) {
+          case 0:
+            _abacus(c, o);
+          case 1:
+            _dice(c, o, 1 + i % 6);
+          default:
+            _faintText(c, const ['+', '−', '=', '×'][i % 4], o - const Offset(8, 14), const Color(0xAA2D9CDB), 30);
         }
       case 'playroom':
         if (i % 2 == 0) {
@@ -555,7 +632,11 @@ class _ZooPainter extends CustomPainter {
           _block(c, o, '', _rainbow[(i + 2) % _rainbow.length]);
         }
       case 'studio':
-        if (i % 2 == 0) {
+        if (i % 5 == 4) {
+          _colorWheel(c, o);
+        } else if (i % 5 == 2) {
+          _palette(c, o);
+        } else if (i % 2 == 0) {
           _splat(c, o, _rainbow[i % _rainbow.length]);
         } else {
           _brush(c, o, _rainbow[(i + 3) % _rainbow.length], i % 4 == 1 ? -0.7 : 0.6);
@@ -805,6 +886,92 @@ class _ZooPainter extends CustomPainter {
               ..close(),
             paint);
     }
+  }
+
+  void _faintText(Canvas c, String text, Offset at, Color color, double size) {
+    final latin = RegExp(r'^[\x00-\x7F−×]*$').hasMatch(text);
+    TextPainter(
+      text: TextSpan(
+          text: text,
+          style: TextStyle(
+              color: color,
+              fontSize: size,
+              fontWeight: FontWeight.w800,
+              fontFamily: latin ? 'Poppins' : 'Tajawal',
+              fontFamilyFallback: const ['Tajawal', 'Poppins'])),
+      textDirection: latin ? TextDirection.ltr : TextDirection.rtl,
+    )
+      ..layout()
+      ..paint(c, at);
+  }
+
+  void _abacus(Canvas c, Offset o) {
+    _shadow(c, o + const Offset(0, 22), 26, 5);
+    final frame = Paint()..color = const Color(0xFF9A6A3A);
+    c.drawRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: o, width: 52, height: 40), const Radius.circular(4)),
+        _stroke(const Color(0xFF9A6A3A), 4));
+    c.drawRect(Rect.fromCenter(center: o + const Offset(0, 22), width: 58, height: 5), frame);
+    for (var r = 0; r < 3; r++) {
+      final y = o.dy - 11 + r * 11.0;
+      c.drawLine(Offset(o.dx - 24, y), Offset(o.dx + 24, y), _stroke(const Color(0xFF6E4520), 1.4));
+      for (var k = 0; k < 4; k++) {
+        c.drawCircle(Offset(o.dx - 18 + k * 7.0 + (r == 1 ? 14 : 0), y), 3.6,
+            Paint()..color = _rainbow[(r * 2 + k) % _rainbow.length]);
+      }
+    }
+  }
+
+  void _dice(Canvas c, Offset o, int n) {
+    _shadow(c, o + const Offset(2, 14), 14, 4);
+    c.drawRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: o, width: 26, height: 26), const Radius.circular(6)),
+        Paint()..color = Colors.white);
+    c.drawRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: o, width: 26, height: 26), const Radius.circular(6)),
+        _stroke(const Color(0x332D4A6B), 1.2));
+    const spots = {
+      1: [Offset(0, 0)],
+      2: [Offset(-6, -6), Offset(6, 6)],
+      3: [Offset(-6, -6), Offset(0, 0), Offset(6, 6)],
+      4: [Offset(-6, -6), Offset(6, -6), Offset(-6, 6), Offset(6, 6)],
+      5: [Offset(-6, -6), Offset(6, -6), Offset(0, 0), Offset(-6, 6), Offset(6, 6)],
+      6: [Offset(-6, -7), Offset(6, -7), Offset(-6, 0), Offset(6, 0), Offset(-6, 7), Offset(6, 7)],
+    };
+    for (final d in spots[n]!) {
+      c.drawCircle(o + d, 2.4, Paint()..color = const Color(0xFF1F2547));
+    }
+  }
+
+  void _eraser(Canvas c, Offset o) {
+    _shadow(c, o + const Offset(2, 10), 18, 4);
+    c.save();
+    c.translate(o.dx, o.dy);
+    c.rotate(-0.3);
+    c.drawRRect(RRect.fromRectAndRadius(const Rect.fromLTWH(-18, -8, 22, 16), const Radius.circular(3)),
+        Paint()..color = const Color(0xFFF28DA6));
+    c.drawRRect(RRect.fromRectAndRadius(const Rect.fromLTWH(4, -8, 14, 16), const Radius.circular(3)),
+        Paint()..color = const Color(0xFF6C98E6));
+    c.restore();
+  }
+
+  void _palette(Canvas c, Offset o) {
+    _shadow(c, o + const Offset(2, 14), 22, 5);
+    final board = Path()
+      ..addOval(Rect.fromCenter(center: o, width: 52, height: 38))
+      ..addOval(Rect.fromCenter(center: o + const Offset(12, 8), width: 10, height: 9));
+    board.fillType = PathFillType.evenOdd;
+    c.drawPath(board, Paint()..color = const Color(0xFFE2B47A));
+    for (var k = 0; k < 5; k++) {
+      final a = -2.6 + k * 0.75;
+      c.drawCircle(o + Offset(math.cos(a) * 16, math.sin(a) * 11), 4.5, Paint()..color = _rainbow[k]);
+    }
+  }
+
+  void _colorWheel(Canvas c, Offset o) {
+    _shadow(c, o + const Offset(0, 18), 18, 4);
+    for (var k = 0; k < 6; k++) {
+      c.drawArc(Rect.fromCircle(center: o, radius: 16), -math.pi / 2 + k * math.pi / 3, math.pi / 3, true,
+          Paint()..color = _rainbow[k]);
+    }
+    c.drawCircle(o, 5, Paint()..color = Colors.white);
   }
 
   void _toyBall(Canvas c, Offset o, Color color) {
@@ -1087,6 +1254,7 @@ class _ZooPainter extends CustomPainter {
           const Color(0xFFB07A44),
           Colors.white
         ),
+      'math' => (const Color(0xFF8FB8DE), const Color(0xFF5A86B5), const Color(0xFF1F5FA8), Colors.white, Colors.white),
       'playroom' => (
           const Color(0xFFE53935),
           const Color(0xFFB71C1C),
@@ -1127,7 +1295,7 @@ class _ZooPainter extends CustomPainter {
           _palm(c, side + const Offset(0, -18));
         case 'studio':
           _paintPot(c, side + const Offset(0, 10), dx > 0 ? const Color(0xFF1E88E5) : const Color(0xFFE53935));
-        case 'school' || 'playroom':
+        case 'school' || 'playroom' || 'math':
           _block(c, side + const Offset(0, 10), labels.length > 1 ? labels[dx > 0 ? 1 : 0] : (dx > 0 ? 'B' : 'A'),
               dx > 0 ? const Color(0xFF1E88E5) : const Color(0xFFE53935));
         default:

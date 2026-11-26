@@ -82,19 +82,19 @@ class _MixGameState extends State<MixGame> {
           width: size,
           height: size,
           decoration: BoxDecoration(
-            color: c ?? const Color(0xFFF1E9DD),
+            color: c ?? const Color(0xFFF3EEE7),
             shape: BoxShape.circle,
-            border: Border.all(color: c == null ? const Color(0xFFE2D6C4) : const Color(0x33000000), width: 3),
+            border: Border.all(color: c == null ? const Color(0xFFECE5DA) : const Color(0x33000000), width: 3),
           ),
-          child: c == null ? const Icon(Icons.question_mark_rounded, color: Color(0xFFA89A8C)) : null,
+          child: c == null ? const Icon(Icons.question_mark_rounded, color: Color(0xFFA3A8C3)) : null,
         );
     return Scaffold(
-      appBar: AppBar(title: Text(s.mixGame), backgroundColor: const Color(0xFFFFFAF0)),
+      appBar: AppBar(title: Text(s.mixGame), backgroundColor: const Color(0xFFFFF8EF)),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(children: [
-            Text(s.mixPick, style: const TextStyle(fontSize: 18, color: Color(0xFF7A6A5C))),
+            Text(s.mixPick, style: const TextStyle(fontSize: 18, color: Color(0xFF666C8F))),
             const SizedBox(height: 30),
             FittedBox(
               fit: BoxFit.scaleDown,
@@ -145,7 +145,7 @@ class _MixGameState extends State<MixGame> {
                     ),
                     const SizedBox(height: 6),
                     Text(_cap(p.name(lang).replaceFirst(RegExp(r"^(le |l')"), '').replaceFirst('ال', '')),
-                        style: const TextStyle(fontWeight: FontWeight.w700, color: Color(0xFF5C4A3A))),
+                        style: const TextStyle(fontWeight: FontWeight.w700, color: Color(0xFF3D4266))),
                   ]),
                 ),
             ]),

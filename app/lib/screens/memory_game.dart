@@ -88,7 +88,7 @@ class _MemoryGameState extends State<MemoryGame> {
   Widget build(BuildContext context) {
     final s = widget.progress.s;
     return Scaffold(
-      appBar: AppBar(title: Text(s.memoryGame), backgroundColor: const Color(0xFFFFFAF0)),
+      appBar: AppBar(title: Text(s.memoryGame), backgroundColor: const Color(0xFFFFF8EF)),
       body: SafeArea(
         child: Column(children: [
           Padding(
@@ -96,7 +96,7 @@ class _MemoryGameState extends State<MemoryGame> {
             child: Row(children: [
               Expanded(
                   child: Text(s.memoryHint(kind: widget.progress.book.kind),
-                      style: const TextStyle(color: Color(0xFF7A6A5C)))),
+                      style: const TextStyle(color: Color(0xFF666C8F)))),
               Text('${s.namesIn} '),
               SegmentedButton<Lang>(
                 showSelectedIcon: false,
@@ -110,7 +110,7 @@ class _MemoryGameState extends State<MemoryGame> {
             child: _won
                 ? Center(
                     child: Column(mainAxisSize: MainAxisSize.min, children: [
-                      const Icon(Icons.emoji_events_rounded, size: 90, color: Color(0xFFF2A60C)),
+                      const Icon(Icons.emoji_events_rounded, size: 90, color: Color(0xFFFFB81C)),
                       Padding(
                         padding: const EdgeInsets.all(20),
                         child: Text(s.movesWin(_moves),
@@ -118,7 +118,7 @@ class _MemoryGameState extends State<MemoryGame> {
                             style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: ink)),
                       ),
                       const Text('+1 ★',
-                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Color(0xFFF2A60C))),
+                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Color(0xFFFFB81C))),
                       const SizedBox(height: 16),
                       FilledButton(
                         key: const Key('memory-again'),
@@ -175,7 +175,7 @@ class _MemoryGameState extends State<MemoryGame> {
             color: showing ? Colors.white : widget.progress.book.color,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-                color: c.matched ? const Color(0xFF2E9E6A) : (showing ? c.animal.color : Colors.white), width: 3),
+                color: c.matched ? const Color(0xFF22B07D) : (showing ? c.animal.color : Colors.white), width: 3),
             boxShadow: const [BoxShadow(color: Color(0x22000000), blurRadius: 6, offset: Offset(0, 3))],
           ),
           clipBehavior: Clip.antiAlias,

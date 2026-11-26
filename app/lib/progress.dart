@@ -129,6 +129,44 @@ class Progress extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// A book's level, mission and counts, for any book (not only the open one):
+  /// the child's profile lists them all.
+  (int done, int total) levelCountIn(Book b, int level) => switch (level) {
+        1 => (metIn(b), b.items.length),
+        2 => (partsIn(b), totalPartsIn(b)),
+        _ => (quizIn(b), b.items.length * quizGoal),
+      };
+  bool levelDoneIn(Book b, int level) {
+    final (done, total) = levelCountIn(b, level);
+    return done >= total;
+  }
+
+  int currentLevelIn(Book b) =>
+      [for (var l = 1; l <= b.levels; l++) l].firstWhere((l) => !levelDoneIn(b, l), orElse: () => 4);
+  Mission missionIn(Book b) {
+    final level = currentLevelIn(b);
+    if (level == 4) return const Mission(level: 4, animal: null);
+    bool done(Animal a) => switch (level) {
+          1 => met(a.id),
+          2 => partsFound(a) == a.parts.length,
+          _ => quizScore(a.id) >= quizGoal,
+        };
+    final animal = b.items.firstWhere((a) => !done(a));
+    final part = level == 2 ? animal.parts.firstWhere((p) => !partFound(animal.id, p.id)) : null;
+    return Mission(level: level, animal: animal, part: part);
+  }
+
+  /// The child's picture: an item's sticker they chose (kept on this phone), or null for their initial.
+  String? avatarOf(String childId) => _prefs.getString('avatar.$childId');
+  void setAvatar(String childId, String? asset) {
+    if (asset == null) {
+      _prefs.remove('avatar.$childId');
+    } else {
+      _prefs.setString('avatar.$childId', asset);
+    }
+    notifyListeners();
+  }
+
   /// Per-book numbers for the parents' page.
   int partsIn(Book b) => children.isEmpty
       ? 0

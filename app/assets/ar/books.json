@@ -116,7 +116,7 @@
   "fr": "Les nombres",
   "ar": "الأعداد",
   "kind": "numbers",
-  "map": "school",
+  "map": "math",
   "color": "#1E88E5",
   "data": "books/numbers/items.json",
   "targets": "books/numbers/targets.mind",
