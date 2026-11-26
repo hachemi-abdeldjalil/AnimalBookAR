@@ -6,6 +6,7 @@ import '../progress.dart';
 import '../ui.dart';
 import 'home_screen.dart';
 import 'parents_screen.dart';
+import 'profile_screen.dart';
 
 /// The library: the child's greeting and stars, a card to continue the last
 /// book, three numbers, and the books as a grid of covers.
@@ -32,7 +33,8 @@ class BookshelfScreen extends StatelessWidget {
           body: ListView(padding: EdgeInsets.zero, children: [
             // the Continue card overlaps the header: both in one Column, so its top edge stays tappable
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              _LibraryHeader(progress: progress, name: name, onParents: () => openParents(context, progress, cloud)),
+              _LibraryHeader(
+                  progress: progress, name: name, cloud: cloud, onParents: () => openParents(context, progress, cloud)),
               Transform.translate(
                 offset: const Offset(0, -26),
                 child: Padding(
@@ -271,8 +273,9 @@ class _BookCover extends StatelessWidget {
 /// The library's header: the child, their stars and the parents' door on a
 /// warm gradient, the title, and three stickers from the books bobbing about.
 class _LibraryHeader extends StatelessWidget {
-  const _LibraryHeader({required this.progress, required this.name, required this.onParents});
+  const _LibraryHeader({required this.progress, required this.name, required this.onParents, this.cloud});
   final Progress progress;
+  final Cloud? cloud;
   final String name;
   final VoidCallback onParents;
 
@@ -287,21 +290,38 @@ class _LibraryHeader extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFFF39A4C), AppColors.brand, AppColors.brandDark],
+          colors: [Color(0xFFFF8C5A), AppColors.brand, AppColors.brandDark],
         ),
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(32)),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          Avatar(name: name, size: 44),
-          const SizedBox(width: 10),
+          // the child's picture and name open their own page
           Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(s.hello(name),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w800)),
-            ]),
+            child: GestureDetector(
+              key: const Key('open-profile'),
+              behavior: HitTestBehavior.opaque,
+              onTap: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => ProfileScreen(progress: progress, cloud: cloud))),
+              child: Row(children: [
+                Avatar(name: name, size: 44, picture: progress.avatarOf(progress.child.id)),
+                const SizedBox(width: 10),
+                Flexible(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(s.hello(name),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w800)),
+                    Text(s.myPage,
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(0.85),
+                            fontSize: 12,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Colors.white.withOpacity(0.6))),
+                  ]),
+                ),
+              ]),
+            ),
           ),
           StarsChip(progress.stars),
           const SizedBox(width: 6),

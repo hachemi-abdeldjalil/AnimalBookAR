@@ -38,7 +38,7 @@ class AnimalBookApp extends StatelessWidget {
           localizationsDelegates: GlobalMaterialLocalizations.delegates,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: brand),
-            scaffoldBackgroundColor: const Color(0xFFFFFAF0),
+            scaffoldBackgroundColor: const Color(0xFFFFF8EF),
             // Tajawal first for Arabic (it has Latin too); Poppins otherwise.
             fontFamily: lang == Lang.ar ? 'Tajawal' : 'Poppins',
             fontFamilyFallback: const ['Poppins', 'Tajawal'],

@@ -22,9 +22,12 @@ import '../speech.dart';
 enum ArMode { explore, quiz, sound, helps }
 
 class ArScreen extends StatefulWidget {
-  const ArScreen({super.key, required this.progress, this.mode = ArMode.explore});
+  const ArScreen({super.key, required this.progress, this.mode = ArMode.explore, this.level = 1});
   final Progress progress;
   final ArMode mode;
+
+  /// The level the child is playing: 1 = meet (no parts), 2 = find the parts, 3 = quiz.
+  final int level;
 
   @override
   State<ArScreen> createState() => _ArScreenState();
@@ -149,7 +152,9 @@ class _ArScreenState extends State<ArScreen> with WidgetsBindingObserver {
         if (widget.progress.name.isNotEmpty) 'name': widget.progress.name,
         if (widget.mode != ArMode.explore) 'mode': widget.mode.name,
         // Level 1 is about meeting the animals: the parts to find come with level 2.
-        if (widget.mode == ArMode.explore && widget.progress.book.levels > 1 && !widget.progress.unlocked(2))
+        if (widget.mode == ArMode.explore &&
+            widget.progress.book.levels > 1 &&
+            (widget.level == 1 || !widget.progress.unlocked(2)))
           'parts': '0',
       });
 

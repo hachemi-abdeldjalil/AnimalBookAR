@@ -52,7 +52,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Color(0xFFF08A3C), AppColors.brandDark],
+                colors: [Color(0xFFFF8C5A), AppColors.brandDark],
               ),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(32)),
             ),

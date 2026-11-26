@@ -293,4 +293,39 @@ void main() {
     expect(find.text('Learn 1 · One'), findsOneWidget);
     expect(find.text('Find the number'), findsOneWidget);
   });
+
+  testWidgets("the child's page: what's next per book, medals, picture and name", (tester) async {
+    await tester.binding.setSurfaceSize(const Size(400, 3600));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final p = await _progress(tester, {'name': 'Yahia', 'met': ['horse']});
+    await tester.pumpWidget(AnimalBookApp(progress: p));
+    await _settle(tester);
+
+    await tester.tap(find.byKey(const Key('open-profile')));
+    await _settle(tester);
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.byKey(const Key('profile-name')), findsOneWidget);
+    expect(find.text('Meet the fox'), findsOneWidget); // Animals: the horse is met, the fox is next
+    expect(find.text('Meet the car'), findsOneWidget); // Cars: not started
+    expect(find.byKey(const Key('next-numbers')), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('avatar-initial')));
+    await tester.pump();
+    expect(p.avatarOf(p.child.id), isNull);
+  });
+
+  testWidgets('level 1 says what to do and locks the body parts', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(400, 2400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final p = await _progress(tester, {'name': 'Yahia', 'met': ['horse']});
+    await tester.pumpWidget(AnimalBookApp(progress: p));
+    await _settle(tester);
+    await _openBook(tester, 'animals');
+
+    expect(find.text('Scan each page of your book to meet all 14 animals.'), findsOneWidget);
+    expect(find.textContaining('Next: level 2'), findsOneWidget);
+    await tester.tap(find.text('Horse'));
+    await _settle(tester);
+    expect(find.byKey(const Key('parts-locked')), findsOneWidget);
+  });
 }

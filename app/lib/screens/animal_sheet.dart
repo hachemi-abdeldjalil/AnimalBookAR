@@ -66,7 +66,7 @@ class AnimalSheet extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(p.met(a.id) ? a.fact(lang) : s.notMet,
-              style: const TextStyle(fontSize: 15, height: 1.35, color: Color(0xFF4A3C30))),
+              style: const TextStyle(fontSize: 15, height: 1.35, color: Color(0xFF3D4266))),
           // categories: where it lives, farm / pet / wild, what it eats
           if (a.habitat != null) ...[
             const SizedBox(height: 12),
@@ -92,12 +92,24 @@ class AnimalSheet extends StatelessWidget {
                     color: a.color),
             ]),
           ],
-          if (a.parts.isNotEmpty) ...[
+          if (a.parts.isNotEmpty && p.book.levels > 1 && !p.unlocked(2)) ...[
+            // level 1 is only about meeting it: the parts wait for level 2
+            const SizedBox(height: 14),
+            Row(children: [
+              const Icon(Icons.lock_rounded, size: 18, color: Color(0xFFA3A8C3)),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(s.partsLocked(p.book.kind),
+                    key: const Key('parts-locked'),
+                    style: const TextStyle(fontWeight: FontWeight.w700, color: Color(0xFF666C8F))),
+              ),
+            ]),
+          ] else if (a.parts.isNotEmpty) ...[
             const SizedBox(height: 14),
             Row(children: [
               Text(s.partsTitle(p.book.kind), style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
               const Spacer(),
-              Text(s.found(found, a.parts.length), style: const TextStyle(color: Color(0xFF7A6A5C), fontSize: 13)),
+              Text(s.found(found, a.parts.length), style: const TextStyle(color: Color(0xFF666C8F), fontSize: 13)),
             ]),
             const SizedBox(height: 8),
             Wrap(spacing: 8, runSpacing: 8, children: [
@@ -115,9 +127,9 @@ class AnimalSheet extends StatelessWidget {
             Row(children: [
               for (var i = 0; i < quizGoal; i++)
                 Icon(i < p.quizScore(a.id) ? Icons.star_rounded : Icons.star_outline_rounded,
-                    color: const Color(0xFFF2A60C), size: 22),
+                    color: const Color(0xFFFFB81C), size: 22),
               const SizedBox(width: 6),
-              Text(s.quizScore(p.quizScore(a.id)), style: const TextStyle(color: Color(0xFF7A6A5C))),
+              Text(s.quizScore(p.quizScore(a.id)), style: const TextStyle(color: Color(0xFF666C8F))),
             ]),
           ],
           const SizedBox(height: 18),
@@ -171,7 +183,7 @@ class _Chip extends StatelessWidget {
         ],
         Text(text,
             style: TextStyle(
-                fontWeight: FontWeight.w700, color: found ? const Color(0xFF1F7A4D) : const Color(0xFFA89A8C))),
+                fontWeight: FontWeight.w700, color: found ? const Color(0xFF1F7A4D) : const Color(0xFFA3A8C3))),
       ]),
     );
   }

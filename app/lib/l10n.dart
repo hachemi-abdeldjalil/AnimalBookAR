@@ -225,6 +225,51 @@ class S {
       };
   String get findHint =>
       _t('Listen, then scan the right page', 'Écoute, puis scanne la bonne page', 'استمع ثم امسح الصفحة الصحيحة');
+  // The child's own page
+  String get myPage => _t('My page', 'Ma page', 'صفحتي');
+  String get whatIDid => _t('What I did', "Ce que j'ai fait", 'ما أنجزته');
+  String get whatNext => _t("What's next", 'À faire ensuite', 'ما سأفعله بعد ذلك');
+  String get myBadges => _t('My medals', 'Mes médailles', 'ميدالياتي');
+  String get myPicture => _t('My picture', 'Mon image', 'صورتي');
+  String get myName => _t('My name', 'Mon prénom', 'اسمي');
+  String get finishedBook => _t('Finished!', 'Terminé !', 'أكملته!');
+  String get letsPlay => _t('Play', 'Jouer', 'العب');
+  String get initialPicture => _t('My letter', 'Mon initiale', 'حرفي');
+  String levelOf(int level, int total) =>
+      _t('Level $level of $total', 'Niveau $level sur $total', 'المستوى $level من $total');
+
+  // What each level asks
+  String itemsNoun(String kind) => switch (kind) {
+        'vehicles' => _t('vehicles', 'véhicules', 'المركبات'),
+        'letters' => _t('letters', 'lettres', 'الحروف'),
+        'colors' => _t('colours', 'couleurs', 'الألوان'),
+        'heritage' => _t('treasures', 'trésors', 'الكنوز'),
+        'shapes' => _t('shapes', 'formes', 'الأشكال'),
+        'numbers' => _t('numbers', 'nombres', 'الأعداد'),
+        _ => _t('animals', 'animaux', 'الحيوانات'),
+      };
+  String levelGoal(int level, String kind, int total) => switch (level) {
+        1 => _t(
+            'Scan each page of your book to meet all $total ${itemsNoun(kind)}.',
+            'Scanne chaque page de ton livre pour découvrir les $total ${itemsNoun(kind)}.',
+            'امسح كل صفحة من كتابك لتتعرّف على كل ${itemsNoun(kind)} ($total).'),
+        2 => _t(
+            'Aim the ◎ at each one to find all the ${partsTitle(kind).toLowerCase()}.',
+            'Vise ◎ chaque partie pour trouver tout : ${partsTitle(kind).toLowerCase()}.',
+            'صوّب ◎ نحو كل واحد لتجد كل ${partsTitle(kind)}.'),
+        _ => _t(
+            'Answer 3 questions for each one: find the part I name.',
+            'Réponds à 3 questions pour chacun : trouve la partie que je nomme.',
+            'أجب عن 3 أسئلة لكل واحد: اعثر على الجزء الذي أسمّيه.'),
+      };
+  String nextLevel(int level, String name) => _t(
+      'Next: level $level, $name. It opens when this level is done.',
+      'Ensuite : niveau $level, $name. Il s\'ouvre quand ce niveau est fini.',
+      'التالي: المستوى $level، $name. يُفتح عندما تُكمل هذا المستوى.');
+  String partsLocked(String kind) => _t(
+      '${partsTitle(kind)}: open at level 2', '${partsTitle(kind)} : au niveau 2', '${partsTitle(kind)}: في المستوى 2');
+  String levelStep(int level) => _t('Step $level', 'Étape $level', 'الخطوة $level');
+
   // Animal categories
   String category(String id) => switch (id) {
         'farm' => _t('Farm animal', 'Animal de la ferme', 'حيوان المزرعة'),

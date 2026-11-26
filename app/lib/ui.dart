@@ -5,17 +5,23 @@ import 'package:flutter/material.dart';
 /// The app's look in one place: colours, card style, section headers and
 /// small building blocks shared by the welcome, bookshelf and parents screens.
 class AppColors {
-  static const brand = Color(0xFFE8702A);
-  static const brandDark = Color(0xFFC4561A);
-  static const ink = Color(0xFF2B2118);
-  static const muted = Color(0xFF7A6A5C);
-  static const faint = Color(0xFFA89A8C);
-  static const cream = Color(0xFFFFFAF0);
-  static const sand = Color(0xFFF4ECE0);
-  static const line = Color(0xFFEADFCF);
-  static const gold = Color(0xFFF2A60C);
-  static const goldBg = Color(0xFFFFF0C2);
-  static const green = Color(0xFF2E9E6A);
+  // A bright, friendly palette: a vivid orange accent, deep navy text, and five
+  // fun colours for tiles and charts.
+  static const brand = Color(0xFFFF6B35);
+  static const brandDark = Color(0xFFE2471A);
+  static const ink = Color(0xFF1F2547);
+  static const muted = Color(0xFF666C8F);
+  static const faint = Color(0xFFA3A8C3);
+  static const cream = Color(0xFFFFF8EF);
+  static const sand = Color(0xFFF3EEE7);
+  static const line = Color(0xFFECE5DA);
+  static const gold = Color(0xFFFFB81C);
+  static const goldBg = Color(0xFFFFF1C7);
+  static const green = Color(0xFF22B07D);
+  static const sky = Color(0xFF2D9CDB);
+  static const grape = Color(0xFF7B61FF);
+  static const mint = Color(0xFF14B8A6);
+  static const berry = Color(0xFFF2547D);
 }
 
 /// A white card with a hairline border and a soft shadow.
@@ -71,8 +77,9 @@ class SectionLabel extends StatelessWidget {
 
 /// A round initial for a child.
 class Avatar extends StatelessWidget {
-  const Avatar({super.key, required this.name, this.size = 44, this.selected = false});
+  const Avatar({super.key, required this.name, this.size = 44, this.selected = false, this.picture});
   final String name;
+  final String? picture; // a sticker asset, instead of the initial
   final double size;
   final bool selected;
 
@@ -94,12 +101,17 @@ class Avatar extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: c,
+        color: picture != null ? Color.lerp(c, Colors.white, 0.75) : c,
         border: Border.all(color: selected ? AppColors.ink : Colors.white, width: selected ? 3 : 2),
         boxShadow: const [BoxShadow(color: Color(0x22000000), blurRadius: 6, offset: Offset(0, 2))],
       ),
-      child: Text(name.isEmpty ? '?' : name.characters.first.toUpperCase(),
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: size * 0.42)),
+      child: picture != null
+          ? Padding(
+              padding: EdgeInsets.all(size * 0.08),
+              child: Image.asset(picture!, fit: BoxFit.contain),
+            )
+          : Text(name.isEmpty ? '?' : name.characters.first.toUpperCase(),
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: size * 0.42)),
     );
   }
 }
@@ -118,7 +130,7 @@ class StarsChip extends StatelessWidget {
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         const Icon(Icons.star_rounded, color: AppColors.gold, size: 20),
         const SizedBox(width: 4),
-        Text('$stars', style: const TextStyle(color: Color(0xFF7A4A00), fontWeight: FontWeight.w800, fontSize: 15)),
+        Text('$stars', style: const TextStyle(color: Color(0xFF8A5A00), fontWeight: FontWeight.w800, fontSize: 15)),
       ]),
     );
   }
