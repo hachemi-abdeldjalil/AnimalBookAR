@@ -32,7 +32,7 @@ THEME = {
     "colors": ("Ten colours to find and mix!", "Dix couleurs à trouver et mélanger !", "عشرة ألوان لتكتشفها وتمزجها!", "🎨"),
     "shapes": ("Ten shapes to name and count!", "Dix formes à nommer et compter !", "عشرة أشكال لتسميها وتعدّ أضلاعها!", "🔷"),
     "numbers": ("Count from 1 to 10 in 3D!", "Compte de 1 à 10 en 3D !", "عُدّ من 1 إلى 10 بالأبعاد الثلاثة!", "🔢"),
-    "heritage": ("12 treasures of Algeria in 3D!", "12 trésors de l'Algérie en 3D !", "12 كنزًا من الجزائر بالأبعاد الثلاثة!", "🌴"),
+    "heritage": ("11 treasures of Algeria in 3D!", "11 trésors de l'Algérie en 3D !", "11 كنزًا من الجزائر بالأبعاد الثلاثة!", "🌴"),
 }
 PAGES = {"animals": ROOT / "book" / "pages"}  # the first book keeps its old folder
 

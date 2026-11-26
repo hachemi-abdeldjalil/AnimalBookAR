@@ -333,30 +333,4 @@ export const ALGERIA = {
     g.add(tray, pot, glasses, mint);
     return g;
   },
-
-  darbuka() {
-    const g = new THREE.Group();
-    const pts = [];
-    for (let i = 0; i <= 30; i++) {
-      const t = i / 30, y = t * 1.0;
-      const r = t < 0.45 ? 0.22 - 0.1 * Math.sin((t / 0.45) * Math.PI / 2) : 0.12 + 0.24 * Math.sin(((t - 0.45) / 0.55) * Math.PI / 2);
-      pts.push(new THREE.Vector2(r, y));
-    }
-    const body = part('body', mesh(new THREE.LatheGeometry(pts, 48), std(0xd21034, { roughness: 0.35, metalness: 0.2 })));
-    for (const y of [0.15, 0.6, 0.85]) {
-      const t = y / 1.0;
-      const r = t < 0.45 ? 0.22 - 0.1 * Math.sin((t / 0.45) * Math.PI / 2) : 0.12 + 0.24 * Math.sin(((t - 0.45) / 0.55) * Math.PI / 2);
-      const band = mesh(new THREE.TorusGeometry(r + 0.005, 0.015, 8, 48), std(0xf2c14e, { metalness: 0.7, roughness: 0.3 }), 0, y, 0);
-      band.rotation.x = Math.PI / 2;
-      body.add(band);
-    }
-    const skin = part('skin', mesh(new THREE.CylinderGeometry(0.36, 0.36, 0.02, 48), std(0xf1e3c6, { roughness: 0.9 }), 0, 1.0, 0));
-    const rim = mesh(new THREE.TorusGeometry(0.36, 0.025, 8, 48), std(0x8b1a1a), 0, 1.0, 0);
-    rim.rotation.x = Math.PI / 2;
-    skin.add(rim);
-    const gnd = ground(0.5, 0xc9a77a, 0.03);
-    body.position.y = 0.03; skin.position.y = 0.03;
-    g.add(gnd, body, skin);
-    return g;
-  },
 };

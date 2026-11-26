@@ -58,7 +58,6 @@ publishing.
 | Fennec | Khaled Mokhtar | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Fennec_FOX_-_Valley_of_the_Whales_-_Wadi_al_Hitan_2.jpg) |
 | Couscous | Laurhim | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Couscous_(74111).jpg) |
 | Mint tea | Muhammad Reyhand | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:ES_TEH_MANIS.jpg) |
-| Darbuka | Siffert80 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Darbuka_do_Cairo.jpg) |
 
 ## Sounds (trimmed to a few seconds, volume levelled, AAC)
 
@@ -87,7 +86,6 @@ publishing.
 | Tractor | Work With Sounds  / Museum of Municipal Engineering | CC BY 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:WWS_TractorUrsusC328driving.ogg) |
 | Truck | Edvvc | CC BY-SA 3.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Trophy_Truck_and_American_V8s.ogg) |
 | Motorcycle | Huhu Uet | CC BY-SA 3.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Garelli_Bonanza_starten_01.ogg) |
-| Darbuka | Cassa342 | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Darbuka.ogg) |
 
 ## 3D models
 
@@ -165,7 +163,6 @@ publishing.
 | Fennec | Model by PixelMannen (CC0); rigging and animation by tomkranis; glTF conversion by @AsoboStudio and @scurest | CC BY 4.0 | [Khronos glTF Sample Assets](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/Fox) |
 | Couscous | Animal Book AR, built in code by `tool/make_shapes.py` | same as the app | |
 | Mint tea | Animal Book AR, built in code by `tool/make_shapes.py` | same as the app | |
-| Darbuka | Animal Book AR, built in code by `tool/make_shapes.py` | same as the app | |
 | Circle | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
 | Square | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |
 | Triangle | Quaternius (Farm Animals pack), converted to GLB with tool/convert_models.py | CC0 1.0 | [OpenGameArt](https://opengameart.org/node/85047) |

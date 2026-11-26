@@ -173,7 +173,7 @@ async function main() {
         check(feed, 'Algeria: no Feed button');
       }
     });
-    check(st && st.modelsLoaded === 12, `all 12 Algeria models loaded (${st?.modelsLoaded})`);
+    check(st && st.modelsLoaded === 11, `all 11 Algeria models loaded (${st?.modelsLoaded})`);
     check(seen.join(' > ') === 'dz_flag > lost > dz_fennec > lost', `Algeria pages found in order (${seen.join(' > ')})`);
   });
 

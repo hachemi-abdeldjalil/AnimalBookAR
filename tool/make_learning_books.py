@@ -159,8 +159,6 @@ P = {
     "glass": ("Glass", "Verre", "كأس", "le verre", "الكأس"),
     "mint": ("Mint", "Menthe", "نعناع", "la menthe", "النعناع"),
     "tray": ("Tray", "Plateau", "صينية", "le plateau", "الصينية"),
-    "skin": ("Drum skin", "Peau", "جلد", "la peau", "الجلد"),
-    "body": ("Body", "Corps", "جسم", "le corps", "الجسم"),
 }
 ALGERIA = [
     ("flag", "#006233", 0.38, ("Flag of Algeria", "Drapeau algérien", "العلم الجزائري"), "du drapeau", "العلم الجزائري",
@@ -203,10 +201,6 @@ ALGERIA = [
     ("tea", "#2E7D32", 0.55, ("Mint tea", "Thé à la menthe", "الشاي بالنعناع"), "du thé à la menthe", "الشاي بالنعناع",
      ("Mint tea is poured from high up to make foam.", "Le thé à la menthe est versé de haut pour faire de la mousse.",
       "يُسكب الشاي بالنعناع من الأعلى لتكوين الرغوة."), ["teapot", "glass", "mint", "tray"]),
-    ("darbuka", "#D21034", 0.45, ("Darbuka", "Darbouka", "الدربوكة"), "de la darbouka", "الدربوكة",
-     ("The darbuka is a drum played with the hands at weddings and parties.",
-      "La darbouka est un tambour joué avec les mains aux mariages et aux fêtes.",
-      "الدربوكة طبل يُعزف باليدين في الأعراس والحفلات."), ["skin", "body"]),
 ]
 
 
@@ -225,8 +219,6 @@ def algeria():
         }
         if iid == "fennec":  # the animated fox, with its sound and body parts
             it.update(model=fox["model"], sound=fox["sound"], turn=fox["turn"], lift=fox["lift"], parts=fox["parts"])
-        if iid == "darbuka":
-            it["sound"] = "books/algeria/sounds/darbuka.m4a"
         items.append(it)
     return items
 
@@ -304,7 +296,7 @@ def numbers_book():
 
 def write(book, items):
     d = AR / book
-    for sub in ["models", "pages", "thumbs", "sounds"] if book == "algeria" else ["models", "pages", "thumbs"]:
+    for sub in ["models", "pages", "thumbs"]:
         (d / sub).mkdir(parents=True, exist_ok=True)
     f = d / "items.json"
     if f.exists():  # keep the spots make_shapes.py measured

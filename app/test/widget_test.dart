@@ -241,7 +241,7 @@ void main() {
     await _settle(tester);
 
     await tester.scrollUntilVisible(find.byKey(const Key('book-algeria')), 300, scrollable: find.byType(Scrollable).first);
-    expect(find.text('1 of 12 treasures'), findsWidgets);
+    expect(find.text('1 of 11 treasures'), findsWidgets);
     await _openBook(tester, 'algeria');
     expect(find.text('Discover Maqam Echahid'), findsOneWidget); // the flag is met: next is the memorial
     expect(find.text('Details'), findsOneWidget); // level 2

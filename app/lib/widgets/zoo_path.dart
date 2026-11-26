@@ -503,28 +503,12 @@ class _ZooPainter extends CustomPainter {
           final a = 1 + k % 5, b = 2 + k % 4;
           _faintText(c, '$a + $b = ${a + b}', Offset(k.isEven ? 26 : w - 110, y), const Color(0x552D4A6B), 17);
         }
-      case 'studio': // a canvas with soft splashes of every colour, paint dripping from the top
+      case 'studio': // a plain warm canvas with a few soft patches of colour
         c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = const Color(0xFFFFFCF7));
-        final weave = Paint()
-          ..color = const Color(0x0F8A7A60)
-          ..strokeWidth = 1;
-        for (var x = 0.0; x < w; x += 6) {
-          c.drawLine(Offset(x, 0), Offset(x, h), weave);
-        }
-        for (var y = 0.0; y < h; y += 6) {
-          c.drawLine(Offset(0, y), Offset(w, y), weave);
-        }
-        for (var k = 0; k < 9; k++) {
-          final col = _rainbow[k % _rainbow.length].withOpacity(0.55);
-          final x = 12.0 + k * 42, len = 30.0 + (k * 37) % 70;
-          c.drawRRect(
-              RRect.fromRectAndRadius(Rect.fromLTWH(x, 0, 10, len), const Radius.circular(5)), Paint()..color = col);
-          c.drawCircle(Offset(x + 5, len), 7, Paint()..color = col);
-        }
-        for (var y = 80.0, i = 0; y < h; y += 110, i++) {
+        for (var y = 120.0, i = 0; y < h; y += 220, i++) {
           final col = (colors.isEmpty ? _rainbow : colors)[i % (colors.isEmpty ? _rainbow.length : colors.length)];
           c.drawOval(Rect.fromCenter(center: Offset(i.isEven ? 50 : 310, y), width: 170, height: 110),
-              Paint()..color = col.withOpacity(0.12));
+              Paint()..color = col.withOpacity(0.08));
         }
       default:
         break;
@@ -563,16 +547,13 @@ class _ZooPainter extends CustomPainter {
           c.drawOval(Rect.fromCenter(center: Offset(x0 + 110, y + 8), width: 170, height: 34),
               Paint()..color = const Color(0x18FFFFFF));
         }
-      case 'playroom': // a wooden floor
-        c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = const Color(0xFFEBD2A6));
-        final plank = Paint()
-          ..color = const Color(0x33A0723A)
-          ..strokeWidth = 1.5;
-        for (var y = 0.0, row = 0; y < h; y += 30, row++) {
-          c.drawLine(Offset(0, y), Offset(w, y), plank);
-          for (var x = (row.isEven ? 40.0 : 110.0); x < w; x += 150) {
-            c.drawLine(Offset(x, y), Offset(x, y + 30), plank);
-          }
+      case 'playroom': // a smooth light floor with very faint boards
+        c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = const Color(0xFFF6EBD9));
+        final board = Paint()
+          ..color = const Color(0x14A0723A)
+          ..strokeWidth = 1;
+        for (var y = 0.0; y < h; y += 44) {
+          c.drawLine(Offset(0, y), Offset(w, y), board);
         }
       case 'town':
         c.drawRect(Rect.fromLTWH(0, 0, w, h), Paint()..color = const Color(0xFFD5E3C6));
@@ -675,22 +656,10 @@ class _ZooPainter extends CustomPainter {
           default:
             _faintText(c, const ['+', '−', '=', '×'][i % 4], o - const Offset(8, 14), const Color(0xAA2D9CDB), 30);
         }
-      case 'playroom':
-        if (i % 2 == 0) {
-          _toyBall(c, o, _rainbow[i % _rainbow.length]);
-        } else {
-          _block(c, o, '', _rainbow[(i + 2) % _rainbow.length]);
-        }
-      case 'studio':
-        if (i % 5 == 4) {
-          _colorWheel(c, o);
-        } else if (i % 5 == 2) {
-          _palette(c, o);
-        } else if (i % 2 == 0) {
-          _splat(c, o, _rainbow[i % _rainbow.length]);
-        } else {
-          _brush(c, o, _rainbow[(i + 3) % _rainbow.length], i % 4 == 1 ? -0.7 : 0.6);
-        }
+      case 'playroom': // only a few toy balls
+        if (i % 3 == 0) _toyBall(c, o, _rainbow[i % _rainbow.length]);
+      case 'studio': // only a few small splats of paint
+        if (i % 3 == 0) _splat(c, o, _rainbow[i % _rainbow.length]);
       case 'desert':
         if (i % 3 == 0) {
           _palm(c, o + const Offset(0, -16));
@@ -745,8 +714,8 @@ class _ZooPainter extends CustomPainter {
     switch (style) {
       case 'school':
         if (i % 4 == 0) c.drawCircle(o, 1.8, Paint()..color = _rainbow[i % _rainbow.length].withOpacity(0.6));
-      case 'studio':
-        c.drawCircle(o, 2.2, Paint()..color = _rainbow[i % _rainbow.length].withOpacity(0.55));
+      case 'studio' || 'playroom':
+        break; // calm maps: no specks
       case 'desert':
         if (i.isEven) c.drawCircle(o, 1.6, Paint()..color = const Color(0x55A0682C));
       default:
@@ -1002,28 +971,6 @@ class _ZooPainter extends CustomPainter {
     c.restore();
   }
 
-  void _palette(Canvas c, Offset o) {
-    _shadow(c, o + const Offset(2, 14), 22, 5);
-    final board = Path()
-      ..addOval(Rect.fromCenter(center: o, width: 52, height: 38))
-      ..addOval(Rect.fromCenter(center: o + const Offset(12, 8), width: 10, height: 9));
-    board.fillType = PathFillType.evenOdd;
-    c.drawPath(board, Paint()..color = const Color(0xFFE2B47A));
-    for (var k = 0; k < 5; k++) {
-      final a = -2.6 + k * 0.75;
-      c.drawCircle(o + Offset(math.cos(a) * 16, math.sin(a) * 11), 4.5, Paint()..color = _rainbow[k]);
-    }
-  }
-
-  void _colorWheel(Canvas c, Offset o) {
-    _shadow(c, o + const Offset(0, 18), 18, 4);
-    for (var k = 0; k < 6; k++) {
-      c.drawArc(Rect.fromCircle(center: o, radius: 16), -math.pi / 2 + k * math.pi / 3, math.pi / 3, true,
-          Paint()..color = _rainbow[k]);
-    }
-    c.drawCircle(o, 5, Paint()..color = Colors.white);
-  }
-
   void _toyBall(Canvas c, Offset o, Color color) {
     _shadow(c, o + const Offset(0, 14), 14, 4);
     c.drawCircle(o, 13, Paint()..color = color);
@@ -1087,23 +1034,6 @@ class _ZooPainter extends CustomPainter {
       final a = i * 0.9;
       c.drawCircle(o + Offset(math.cos(a), math.sin(a)) * (13 + (i % 3) * 3.0), 2.5 + (i % 2) * 1.5, paint);
     }
-  }
-
-  void _brush(Canvas c, Offset o, Color color, double angle) {
-    c.save();
-    c.translate(o.dx, o.dy);
-    c.rotate(angle);
-    _shadow(c, const Offset(2, 8), 24, 4);
-    c.drawRRect(RRect.fromRectAndRadius(const Rect.fromLTWH(-26, -2.5, 30, 5), const Radius.circular(2)),
-        Paint()..color = const Color(0xFF9A6A3A));
-    c.drawRect(const Rect.fromLTWH(4, -4, 6, 8), Paint()..color = const Color(0xFFB9BEC4));
-    c.drawPath(
-        Path()
-          ..moveTo(10, -5)
-          ..quadraticBezierTo(24, 0, 10, 5)
-          ..close(),
-        Paint()..color = color);
-    c.restore();
   }
 
   void _dune(Canvas c, Offset o) {

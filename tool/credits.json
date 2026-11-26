@@ -426,13 +426,6 @@
   "license": "CC BY-SA 4.0",
   "artist": "Laurhim"
  },
- "darbuka_photo": {
-  "title": "File:Darbuka do Cairo.jpg",
-  "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Darbuka_do_Cairo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-  "page": "https://commons.wikimedia.org/wiki/File:Darbuka_do_Cairo.jpg",
-  "license": "CC BY-SA 4.0",
-  "artist": "Siffert80"
- },
  "fennec_photo": {
   "title": "File:Fennec FOX - Valley of the Whales - Wadi al Hitan 2.jpg",
   "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Fennec_FOX_-_Valley_of_the_Whales_-_Wadi_al_Hitan_2.jpg/1280px-Fennec_FOX_-_Valley_of_the_Whales_-_Wadi_al_Hitan_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -502,12 +495,5 @@
   "page": "https://commons.wikimedia.org/wiki/File:20180411_160529_HDR.jpg",
   "license": "CC BY-SA 4.0",
   "artist": "Fayeqalnatour"
- },
- "darbuka_sound": {
-  "title": "File:Darbuka.ogg",
-  "url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Darbuka.ogg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-  "page": "https://commons.wikimedia.org/wiki/File:Darbuka.ogg",
-  "license": "CC BY-SA 4.0",
-  "artist": "Cassa342"
  }
 }
