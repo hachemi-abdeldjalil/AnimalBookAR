@@ -9,6 +9,7 @@ import 'progress.dart';
 import 'screens/bookshelf_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/welcome_screen.dart';
+import 'ui.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +44,10 @@ class AnimalBookApp extends StatelessWidget {
             fontFamily: lang == Lang.ar ? 'Tajawal' : 'Poppins',
             fontFamilyFallback: const ['Poppins', 'Tajawal'],
             useMaterial3: true,
+            pageTransitionsTheme: const PageTransitionsTheme(builders: {
+              TargetPlatform.android: SoftPageTransitions(),
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(), // keeps the swipe back from the edge
+            }),
           ),
           home: progress.hasProfile
               ? BookshelfScreen(progress: progress, cloud: cloud)

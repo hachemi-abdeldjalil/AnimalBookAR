@@ -95,6 +95,7 @@ class ProfileScreen extends StatelessWidget {
                 // ---- what I did ----
                 SectionLabel(s.whatIDid),
                 GridView.count(
+                  padding: EdgeInsets.zero, // no extra status-bar padding (the screen is edge to edge)
                   crossAxisCount: 3,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

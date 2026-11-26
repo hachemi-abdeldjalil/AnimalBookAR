@@ -11,7 +11,7 @@ import '../progress.dart';
 /// from the gate past one stop per item, where the item's 3D model stands;
 /// a little scene sits next to each stop. Drawn in code at a 360-wide design
 /// size and scaled to the screen.
-class ZooPath extends StatelessWidget {
+class ZooPath extends StatefulWidget {
   const ZooPath({
     super.key,
     required this.progress,
@@ -43,10 +43,38 @@ class ZooPath extends StatelessWidget {
   static List<Offset> spotsFor(int n) => [for (var i = 0; i < n; i++) Offset(i.isEven ? 108 : 252, 220 + i * _step)];
   static double heightFor(int n) => 220 + (n - 1) * _step + 140;
 
-  /// Enclosure centres, in design units, in book order.
+  @override
+  State<ZooPath> createState() => _ZooPathState();
+}
+
+/// When a book opens, the path draws itself from the gate down (1.6 s) and
+/// each stop pops in as the path reaches it.
+class _ZooPathState extends State<ZooPath> with SingleTickerProviderStateMixin {
+  late final AnimationController _reveal =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 1600))..forward();
+
+  @override
+  void dispose() {
+    _reveal.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _reveal,
+      builder: (context, _) => _map(context, Curves.easeInOutCubic.transform(_reveal.value)),
+    );
+  }
+
+  Widget _map(BuildContext context, double reveal) {
+    final progress = widget.progress;
+    final level = widget.level;
+    final highlight = widget.highlight;
+    final onTap = widget.onTap;
+    const designWidth = ZooPath.designWidth;
+    const spotsFor = ZooPath.spotsFor;
+    const heightFor = ZooPath.heightFor;
     final animals = progress.animals;
     final style = progress.book.map;
     return LayoutBuilder(builder: (context, c) {
@@ -59,6 +87,7 @@ class ZooPath extends StatelessWidget {
             child: CustomPaint(
                 painter: _ZooPainter(
               style: style,
+              reveal: reveal,
               gateText: switch (style) {
                 'town' => progress.s.town,
                 'zoo' => progress.s.zoo,
@@ -76,14 +105,24 @@ class ZooPath extends StatelessWidget {
               left: spotsFor(animals.length)[i].dx * k - 60,
               top: spotsFor(animals.length)[i].dy * k - 52,
               width: 120,
-              child: _AnimalStop(
-                animal: animals[i],
-                progress: progress,
-                level: level,
-                current: animals[i].id == highlight,
-                signColor: signColors[style],
-                onTap: () => onTap(animals[i]),
-              ),
+              child: Builder(builder: (context) {
+                // pops in when the path reaches it
+                final t = ((reveal - 0.85 * i / animals.length) / 0.18).clamp(0.0, 1.0);
+                return Opacity(
+                  opacity: t,
+                  child: Transform.scale(
+                    scale: 0.6 + 0.4 * Curves.easeOutBack.transform(t),
+                    child: _AnimalStop(
+                      animal: animals[i],
+                      progress: progress,
+                      level: level,
+                      current: animals[i].id == highlight,
+                      signColor: ZooPath.signColors[style],
+                      onTap: () => onTap(animals[i]),
+                    ),
+                  ),
+                );
+              }),
             ),
         ]),
       );
@@ -278,6 +317,7 @@ class _AnimalStopState extends State<_AnimalStop> with SingleTickerProviderState
 class _ZooPainter extends CustomPainter {
   _ZooPainter({
     required this.style,
+    this.reveal = 1,
     required this.gateText,
     required this.ids,
     this.colors = const [],
@@ -287,6 +327,7 @@ class _ZooPainter extends CustomPainter {
   });
 
   final String style; // zoo | town | school | studio | desert | playroom | math
+  final double reveal; // 0..1: how much of the path is drawn yet
   final String gateText;
   final List<String> ids; // item ids in path order, for their scenes
   final List<Color> colors; // each item's colour (paint pots)
@@ -345,7 +386,16 @@ class _ZooPainter extends CustomPainter {
         if (t != null) samples.add(t.position);
       }
     }
-    _path(canvas, path);
+    if (reveal >= 1) {
+      _path(canvas, path);
+    } else {
+      // only the first part of the path, as it draws itself
+      final drawn = Path();
+      for (final m in path.computeMetrics()) {
+        drawn.addPath(m.extractPath(0, m.length * reveal), Offset.zero);
+      }
+      _path(canvas, drawn);
+    }
 
     // keep decorations off the path and the stops
     bool free(Offset o, double r) {
@@ -1570,6 +1620,7 @@ class _ZooPainter extends CustomPainter {
   bool shouldRepaint(covariant _ZooPainter old) =>
       old.gateText != gateText ||
       old.style != style ||
+      old.reveal != reveal ||
       old.ids.join() != ids.join() ||
       old.habitatNames.join() != habitatNames.join();
 }

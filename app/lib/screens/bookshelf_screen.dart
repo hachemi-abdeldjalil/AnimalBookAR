@@ -10,10 +10,27 @@ import 'profile_screen.dart';
 
 /// The library: the child's greeting and stars, a card to continue the last
 /// book, three numbers, and the books as a grid of covers.
-class BookshelfScreen extends StatelessWidget {
+class BookshelfScreen extends StatefulWidget {
   const BookshelfScreen({super.key, required this.progress, this.cloud});
   final Progress progress;
   final Cloud? cloud;
+
+  @override
+  State<BookshelfScreen> createState() => _BookshelfScreenState();
+}
+
+class _BookshelfScreenState extends State<BookshelfScreen> {
+  // the header's stickers drift up and fade as the list scrolls
+  final _scroll = ScrollController();
+
+  Progress get progress => widget.progress;
+  Cloud? get cloud => widget.cloud;
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
 
   void _open(BuildContext context, Book b) {
     progress.openBook(b.id);
@@ -30,11 +47,15 @@ class BookshelfScreen extends StatelessWidget {
         final c = progress.child;
         return Scaffold(
           backgroundColor: AppColors.cream,
-          body: ListView(padding: EdgeInsets.zero, children: [
+          body: ListView(controller: _scroll, padding: EdgeInsets.zero, children: [
             // the Continue card overlaps the header: both in one Column, so its top edge stays tappable
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               _LibraryHeader(
-                  progress: progress, name: name, cloud: cloud, onParents: () => openParents(context, progress, cloud)),
+                  scroll: _scroll,
+                  progress: progress,
+                  name: name,
+                  cloud: cloud,
+                  onParents: () => openParents(context, progress, cloud)),
               Transform.translate(
                 offset: const Offset(0, -26),
                 child: Padding(
@@ -76,6 +97,7 @@ class BookshelfScreen extends StatelessWidget {
                 ),
                 SectionLabel(s.yourBooks),
                 GridView.count(
+                  padding: EdgeInsets.zero, // no extra status-bar padding (the screen is edge to edge)
                   crossAxisCount: 2,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -125,88 +147,91 @@ class _ContinueCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(22),
       clipBehavior: Clip.antiAlias,
       color: b.color,
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [b.color, Color.lerp(b.color, Colors.black, 0.22)!],
+      child: Stack(children: [
+        InkWell(
+          onTap: onTap,
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [b.color, Color.lerp(b.color, Colors.black, 0.22)!],
+              ),
             ),
-          ),
-          padding: const EdgeInsets.all(16),
-          child: Row(children: [
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('${s.continueLearning.toUpperCase()} · ${b.title(progress.lang)}',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Colors.white.withOpacity(0.85),
-                        fontSize: 11.5,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: 0.8)),
-                const SizedBox(height: 4),
-                Text(title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style:
-                        const TextStyle(color: Colors.white, fontSize: 19, fontWeight: FontWeight.w800, height: 1.2)),
-                const SizedBox(height: 10),
-                ProgressBar(
-                  value: b.items.isEmpty ? 0 : progress.metIn(b) / b.items.length,
-                  color: Colors.white,
-                  track: Colors.white.withOpacity(0.25),
-                  height: 6,
-                ),
-                const SizedBox(height: 6),
-                Text(s.metOf(b.kind, progress.metIn(b), b.items.length),
-                    style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 12)),
-              ]),
-            ),
-            const SizedBox(width: 14),
-            Stack(clipBehavior: Clip.none, children: [
-              Container(
-                padding: const EdgeInsets.all(3),
-                decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-                child: a == null
-                    ? const CircleAvatar(
-                        radius: 34,
-                        backgroundColor: AppColors.goldBg,
-                        child: Icon(Icons.emoji_events_rounded, size: 36, color: AppColors.gold))
-                    : ClipOval(
-                        child: Container(
-                          width: 68,
-                          height: 68,
-                          color: Color.lerp(b.color, Colors.white, 0.85),
-                          padding: const EdgeInsets.all(5),
-                          child: Floating(
-                            amount: 4,
-                            child: Image.asset(a.stickerAsset,
-                                fit: BoxFit.contain,
-                                errorBuilder: (_, __, ___) => Image.asset(a.thumbAsset, fit: BoxFit.cover)),
+            padding: const EdgeInsets.all(16),
+            child: Row(children: [
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text('${s.continueLearning.toUpperCase()} · ${b.title(progress.lang)}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: Colors.white.withOpacity(0.85),
+                          fontSize: 11.5,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 0.8)),
+                  const SizedBox(height: 4),
+                  Text(title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 19, fontWeight: FontWeight.w800, height: 1.2)),
+                  const SizedBox(height: 10),
+                  ProgressBar(
+                    value: b.items.isEmpty ? 0 : progress.metIn(b) / b.items.length,
+                    color: Colors.white,
+                    track: Colors.white.withOpacity(0.25),
+                    height: 6,
+                  ),
+                  const SizedBox(height: 6),
+                  Text(s.metOf(b.kind, progress.metIn(b), b.items.length),
+                      style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 12)),
+                ]),
+              ),
+              const SizedBox(width: 14),
+              Stack(clipBehavior: Clip.none, children: [
+                Container(
+                  padding: const EdgeInsets.all(3),
+                  decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                  child: a == null
+                      ? const CircleAvatar(
+                          radius: 34,
+                          backgroundColor: AppColors.goldBg,
+                          child: Icon(Icons.emoji_events_rounded, size: 36, color: AppColors.gold))
+                      : ClipOval(
+                          child: Container(
+                            width: 68,
+                            height: 68,
+                            color: Color.lerp(b.color, Colors.white, 0.85),
+                            padding: const EdgeInsets.all(5),
+                            child: Floating(
+                              amount: 4,
+                              child: Image.asset(a.stickerAsset,
+                                  fit: BoxFit.contain,
+                                  errorBuilder: (_, __, ___) => Image.asset(a.thumbAsset, fit: BoxFit.cover)),
+                            ),
                           ),
                         ),
-                      ),
-              ),
-              PositionedDirectional(
-                end: -4,
-                bottom: -4,
-                child: Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: b.color, width: 2),
-                  ),
-                  child: Icon(Icons.play_arrow_rounded, size: 18, color: b.color),
                 ),
-              ),
+                PositionedDirectional(
+                  end: -4,
+                  bottom: -4,
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: b.color, width: 2),
+                    ),
+                    child: Icon(Icons.play_arrow_rounded, size: 18, color: b.color),
+                  ),
+                ),
+              ]),
             ]),
-          ]),
+          ),
         ),
-      ),
+        const Positioned.fill(child: Shine()),
+      ]),
     );
   }
 }
@@ -233,6 +258,7 @@ class _BookCover extends StatelessWidget {
             padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(color: book.color, borderRadius: BorderRadius.circular(15)),
             child: GridView.count(
+              padding: EdgeInsets.zero, // no extra status-bar padding (the screen is edge to edge)
               crossAxisCount: 2,
               mainAxisSpacing: 5,
               crossAxisSpacing: 5,
@@ -273,8 +299,10 @@ class _BookCover extends StatelessWidget {
 /// The library's header: the child, their stars and the parents' door on a
 /// warm gradient, the title, and three stickers from the books bobbing about.
 class _LibraryHeader extends StatelessWidget {
-  const _LibraryHeader({required this.progress, required this.name, required this.onParents, this.cloud});
+  const _LibraryHeader(
+      {required this.progress, required this.name, required this.onParents, required this.scroll, this.cloud});
   final Progress progress;
+  final ScrollController scroll;
   final Cloud? cloud;
   final String name;
   final VoidCallback onParents;
@@ -344,22 +372,32 @@ class _LibraryHeader extends StatelessWidget {
                   style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 13)),
             ]),
           ),
-          SizedBox(
-            width: 150,
-            height: 76,
-            child: Stack(clipBehavior: Clip.none, children: [
-              for (final (i, a) in picks.indexed)
-                Positioned(
-                  left: i * 46.0,
-                  top: i.isOdd ? 0 : 10,
-                  child: Floating(
-                    phase: i / 3,
-                    amount: 8,
-                    child: Image.asset(a.stickerAsset,
-                        width: 64, height: 64, errorBuilder: (_, __, ___) => const SizedBox(width: 64, height: 64)),
+          AnimatedBuilder(
+            animation: scroll,
+            builder: (context, child) {
+              final y = scroll.hasClients ? scroll.offset.clamp(0.0, 200.0) : 0.0;
+              return Opacity(
+                opacity: (1 - y / 160).clamp(0.0, 1.0),
+                child: Transform.translate(offset: Offset(0, -y * 0.45), child: child),
+              );
+            },
+            child: SizedBox(
+              width: 150,
+              height: 76,
+              child: Stack(clipBehavior: Clip.none, children: [
+                for (final (i, a) in picks.indexed)
+                  Positioned(
+                    left: i * 46.0,
+                    top: i.isOdd ? 0 : 10,
+                    child: Floating(
+                      phase: i / 3,
+                      amount: 8,
+                      child: Image.asset(a.stickerAsset,
+                          width: 64, height: 64, errorBuilder: (_, __, ___) => const SizedBox(width: 64, height: 64)),
+                    ),
                   ),
-                ),
-            ]),
+              ]),
+            ),
           ),
         ]),
       ]),
