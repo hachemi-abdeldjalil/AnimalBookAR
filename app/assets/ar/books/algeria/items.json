@@ -804,57 +804,5 @@
     ]
    }
   ]
- },
- {
-  "id": "dz_darbuka",
-  "page": 12,
-  "en": "Darbuka",
-  "fr": "Darbouka",
-  "ar": "الدربوكة",
-  "fr_of": "de la darbouka",
-  "ar_def": "الدربوكة",
-  "fact_en": "The darbuka is a drum played with the hands at weddings and parties.",
-  "fact_fr": "La darbouka est un tambour joué avec les mains aux mariages et aux fêtes.",
-  "fact_ar": "الدربوكة طبل يُعزف باليدين في الأعراس والحفلات.",
-  "model": "books/algeria/models/darbuka.glb",
-  "sound": "books/algeria/sounds/darbuka.m4a",
-  "photo": "darbuka",
-  "color": "#D21034",
-  "size": 0.45,
-  "lift": 0,
-  "turn": 0,
-  "helps": {
-   "en": "Where is Darbuka?",
-   "fr": "Où est Darbouka ?",
-   "ar": "أين الدربوكة؟"
-  },
-  "parts": [
-   {
-    "id": "skin",
-    "en": "Drum skin",
-    "fr": "Peau",
-    "ar": "جلد",
-    "fr_def": "la peau",
-    "ar_def": "الجلد",
-    "at": [
-     0.5,
-     0.98,
-     0.87
-    ]
-   },
-   {
-    "id": "body",
-    "en": "Body",
-    "fr": "Corps",
-    "ar": "جسم",
-    "fr_def": "le corps",
-    "ar_def": "الجسم",
-    "at": [
-     0.5,
-     0.6,
-     0.85
-    ]
-   }
-  ]
  }
 ]
