@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../animals.dart';
 import '../cloud.dart';
@@ -294,64 +295,68 @@ class _MissionCard extends StatelessWidget {
       color: color,
       borderRadius: BorderRadius.circular(22),
       clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: onGo,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 14, 14, 14),
-          child: Row(children: [
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(s.nextMission.toUpperCase(),
-                    style: TextStyle(
-                        color: Colors.white.withOpacity(0.8),
-                        fontSize: 11,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 1)),
-                const SizedBox(height: 3),
-                Text(title,
-                    style:
-                        const TextStyle(color: Colors.white, fontSize: 19, fontWeight: FontWeight.w800, height: 1.2)),
-                const SizedBox(height: 3),
-                Text(subtitle, style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 13)),
-                const SizedBox(height: 10),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
-                  child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Icon(mission.quiz ? Icons.quiz_rounded : Icons.photo_camera_rounded, size: 18, color: color),
-                    const SizedBox(width: 6),
-                    Text(s.go, style: TextStyle(color: color, fontWeight: FontWeight.w800)),
-                  ]),
-                ),
-              ]),
-            ),
-            const SizedBox(width: 10),
-            Container(
-              padding: const EdgeInsets.all(3),
-              decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-              child: a == null
-                  ? const CircleAvatar(
-                      radius: 38,
-                      backgroundColor: Color(0xFFFFF1C7),
-                      child: Icon(Icons.emoji_events_rounded, size: 40, color: Color(0xFFFFB81C)))
-                  : ClipOval(
-                      child: Container(
-                        width: 76,
-                        height: 76,
-                        color: Color.lerp(color, Colors.white, 0.85),
-                        padding: const EdgeInsets.all(6),
-                        child: Floating(
-                          amount: 4,
-                          child: Image.asset(a.stickerAsset,
-                              fit: BoxFit.contain,
-                              errorBuilder: (_, __, ___) => Image.asset(a.thumbAsset, fit: BoxFit.cover)),
+      // a band of light sweeps across now and then: this is the next thing to do
+      child: Stack(children: [
+        InkWell(
+          onTap: onGo,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 14, 14, 14),
+            child: Row(children: [
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(s.nextMission.toUpperCase(),
+                      style: TextStyle(
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: 11,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1)),
+                  const SizedBox(height: 3),
+                  Text(title,
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 19, fontWeight: FontWeight.w800, height: 1.2)),
+                  const SizedBox(height: 3),
+                  Text(subtitle, style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 13)),
+                  const SizedBox(height: 10),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
+                    child: Row(mainAxisSize: MainAxisSize.min, children: [
+                      Icon(mission.quiz ? Icons.quiz_rounded : Icons.photo_camera_rounded, size: 18, color: color),
+                      const SizedBox(width: 6),
+                      Text(s.go, style: TextStyle(color: color, fontWeight: FontWeight.w800)),
+                    ]),
+                  ),
+                ]),
+              ),
+              const SizedBox(width: 10),
+              Container(
+                padding: const EdgeInsets.all(3),
+                decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                child: a == null
+                    ? const CircleAvatar(
+                        radius: 38,
+                        backgroundColor: Color(0xFFFFF1C7),
+                        child: Icon(Icons.emoji_events_rounded, size: 40, color: Color(0xFFFFB81C)))
+                    : ClipOval(
+                        child: Container(
+                          width: 76,
+                          height: 76,
+                          color: Color.lerp(color, Colors.white, 0.85),
+                          padding: const EdgeInsets.all(6),
+                          child: Floating(
+                            amount: 4,
+                            child: Image.asset(a.stickerAsset,
+                                fit: BoxFit.contain,
+                                errorBuilder: (_, __, ___) => Image.asset(a.thumbAsset, fit: BoxFit.cover)),
+                          ),
                         ),
                       ),
-                    ),
-            ),
-          ]),
+              ),
+            ]),
+          ),
         ),
-      ),
+        const Positioned.fill(child: Shine()),
+      ]),
     );
   }
 }
@@ -365,49 +370,69 @@ class _LevelSwitcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final s = progress.s;
+    // a white pill slides under the chosen level
+    final dir = Directionality.of(context) == TextDirection.rtl ? -1.0 : 1.0;
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(color: const Color(0xFFF3EEE7), borderRadius: BorderRadius.circular(18)),
-      child: Row(children: [
-        for (final l in [1, 2, 3])
-          Expanded(
-            child: GestureDetector(
-              key: Key('level-$l'),
-              onTap: () => onSelect(l),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+      child: Stack(children: [
+        Positioned.fill(
+          child: AnimatedAlign(
+            duration: const Duration(milliseconds: 320),
+            curve: Curves.easeOutBack,
+            alignment: Alignment(dir * (selected - 2).toDouble(), 0),
+            child: FractionallySizedBox(
+              widthFactor: 1 / 3,
+              heightFactor: 1,
+              child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: l == selected ? Colors.white : Colors.transparent,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(14),
-                  boxShadow: l == selected
-                      ? const [BoxShadow(color: Color(0x1A000000), blurRadius: 6, offset: Offset(0, 2))]
-                      : null,
+                  boxShadow: [
+                    BoxShadow(color: progress.book.color.withOpacity(0.25), blurRadius: 10, offset: const Offset(0, 3))
+                  ],
                 ),
-                child: Column(children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    if (progress.levelDone(l))
-                      const Icon(Icons.check_circle_rounded, size: 15, color: Color(0xFF22B07D))
-                    else if (!progress.unlocked(l))
-                      const Icon(Icons.lock_rounded, size: 14, color: Color(0xFFA3A8C3))
-                    else
-                      const Icon(Icons.play_circle_fill_rounded, size: 15, color: brand),
-                    const SizedBox(width: 3),
-                    Text('$l',
-                        style: const TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF666C8F), fontSize: 12)),
-                  ]),
-                  Text(s.levelName(l, kind: progress.book.kind),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 12.5,
-                        fontWeight: l == selected ? FontWeight.w800 : FontWeight.w600,
-                        color: progress.unlocked(l) ? ink : const Color(0xFFA3A8C3),
-                      )),
-                ]),
               ),
             ),
           ),
+        ),
+        Row(children: [
+          for (final l in [1, 2, 3])
+            Expanded(
+              child: GestureDetector(
+                key: Key('level-$l'),
+                behavior: HitTestBehavior.opaque,
+                onTap: () {
+                  HapticFeedback.selectionClick();
+                  onSelect(l);
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                  child: Column(children: [
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      if (progress.levelDone(l))
+                        const Icon(Icons.check_circle_rounded, size: 15, color: Color(0xFF22B07D))
+                      else if (!progress.unlocked(l))
+                        const Icon(Icons.lock_rounded, size: 14, color: Color(0xFFA3A8C3))
+                      else
+                        const Icon(Icons.play_circle_fill_rounded, size: 15, color: brand),
+                      const SizedBox(width: 3),
+                      Text('$l',
+                          style: const TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF666C8F), fontSize: 12)),
+                    ]),
+                    Text(s.levelName(l, kind: progress.book.kind),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12.5,
+                          fontWeight: l == selected ? FontWeight.w800 : FontWeight.w600,
+                          color: progress.unlocked(l) ? ink : const Color(0xFFA3A8C3),
+                        )),
+                  ]),
+                ),
+              ),
+            ),
+        ]),
       ]),
     );
   }
@@ -492,29 +517,70 @@ class _LevelBar extends StatelessWidget {
   }
 }
 
-class _ScanButton extends StatelessWidget {
+class _ScanButton extends StatefulWidget {
   const _ScanButton({required this.label, required this.onTap});
   final String label;
   final VoidCallback onTap;
 
   @override
+  State<_ScanButton> createState() => _ScanButtonState();
+}
+
+/// The camera button: two soft rings breathe out of it, inviting a tap.
+class _ScanButtonState extends State<_ScanButton> with SingleTickerProviderStateMixin {
+  late final AnimationController _c = AnimationController(vsync: this, duration: const Duration(milliseconds: 2400))
+    ..repeat();
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: label,
-      child: GestureDetector(
+      label: widget.label,
+      child: Pressable(
         key: const Key('open-camera'),
-        onTap: onTap,
-        child: Container(
-          width: 74,
-          height: 74,
-          decoration: BoxDecoration(
-            color: brand,
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.white, width: 5),
-            boxShadow: const [BoxShadow(color: Color(0x55E8702A), blurRadius: 16, offset: Offset(0, 6))],
+        onTap: widget.onTap,
+        child: SizedBox(
+          width: 110,
+          height: 110,
+          child: AnimatedBuilder(
+            animation: _c,
+            builder: (context, child) => Stack(alignment: Alignment.center, children: [
+              for (final shift in [0.0, 0.5])
+                Builder(builder: (context) {
+                  final t = (_c.value + shift) % 1.0;
+                  return Container(
+                    width: 74 + 36 * t,
+                    height: 74 + 36 * t,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: brand.withOpacity(0.22 * (1 - t)),
+                    ),
+                  );
+                }),
+              child!,
+            ]),
+            child: Container(
+              width: 74,
+              height: 74,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Color(0xFFFF8C5A), brand, AppColors.brandDark],
+                ),
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white, width: 5),
+                boxShadow: const [BoxShadow(color: Color(0x55FF6B35), blurRadius: 16, offset: Offset(0, 6))],
+              ),
+              child: const Icon(Icons.center_focus_strong_rounded, color: Colors.white, size: 34),
+            ),
           ),
-          child: const Icon(Icons.center_focus_strong_rounded, color: Colors.white, size: 34),
         ),
       ),
     );

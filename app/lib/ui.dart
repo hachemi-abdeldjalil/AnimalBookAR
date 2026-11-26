@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// The app's look in one place: colours, card style, section headers and
 /// small building blocks shared by the welcome, bookshelf and parents screens.
@@ -265,14 +266,17 @@ class _PressableState extends State<Pressable> {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTapDown: (_) => setState(() => _down = true),
+      onTapDown: (_) {
+        setState(() => _down = true);
+        HapticFeedback.selectionClick(); // a light tick under the finger
+      },
       onTapCancel: () => setState(() => _down = false),
       onTapUp: (_) => setState(() => _down = false),
       onTap: widget.onTap,
       child: AnimatedScale(
-        scale: _down ? 0.95 : 1,
-        duration: const Duration(milliseconds: 140),
-        curve: Curves.easeOutBack,
+        scale: _down ? 0.96 : 1,
+        duration: Duration(milliseconds: _down ? 90 : 220),
+        curve: _down ? Curves.easeOut : Curves.easeOutBack,
         child: widget.child,
       ),
     );
@@ -367,6 +371,83 @@ class ProgressRing extends StatelessWidget {
           Text('${(v * 100).round()}%',
               style: TextStyle(color: color, fontWeight: FontWeight.w800, fontSize: size * 0.26)),
         ]),
+      ),
+    );
+  }
+}
+
+/// The app's screen change: the new screen fades in while rising a little and
+/// settling from 96% to full size; the old one fades back. Calm and quick,
+/// the same on Android and iOS.
+class SoftPageTransitions extends PageTransitionsBuilder {
+  const SoftPageTransitions();
+
+  @override
+  Widget buildTransitions<T>(PageRoute<T> route, BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    final t = CurvedAnimation(parent: animation, curve: Curves.easeOutCubic, reverseCurve: Curves.easeInCubic);
+    final out = CurvedAnimation(parent: secondaryAnimation, curve: Curves.easeOutCubic);
+    return AnimatedBuilder(
+      animation: Listenable.merge([t, out]),
+      child: child,
+      builder: (context, child) => Opacity(
+        opacity: t.value * (1 - 0.35 * out.value),
+        child: Transform.translate(
+          offset: Offset(0, 28 * (1 - t.value)),
+          child: Transform.scale(scale: (0.96 + 0.04 * t.value) * (1 - 0.03 * out.value), child: child),
+        ),
+      ),
+    );
+  }
+}
+
+/// A soft band of light that sweeps across its parent every few seconds (put it
+/// over a card, inside its clip): it draws the eye to the next thing to do.
+class Shine extends StatefulWidget {
+  const Shine({super.key, this.period = const Duration(milliseconds: 4200)});
+  final Duration period;
+
+  @override
+  State<Shine> createState() => _ShineState();
+}
+
+class _ShineState extends State<Shine> with SingleTickerProviderStateMixin {
+  late final AnimationController _c = AnimationController(vsync: this, duration: widget.period)..repeat();
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: AnimatedBuilder(
+        animation: _c,
+        builder: (context, _) {
+          final t = (_c.value / 0.3).clamp(0.0, 1.0); // sweeps in the first 30% of each period, then rests
+          if (t <= 0 || t >= 1) return const SizedBox.expand();
+          return LayoutBuilder(builder: (context, box) {
+            final w = box.maxWidth;
+            return Stack(children: [
+              Positioned(
+                left: -w * 0.5 + t * w * 1.6,
+                top: -20,
+                bottom: -20,
+                width: w * 0.35,
+                child: Transform.rotate(
+                  angle: 0.35,
+                  child: const DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [Color(0x00FFFFFF), Color(0x40FFFFFF), Color(0x00FFFFFF)]),
+                    ),
+                  ),
+                ),
+              ),
+            ]);
+          });
+        },
       ),
     );
   }
